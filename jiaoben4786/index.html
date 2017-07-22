@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery帆船帆板翻转轮播代码 - 站长素材</title>
+
+<script src="js/jquery-1.10.2.js"></script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	body { text-align: center; background-color: #191919; }
+
+	li {
+		list-style: none;
+	}
+
+	#box {
+		position: relative;
+		width: 1050px;
+		height: 360px;
+		margin: 100px auto 10px;
+	}
+
+	#box ul li {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 1050px;
+		height: 360px;
+		display: none;
+	}
+
+	#show {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 1050px;
+		height: 360px;
+		perspective: 800px; /*井深*/
+		display: none;
+	}
+
+	#show div {
+		position: relative;
+		width: 525px;
+		height: 72px;
+		float: left;
+		transform-style: preserve-3d; /*创遭3d环境*/
+	}
+
+	#show div em {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: block;
+		width: 525px;
+		height: 72px;
+	}
+
+	#show div .em1 {
+		/*前面*/
+		background: url("img/1.png");
+		transform: translateX(5px);
+	}
+
+	#show div .em2 {
+		/*后面*/
+		background: url("img/2.png");
+		transform: translateZ(-5px) rotateX(-180deg);
+	}
+
+	#show div span {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		background-color: #999;
+	}
+
+	#show div span.span1 {
+		width: 10px;
+		height: 72px;
+		transform-origin: right;
+		transform: translateZ(-5px) rotateY(-90deg);
+	}
+
+	#show div span.span2 {
+		width: 525px;
+		height: 10px;
+		transform-origin: bottom;
+		transform: translateZ(-5px) rotateX(-90deg);
+	}
+
+	#show div.div2 .span1 {
+		left: 0;
+		transform-origin: left;
+		transform: translateZ(5px) rotateY(90deg);
+	}
+	/*规定左前动画旋转特效*/
+	@keyframes move1{
+		0%{
+			transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+			animation-timing-function: ease;/*运动速度曲线*/
+		}
+		60%{
+			transform: rotateX(0deg) rotateZ(0deg) rotateY(-60deg);
+			animation-timing-function: ease-in;/*运动速度曲线*/
+		}
+		80%{
+			transform: rotateX(90deg) rotateZ(10deg) rotateY(-45deg);
+			animation-timing-function: ease-out;/*运动速度曲线*/
+		}
+		100%{
+			transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+		}
+
+
+	}
+
+
+
+	@keyframes  move2{
+		0%{
+			transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+			animation-timing-function: ease;/*运动速度曲线*/
+		}
+		60%{
+			transform: rotateX(0deg) rotateZ(0deg) rotateY(60deg);
+			animation-timing-function: ease-in;/*运动速度曲线*/
+		}
+		80%{
+			transform: rotateX(90deg) rotateZ(-10deg) rotateY(45deg);
+			animation-timing-function: ease-out;/*运动速度曲线*/
+		}
+		100%{
+			transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+		}
+	}
+
+</style>
+</head>
+<body>
+<div id="box">
+<ul>
+	<li><img src="img/1.png" alt="pho"/></li>
+	<li><img src="img/2.png" alt="pho"/></li>
+	<li><img src="img/3.png" alt="pho"/></li>
+	<li><img src="img/4.png" alt="pho"/></li>
+	<li><img src="img/5.png" alt="pho"/></li>
+</ul>
+<div id="show"></div>
+</div>
+<input type="button" id="prev" value="上一张"/>
+<input type="button" id="next" value="下一张"/>
+
+<script>
+	var oShow = document.getElementById("show");
+	var oBox = document.getElementById('box');
+	var prev = document.getElementById("prev");
+	var next = document.getElementById("next");
+	var oLi = oBox.getElementsByTagName("ul")[0].getElementsByTagName("li");
+	var oImg = oBox.getElementsByTagName("ul")[0].getElementsByTagName("img");
+	oShow.iNow = 0;
+	oShow.urls = []; /*当前背景  给oshow对象添加一个自定义属性保存当前显示的图片*/
+	oShow.off = false;
+	/*保存图片路径*/
+	for (var i = 0; i < 5; i++) {
+		var oDiv1 = document.createElement("div");
+		var oDiv2 = document.createElement("div");
+		oDiv2.className = "div2";
+		oDiv1.innerHTML = "<em class='em1' style='background-position: 0-" + i * 72 + "px'></em><span class='span1'></span>" +
+				"<em class='em2' style='background-position: 0-" + i * 72 + "px'></em><span class='span2'></span>";
+		oDiv2.innerHTML = "<em class='em1' style='background-position: -525px+" + (5 - i) * 72 + "px'></em><span class='span1'></span>" +
+				"<em class='em2' style='background-position: -525px+" + (5 - i) * 72 + "px'></em><span class='span2'></span>";
+		oShow.appendChild(oDiv1);
+		oShow.appendChild(oDiv2);
+	}
+	oLi[0].style.display = "block";
+	/***********/
+	//获取图片
+	for (var i = 0; i < oImg.length; i++) {
+		oShow.urls.push(oImg[i].getAttribute("src"));
+	}
+		prev.onclick = function () {
+			if(oShow.off){
+				return; //
+			}
+			oShow.off = true;
+			var iNext = oShow.iNow - 1;
+			if (iNext < 0) {
+				iNext = oShow.urls.length - 1;
+			}
+			tab(iNext);//切换图片
+		};
+	next.onclick = function () {
+		if(oShow.off){
+			return; //
+		}
+		oShow.off = true;
+		var iNext = oShow.iNow + 1;
+		if (iNext >= oShow.urls.length) {
+			iNext = 0;
+		}
+		tab(iNext);//切换图片
+	};
+	function tab(iNext) {
+		var oEm1 = oShow.getElementsByClassName("em1");
+		var oEm2 = oShow.getElementsByClassName("em2");
+		var oDiv = oShow.getElementsByTagName("div");
+		for (var i = 0; i < oEm1.length; i++) {
+			//当前的这一张
+			oEm1[i].style.backgroundImage = "url(" + oShow.urls[oShow.iNow] + ")";
+			//后面的哪一张
+			oEm2[i].style.backgroundImage = "url(" + oShow.urls[iNext] + ")";
+		}
+		oShow.style.display = "block";
+		oLi[oShow.iNow].style.display = "none";
+
+		//给具体的十个div绑定定时器  实现旋转效果
+		for (var i = 0; i < oDiv.length; i+=2) {
+			var time = (i+1)*50;
+			oDiv[i].style.transform = "rotateX(0deg)";//左边
+			oDiv[i + 1].style.transform = "rotateX(0deg)";//右边
+			//具体每个div绑定定时器
+			setTimer(oDiv[i], time,"move1");
+			setTimer(oDiv[i + 1], time,"move2")
+		}
+		//动画执行完成之后
+		setTimeout(function(){
+
+			oShow.iNow = iNext;
+			oLi[oShow.iNow].style.display = "block";///inext.inow
+			oShow.style.display = "none";
+			oShow.off = false;
+		},(oDiv.length*50+1500))
+
+	}
+	function setTimer(obj,time,name){
+		obj.timer = setTimeout(function(){
+			//开启定时器之前先清除定时器
+			clearTimeout(obj.timer);
+			obj.style.animation = name + " 1.5s";
+			obj.style.transform = "rotateX(180deg)";
+
+			obj.timer = setTimeout(function(){
+				obj.style.animation = "";
+				clearTimeout(obj.timer);
+				obj.timer = null;
+			},1500);
+		},time)
+	}
+
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#ffffff">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

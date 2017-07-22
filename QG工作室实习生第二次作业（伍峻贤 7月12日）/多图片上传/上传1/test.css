@@ -1,0 +1,47 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+#showImg img {
+    float: left;
+    padding: 10px;
+}
+#showImg {
+    overflow: hidden;
+}
+#file{
+    opacity: 0;
+    width: 101px;
+    height: 42px;
+     position: absolute;
+         cursor: pointer;
+}
+.container {
+    width: 1200px;
+    margin:10px auto 0px auto;
+    position: relative;
+}
+#filecss {
+    width: 100px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    /* border: 0; */
+    border-radius: 24px;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    background-color: #D1CFCF;
+}
+.containerSmall:hover div{
+    background-image: linear-gradient(to bottom, #FFFFFF, #9B9999);
+}
+
+#button {
+    margin-top: 14px;
+    margin-left: 9px;
+    font-size: 20px;
+    padding: 7px 20px;
+}
+.containerSmall {
+    width: 101px;
+}

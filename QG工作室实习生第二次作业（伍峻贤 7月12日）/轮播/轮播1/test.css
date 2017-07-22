@@ -1,0 +1,884 @@
+div {
+    position: relative;
+    width: 754px;
+    height: 292px;
+    margin: auto;
+}
+ul {
+    list-style-type: none;
+
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+    width: 754px;
+    height: 292px;
+}
+li {
+    list-style-type: none;
+
+    position: absolute;
+}
+ul li img {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+.arrow {
+    display: none;
+
+    position: absolute;
+    top: 76px;
+    z-index: 2;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 39px;
+    text-align: center;
+
+    color: #fff;
+    background-color: RGBA(0,0,0,.3);
+    
+    text-decoration: none;
+    cursor: pointer;
+}
+.arrow:hover {
+    background-color: RGBA(0,0,0,.7);
+}
+.contain:hover .arrow {
+    display: block;
+}
+#prev {
+    left: 20px;
+}
+#next {
+    right: 20px;
+}
+
+.ul_li_1 {
+    top: 71px;
+    left: 134px;
+    z-index: 1;
+
+    width: 120px;
+    height: 150px;
+    /* Safari 和 Chrome: */
+
+    
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+.ul_li_2 {
+    top: 61px;
+    left: 0;
+    z-index: 2;
+
+    width: 130px;
+    height: 170px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+}
+
+.ul_li_3 {
+    top: 37px;
+    left: 110px;
+    z-index: 3;
+
+    width: 170px;
+    height: 218px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+.ul_li_4 {
+    top: 0;
+    left: 262px;
+    z-index: 4;
+
+    width: 224px;
+    height: 288px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+.ul_li_5 {
+    top: 37px;
+    left: 468px;
+    z-index: 3;
+
+    width: 170px;
+    height: 218px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+.ul_li_6 {
+    top: 61px;
+    left: 620px;
+    z-index: 2;
+
+    width: 120px;
+    height: 170px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /* -o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+.ul_li_7 {
+    top: 71px;
+    left: 496px;
+    z-index: 1;
+
+    width: 120px;
+    height: 150px;
+    /* Safari 和 Chrome: */
+
+
+    -webkit-animation-duration: 3s;
+       -moz-animation-duration: 3s;
+         -o-animation-duration: 3s;
+            animation-duration: 3s;
+    /*-webkit-animation-direction: alternate;*/
+    -webkit-animation-play-state: running;
+    /*-moz-animation-direction: alternate;*/
+       -moz-animation-play-state: running;
+    /*-o-animation-direction: alternate;*/
+         -o-animation-play-state: running;
+    /*animation-direction: alternate;*/
+            animation-play-state: running;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+         -o-animation-delay: 2s;
+            animation-delay: 2s;
+
+}
+
+@keyframes myfirst {
+    0% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+
+}
+
+@-moz-keyframes myfirst /* Firefox */ {
+    0% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */ {
+     0% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+}
+
+@-o-keyframes myfirst /* Opera */ {
+    0% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+}
+@keyframes mysecond {
+    0% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+    100% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+
+}
+@-moz-keyframes mysecond /* Firefox */ {
+    0% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+    100% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+
+@-webkit-keyframes mysecond /* Safari 和 Chrome */ {
+     0% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+    100% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+
+@-o-keyframes mysecond /* Opera */ {
+    0% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+    100% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+@keyframes myThird {
+    0% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+
+}
+@-moz-keyframes myThird /* Firefox */ {
+    0% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+
+}
+
+@-webkit-keyframes myThird /* Safari 和 Chrome */ {
+    0% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+}
+
+@-o-keyframes myThird /* Opera */ {
+    0% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    12.5% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+    25% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    37.5% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    50% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    62.5% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    75% {
+        top: 61px;
+        left: 0;
+        z-index: 2;
+
+        width: 130px;
+        height: 170px;
+    }
+    100% {
+        top: 37px;
+        left: 110px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+@keyframes myfour {
+    0% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+    100% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    
+}
+@-moz-keyframes myfour /* Firefox */ {
+    0% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+    100% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+
+@-webkit-keyframes myfour /* Safari 和 Chrome */ {
+   0% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+    100% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+
+@-o-keyframes myfour /* Opera */ {
+   0% {
+        top: 0;
+        left: 262px;
+        z-index: 4;
+
+        width: 224px;
+        height: 288px;
+    }
+    100% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+}
+
+@keyframes myfive {
+    0% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    0% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+}
+@-moz-keyframes myfive /* Firefox */ {
+     0% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+}
+
+@-webkit-keyframes myfive /* Safari 和 Chrome */ {
+    0% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+}
+
+@-o-keyframes myfive /* Opera */ {
+     0% {
+        top: 37px;
+        left: 468px;
+        z-index: 3;
+
+        width: 170px;
+        height: 218px;
+    }
+    100% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+}
+
+@keyframes mysix {
+    0% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    100% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+
+}
+@-moz-keyframes mysix {
+    0% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    100% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}
+
+@-webkit-keyframes mysix {
+     0% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    100% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}
+
+@-o-keyframes mysix {
+    0% {
+        top: 61px;
+        left: 620px;
+        z-index: 2;
+
+        width: 120px;
+        height: 170px;
+    }
+    100% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}
+
+@keyframes myseven {
+    0% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+
+}
+@-moz-keyframes myseven {
+    0% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}
+
+@-webkit-keyframes myseven {
+    0% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}
+
+@-o-keyframes  myseven {
+    0% {
+        top: 71px;
+        left: 496px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+    100% {
+        top: 71px;
+        left: 134px;
+        z-index: 1;
+
+        width: 120px;
+        height: 150px;
+    }
+}

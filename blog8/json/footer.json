@@ -1,0 +1,24 @@
+{
+
+	"recent_posts": [
+		"Lorem ipsum dolor sit amet",
+		"Maecenas in magna quis augue",
+		"Ut a mauris nec eros consect",
+		"Nam luctus felis at mauris co",
+		"Aliquam sagittis ligula sit amet",
+		"Quisque sit amet est id urna",
+		"Aenean gravida ipsum in quam"
+	],
+	"nulla_eu_leo": [
+		{
+			"img_url": "img/img14.jpg",
+			"title":"Nulla eu leo at ligula porta aliquam.",
+			"content":"Donec fermentum leo sed ante accumsan vitae faucibus tellus commodo. Pellentesque fermentum, purus eu aliquam."
+		},
+		{
+			"img_url": "img/img15.jpg",
+			"title":"Cras dictum, est eget adipiscing",
+			"content":"consectetur, eros eros posuere eros, non mattis neque sem ultricies mauris. Vestibulum aliquet congue nunc a consect"
+		}
+	]
+}

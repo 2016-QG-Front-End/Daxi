@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+
+    background-color: #191919;
+}
+
+li {
+    list-style: none;
+}
+
+#box {
+    position: relative;
+
+    margin: 100px auto 10px;
+    width: 1050px;
+    height: 360px;
+}
+
+#box ul li {
+
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 1050px;
+    height: 360px;
+}
+
+#show {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 1050px;
+    height: 360px;
+
+    perspective: 800px; /*井深*/
+}
+
+#show div {
+    float: left;
+
+    position: relative;
+
+    width: 525px;
+    height: 72px;
+
+    transform-style: preserve-3d; /*创遭3d环境*/
+}
+
+#show div em {
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 525px;
+    height: 72px;
+}
+
+#show div .em1 {
+    /* 在前面的图*/
+    background-image: url("images/1.png");
+
+    transform: translateX(5px);
+}
+
+#show .showDiv1 .em1 {
+    transform: translateX(5px) rotateY(0deg);
+}
+
+#show .showDiv2 .em1 {
+    transform: translateX(5px) rotateY(0deg);
+}
+
+#show div .em2 {
+    background: url("images/2.png");
+
+    transform: translateZ(-5px) rotateX(-180deg);
+}
+
+#show div span.span1 {
+    width: 10px;
+    height: 72px;
+
+    transform: translateZ(-5px) rotateY(-90deg);
+    transform-origin: right;
+}
+
+#show div span.span2 {
+    width: 525px;
+    height: 10px;
+
+    transform: translateZ(-5px) rotateX(-90deg);
+    transform-origin: bottom;
+}
+
+#show div.showDiv2 .span1 {
+    left: 0;
+
+    transform: translateZ(5px) rotateY(90deg);
+    transform-origin: left;
+}
+#show div span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    background-color: #999;
+}
+
+@keyframes move1 {
+    0% {
+        transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+        animation-timing-function: ease;/*运动速度曲线*/
+    }
+    60% {
+        transform: rotateX(0deg) rotateZ(0deg) rotateY(-60deg);
+        animation-timing-function: ease-in;/*运动速度曲线*/
+    }
+    80% {
+        transform: rotateX(90deg) rotateZ(10deg) rotateY(-45deg);
+        animation-timing-function: ease-out;/*运动速度曲线*/
+    }
+    100% {
+        transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+    }
+}
+@keyframes  move2 {
+    0% {
+        transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+        animation-timing-function: ease;/*运动速度曲线*/
+    }
+    60% {
+        transform: rotateX(0deg) rotateZ(0deg) rotateY(60deg);
+        animation-timing-function: ease-in;/*运动速度曲线*/
+    }
+    80% {
+        transform: rotateX(90deg) rotateZ(-10deg) rotateY(45deg);
+        animation-timing-function: ease-out;/*运动速度曲线*/
+    }
+    100% {
+        transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+    }
+}
+
+.arrow {
+    display: none;
+
+    position: absolute;
+    top: 167px;
+    z-index: 2;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 39px;
+    text-align: center;
+
+    color: #fff;
+    background-color: RGBA(0,0,0,.3);
+    
+    text-decoration: none;
+    cursor: pointer;
+}
+.arrow:hover {
+    background-color: RGBA(0,0,0,.7);
+}
+#box:hover .arrow {
+    display: block;
+}
+#prev {
+    left: 20px;
+}
+#next {
+    right: 20px;
+}

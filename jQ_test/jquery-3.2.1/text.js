@@ -33,25 +33,24 @@ window.onload = function() {
           user: "admin", //账号
           password: "admin123456" //密码 
         };
-    xhr.open("post", "http://123.207.228.117/ExcellentCourses/admin/login", true);
-    
-    xhr.onreadystatechange = function () {
-               
-        if (xhr.readyState == 4) {
-            if ((xhr.status >= 200 && xhr.status < 300)  || xhr.status == 304) {
-                alert("Request was successful: " + xhr.responseText);
-                var jsonData = JSON.parse(xhr.responseText);
-                for (var i in jsonData) {
-                    alert(jsonData[i]);
-                }
-            } else {
-                alert("Request was unsuccessful: " + xhr.status);
-               
-                
-            }
+
+    $.ajax({
+    type: "post",
+    url: "http://123.207.228.117/ExcellentCourses/admin/login",
+    contentType: "application/json; charest=utf-8",
+    data: JSON.stringify(person),
+    dataType: "json",
+    username: 'admin',
+    password: "admin123456",
+    success: function (data) {
+        for(var i in data) {
+            alert(data[i]);
         }
-    };
-    
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(JSON.stringify(person));
+        
+    },
+    error: function (xhr, status, errorThrowm) {
+        
+    }
+})
+
 }

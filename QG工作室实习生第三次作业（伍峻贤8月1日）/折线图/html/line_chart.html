@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <title>折线图</title>
+    
+    <!-- 360 使用Google Chrome Frame -->
+    <meta name="renderer" content="webkit">
+    
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <!-- 开启响应式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO页面关键词 -->
+    <meta name="keywords" content="your keywords">
+    
+    <!-- SEO页面描述 -->
+    <meta name="description" content="your description">
+    
+    <!-- favicon，可更改图片类型 -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- 重设css -->
+    <link  rel="stylesheet" href="../css/normalize.css">
+    <style>
+        .game-form-row {
+            margin:10px auto;
+        }
+    </style>
+</head>
+<body style="background-image: url('../images/bann.jpg');background-repeat: no-repeat;background-size: 100%">
+    <div style="width: 1000px;margin: 0 auto;background-color: rgba(0, 0, 0, .7);" >
+        <div id="line-chart" style="height: 300px;width: 514px;margin: 10px auto; float: right;padding-right: 10px;"></div>
+        <div class="game-form-data" id="form-data" style="width: 500px;   padding: 50px;">
+            <div class="game-form-row">
+                <input type="text" name="Game-Name-one" placeholder="游戏名">
+                <input type="number" name="Game-one-number" max="300" placeholder="玩家数量" style="margin-left: 20px;">
+            </div>
+            <div class="game-form-row">
+                <input type="text" name="Game-Name-two"  placeholder="游戏名">
+                <input type="number" name="Game-two-number" max="300" placeholder="玩家数量" style="margin-left: 20px;">
+            </div>
+            <div class="game-form-row"> 
+                <input type="text" name="Game-Name-three"  placeholder="游戏名">
+                <input type="number" name="Game-three-number" max="300" placeholder="玩家数量" style="margin-left: 20px;">
+            </div>
+            <div class="game-form-row">
+                <input type="text" name="Game-Name-four"  placeholder="游戏名">
+                <input type="number" name="Game-four-number" max="300" placeholder="玩家数量" style="margin-left: 20px;">
+            </div>
+            <div class="game-form-row">
+                <input type="text" name="Game-Name-five"  placeholder="游戏名">
+                <input type="number" name="Game-five-number" max="300" placeholder="玩家数量" style="margin-left: 20px;">
+            </div>
+            <div class="game-form-row">
+                <button id="button" >生成图表</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.min.js"></script>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.js"></script>
+    <script src="http://libs.baidu.com/underscore/1.3.3/underscore.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script>
+    /**
+     * [myChart 生成图表]
+     * @type {[type]}
+     */
+        var myChart = echarts.init(document.getElementById('line-chart'));
+        var option = {
+            title: {
+                text:'各游戏玩家数量',
+                textStyle: {
+                    color: '#fff',
+                 
+                },
+                left: 'center',
+                textAlign: 'left',
+            },
+
+            legend: {
+                left:0,
+                
+                data: [{
+                    name: '玩家数量',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }]
+            },
+
+            tooltip: {
+                trigger: 'axis'
+            },
+
+            toolbox: {
+                feature: {
+                    magicType: {
+                        type:['line', 'bar'],
+                        title: {
+                            line: '',
+                            bar: ''
+                        }
+                    }
+                }
+            },
+
+            xAxis: {
+                name: '游戏名',
+                nameLocation: 'end',
+                nameTextStyle: {
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    fontSize: 18
+                },
+                data: [],
+                boundaryGap: true,
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color:'white'
+                    }
+                },
+            },
+
+            yAxis: {
+                name: '人数',
+                nameLocation: 'end',
+                nameTextStyle: {
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    fontSize: 18
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color:'white'
+                    }
+                },
+            },
+
+            series: [{
+                type: 'line',
+                name: '玩家数量',
+                // data: [100, 110, 200, 80, 50],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                },
+                lineStyle: {
+                    normal: {
+                        color:"#fff"
+                    }
+                },
+                areaStyle: {normal: {}}
+            }]
+        };
+
+        myChart.setOption(option);
+        /**
+         * 生成图表结束
+         */
+        
+        $(function() {
+            $('#button').bind('click', function() {
+                var data = document.getElementById('form-data'),
+                    input = data.getElementsByTagName('input'),
+                    name = [],
+                    number = [];
+
+                    for (var i = 0; i < input.length; i += 2) {
+                        name.push(input[i].value);
+                    };
+                    
+                    for (var i = 1; i < input.length; i += 2) {
+                        number.push(input[i].value);
+                    };
+
+                    myChart.setOption({
+                        series: [{
+                            data: number
+                        }],
+                        xAxis: {
+                            data: name
+                        },
+                        
+                    });
+
+            });
+        })
+    </script>
+</body>
+</html>

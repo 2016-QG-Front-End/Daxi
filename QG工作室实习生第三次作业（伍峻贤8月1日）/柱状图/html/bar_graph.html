@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <title>柱状图</title>
+    
+    <!-- 360 使用Google Chrome Frame -->
+    <meta name="renderer" content="webkit">
+    
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <!-- 开启响应式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO页面关键词 -->
+    <meta name="keywords" content="your keywords">
+    
+    <!-- SEO页面描述 -->
+    <meta name="description" content="your description">
+    
+    <!-- favicon，可更改图片类型 -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- 重设css -->
+    <link  rel="stylesheet" href="../css/normalize.css">
+</head>
+<body>
+    <div id="bar-graph"  style="height: 600px;width: 1000px;margin: 10px auto;"></div>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.min.js"></script>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.js"></script>
+    <script src="http://libs.baidu.com/underscore/1.3.3/underscore.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('bar-graph'));
+        var option = {
+            title: {
+                text:'各游戏玩家数量',
+                textStyle: {
+                    color: 'red',
+                 
+                },
+                textAlign: 'left',
+            },
+
+            legend: {
+               
+                data: {
+                    name: '玩家数量',
+        
+                }
+            },
+
+            tooltip: {
+                trigger: 'axis'
+            },
+
+            xAxis: {
+                name: '游戏名',
+                nameTextStyle: {
+                    fontWeight: 'bold',
+                    color: 'blue',
+                    fontSize: 18
+                },
+                data: ['DOTA2', 'LOL', '绝地大逃杀', '彩虹6号', '杀手6']
+            },
+
+             yAxis: {
+                name: '人数',
+                min: 0,
+                max: 220,
+                nameLocation: 'end'
+            },
+
+            series: [{
+                type: 'bar',
+                name: '玩家数量',
+                barWidth: '30%',
+                data: [100, 110, 200, 80, 50],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                
+                markLine : {
+                    lineStyle: {
+                        normal: {
+                            type: 'dashed'
+                        }
+                    },
+                    data : [
+                        [{type : 'min'}, {type : 'max'}]
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                        }
+                    }
+                }
+
+
+            }]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

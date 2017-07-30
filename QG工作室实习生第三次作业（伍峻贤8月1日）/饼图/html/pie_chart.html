@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <title>文档标题</title>
+    
+    <!-- 360 使用Google Chrome Frame -->
+    <meta name="renderer" content="webkit">
+    
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <!-- 开启响应式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO页面关键词 -->
+    <meta name="keywords" content="your keywords">
+    
+    <!-- SEO页面描述 -->
+    <meta name="description" content="your description">
+    
+    <!-- favicon，可更改图片类型 -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- 重设css -->
+    <link  rel="stylesheet" href="../css/normalize.css">
+</head>
+<body>
+    <div id="pie-chart" style="width: 1000px; height: 500px;margin: 10px auto;"></div>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.min.js"></script>
+    <script src="../js/jquery_3.2.1/jquery_3.2.1.js"></script>
+    <script src="http://libs.baidu.com/underscore/1.3.3/underscore.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('pie-chart'));
+        var option = {
+            backgroundColor: '#2c343c',
+            series : [
+        {   
+            
+            name: '玩家数量',
+            type: 'pie',
+            radius: '65%',
+            roseType: 'angle',
+            data:[
+                {value: 100, name: 'DOTA2'},
+                {value: 110, name: 'LOL'},
+                {value: 200, name: '绝地大逃杀'},
+                {value: 80, name: '彩虹6号'},
+                {value: 50, name: '杀手6'}
+            ],
+
+            label: {
+                normal: {
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+
+            itemStyle: {
+                normal: {
+                    color: '#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+
+            visualMap: {
+                // 不显示 visualMap 组件，只用于明暗度的映射
+                show: false,
+                // 映射的最小值为 80
+                min: 300,
+                // 映射的最大值为 600
+                max: 400,
+                inRange: {
+                    // 明暗度的范围是 0 到 1
+                    colorLightness: [0, 0.5]
+                }
+            }
+        }
+    ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

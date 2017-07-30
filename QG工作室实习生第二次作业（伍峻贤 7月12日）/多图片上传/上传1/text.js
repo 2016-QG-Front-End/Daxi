@@ -32,12 +32,11 @@ function logIn() {
     };
 
     xhrLogIn.open("post", "http://123.207.228.117/ExcellentCourses/admin/login", false);
-    xhrLogIn.withCredentials = true;
+    
     xhrLogIn.onreadystatechange = function() {
 
         if (xhrLogIn.readyState == 4) {
             if ((xhrLogIn.status >= 200 && xhrLogIn.status < 300) || xhrLogIn.status == 304) {
-                alert(xhrLogIn.getAllResponseHeaders());
 
                 return JSON.parse(xhrLogIn.responseText).status;
             } else {
@@ -46,30 +45,59 @@ function logIn() {
             }
         }
     };
-
+    xhrLogIn.withCredentials = true;
     xhrLogIn.setRequestHeader('Content-Type', 'application/json');
     xhrLogIn.send(JSON.stringify(person));
 
 
 }
 
+// $(function() {
+   
+//     var button = document.getElementById("button"),
+//         showImg = document.getElementById("showImg"),
+//         file = document.getElementById("file"),
+//         formData = new FormData();
 
+//     button.onclick = function() {
+//         logIn();
+//         formData.append('file', file.files[0]);
+//         formData.append("teacherName", "ghg");
+//         formData.append("teacherId", 7);
+//         $.ajax({
+//             type: 'post',
+//             url: 'http://123.207.228.117/ExcellentCourses/teacher/update',
+//             contentType: false,
+//             processData: false,
+//             cache: false,
+//             data: formData,
+//             dataType: "json",
+//             success: function(data) {
+//                 for (var i in data) {
+//                     alert(data[i]);
+//                 }
+//             },
+//            error: function(xhr, status, errorThrowm) {
+//                 alert("错误" + status + "错误抛出：" + errorThrowm);
+//             },
+//             xhrFields: {
+//                 withCredentials: true
+//             }
+//         });
+//     }
+// })
 function isEmpty(obj) {
+    // 本身为空直接返回true
+    if (obj == null) return true;
 
-    // 检验 undefined 和 null
-    if (!obj && obj !== 0 && obj !== '') {　　　　　　　　　　
-        return true;
+    // 然后可以根据长度判断，在低版本的ie浏览器中无法这样判断。
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    //最后通过属性长度判断。
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
     }
 
-    if (Array.prototype.isPrototypeOf(obj) && obj.length === 0) {　　
-        return true;　
-    }
-
-    if (Object.prototype.isPrototypeOf(obj) && Object.keys(obj).length === 0) {　　　
-        return true;　　
-    }　　
-    return false;
+    return true;
 }
-
-
-

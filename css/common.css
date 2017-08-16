@@ -5,7 +5,7 @@
         position: relative;
 
         width: 100%;
-        height: 70%;
+        height: 90%;
     }
     html,
     .map,
@@ -20,48 +20,52 @@
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
+
         width: 304px;
     }
     .search-place > input {
-            width:268px;
+        width: 268px;
     }
     /*** end搜索框 ***/
     /*** 工具 ***/
-    .first-tool-img {
-        left: 7%;
-    }
-    .sec-tool-img {
-        left: 7%;
-    }
-    .last-tool-img {
-        left: 7%;
-    }
+
+    .sec-tool-img,
+    .last-tool-img,
+    .first-tool-img,
     .min-path-tool-img {
         left: 7%;
     }
     .tool {
-         top: 30%;
-         left: 5%;
-
+        top: 30%;
+        left: 5%;
     }
-    
+
     /*** end工具 ***/
+    /*** 路线搜索 ***/
+    .search-place-line {
+        left: 5%;
+    }
+    /*** end 路线搜索 ***/
     /** end map的制作 **/
 }
 @media screen and (min-width: 1400px) {
+    html,
+    .map,
+    body {
+        height: 100%;
+    }
     /** map的制作 **/
     #GuangZhouMap {
         margin: 0 auto;
-        width: 1400px;
+        width: 100%;
         height: 700px;
     }
-    .map {
-        width: 1400px;
+    /*.map {
         margin: 0 auto;
-    }
+        width: 1400px;
+    }*/
     /*** 时间选择 ***/
     .time-sel {
-
         top: 5%;
         right: 3%;
     }
@@ -69,37 +73,43 @@
     /*** 搜索框 ***/
     .search-place {
         left: 3%;
-            width: 436px;
+
+        width: 436px;
     }
     .search-place > input {
-            width: 396px;
+        width: 396px;
+    }
+    .search-line {
+        top: 0;
+        right: -17%;
+
+        width: 40px;
+        height: 40px;
     }
     /*** end搜索框 ***/
     /*** 工具 ***/
+    .sec-tool-img,
+    .last-tool-img,
     .first-tool-img {
-        left: -14%;
-    }
-    .last-tool-img {
-        left: -14%;
-    }
-    .sec-tool-img {
         left: -14%;
     }
     .min-path-tool-img {
         display: none;
     }
     .tool {
-        top: 58%;
+        top: 44%;
         left: 3%;
     }
     /*** end工具 ***/
-    .search-line {
-        width: 40px;
-        height: 40px;
-        top: 0;
-        right: -17%;
+    
+    /*** 路线搜索 ***/
+    .search-place-line {
+        left: 3%;
     }
+    /*** end 路线搜索 ***/
+    
     /** end map的制作 **/
+    
 }
 @media screen and (min-width: 1100px) and (max-width: 1400px) {
     /* 视窗宽度大于等于 1000px 且小于等于 1400px */
@@ -116,43 +126,46 @@
     }
     /*** 时间选择 ***/
     .time-sel {
-
-    top: 5%;
-    right: 0;
+        top: 5%;
+        right: 1%;
     }
     /*** end时间选择 ***/
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
-            width: 436px;
+
+        width: 436px;
     }
     .search-place > input {
         width: 396px;
     }
     /*** end搜索框 ***/
     /*** 工具 ***/
-    .first-tool-img {
-        left: 17%;
-    }
+    .last-tool-img,
+    .first-tool-img,
     .sec-tool-img {
-        left: 17%;
-    }
-    .last-tool-img {
         left: 17%;
     }
     .min-path-tool-img {
         display: none;
     }
     .tool {
-         top: 38%;
-         left: 4%;
+        top: 38%;
+        left: 4%;
     }
     /*** end工具 ***/
     .search-line {
-        width: 40px;
-        height: 40px;
         top: 0;
         right: -17%;
+
+        width: 40px;
+        height: 40px;
     }
+    
+    /*** 路线搜索 ***/
+    .search-place-line {
+        left: 5%;
+    }
+    /*** end 路线搜索 ***/
     /** end map的制作 **/
 }

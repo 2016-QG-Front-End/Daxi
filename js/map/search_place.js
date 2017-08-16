@@ -13,7 +13,7 @@ $(function() {
         // }
         map.clearOverlays();//清除图层覆盖物
         local.search($('.searchPlace').val());
-
+        $('.searchPlace').val('');
         // alert(local.getResults());
         
     });

@@ -24,9 +24,10 @@
     
     <!-- 重设css -->
     <link rel="stylesheet" href="../css/normalize.css">
-  <!--   <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<!--     <link rel="stylesheet" href="../css/LCalendar.min.css"> -->
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/map.css">
+
 </head>
 <body>
     <!-- 地图 -->
@@ -358,6 +359,10 @@
 
             <img class="time-sel-img" src="../images/search.png">
         </div>
+        <div class="phone-web">
+            <div class="phone-search-time">查询时间</div>
+        </div>
+        <input type="text" name="date" id="date" placeholder="查询时间" readonly="readonly" />
         <!-- end  时间框 -->
         <!-- 工具 -->
         <ul class="tool">
@@ -380,7 +385,7 @@
     <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
     <script src="../js/jquery_3.2.1/jquery_3.2.1.min.js"></script>
     <script src="http://libs.baidu.com/underscore/1.3.3/underscore.js"></script>
- <!--    <script src="../js/bootstrap/bootstrap.min.js"></script> -->
+ <!--    <script src="../js/LCalendar/LCalendar.min.js"></script> -->
     <script src="http://api.map.baidu.com/api?v=2.0&ak=kyZyufX67f6ElXpFvRAlevSh3Up9v3tv"></script>
     <script src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
     <script src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
@@ -391,5 +396,6 @@
     <script src="../js/map/back_position.js"></script>
  <!--    <script src="../js/map/excpection_add_maker.js"></script> -->
     <script src="../js/map/search_place.js"></script>
+    <script src="../js/map/search_time.js"></script>
 </body>
 </html>

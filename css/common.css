@@ -1,11 +1,11 @@
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
     /** map的制作 **/
     #GuangZhouMap {
         position: relative;
 
         width: 100%;
-        height: 90%;
+        height: 100%;
     }
     html,
     .map,
@@ -16,16 +16,24 @@
     .time-sel {
         display: none;
     }
+    #date {
+        opacity: 0;
+    }
     /*** end时间选择 ***/
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
 
-        width: 304px;
+        width: 88%;
     }
     .search-place > input {
-        width: 268px;
+        width: 92%;
+        padding: 0 4% 0 4%;;
     }
+    .search-place > button {
+            left: 94%;
+    }
+
     /*** end搜索框 ***/
     /*** 工具 ***/
 
@@ -36,19 +44,27 @@
         left: 7%;
     }
     .tool {
-        top: 30%;
+        top: 47%;
         left: 5%;
     }
-
+    .min-path-tool-img {
+        padding-bottom: 5px\9; /*为IE9设置单独的样式*/
+    }
     /*** end工具 ***/
     /*** 路线搜索 ***/
     .search-place-line {
         left: 5%;
+        width: 374px;
+        height: 116px;
+    }
+    .search-place-end > input,
+    .search-place-start > input {
+        width: 278px;
     }
     /*** end 路线搜索 ***/
     /** end map的制作 **/
 }
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1300px) {
     html,
     .map,
     body {
@@ -69,6 +85,12 @@
         top: 5%;
         right: 3%;
     }
+    .phone-web {
+        display: none;
+    }
+    #date {
+        display: none;
+    }
     /*** end 时间选择 ***/
     /*** 搜索框 ***/
     .search-place {
@@ -76,8 +98,12 @@
 
         width: 436px;
     }
+    .search-place > button {
+            left: 95%;
+    }
     .search-place > input {
         width: 396px;
+        padding: 0 40px 0 20px;
     }
     .search-line {
         top: 0;
@@ -86,6 +112,7 @@
         width: 40px;
         height: 40px;
     }
+
     /*** end搜索框 ***/
     /*** 工具 ***/
     .sec-tool-img,
@@ -95,9 +122,10 @@
     }
     .min-path-tool-img {
         display: none;
+
     }
     .tool {
-        top: 44%;
+        top: 55%;
         left: 3%;
     }
     /*** end工具 ***/
@@ -105,19 +133,25 @@
     /*** 路线搜索 ***/
     .search-place-line {
         left: 3%;
+        width: 460px;
+        height: 116px;
+    }
+    .search-place-end > input,
+    .search-place-start > input {
+            width: 360px;
     }
     /*** end 路线搜索 ***/
     
     /** end map的制作 **/
     
 }
-@media screen and (min-width: 1100px) and (max-width: 1400px) {
-    /* 视窗宽度大于等于 1000px 且小于等于 1400px */
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
+    /* 视窗宽度大于等于 1000px 且小于等于 1300px */
     /** map的制作 **/
     #GuangZhouMap {
         width: 100%;
         height: 100%;
-        max-height: 70%;
+        max-height: 90%;
     }
     html,
     .map,
@@ -129,34 +163,52 @@
         top: 5%;
         right: 1%;
     }
+    .phone-web {
+        display: none;
+    }
+    #date {
+        display: none;
+    }
     /*** end时间选择 ***/
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
 
-        width: 436px;
+        width: 304px;
+    }
+    .search-place > button {
+            left: 95%;
+           
     }
     .search-place > input {
-        width: 396px;
+        width: 268px;
+         padding: 0 40px 0 20px;
     }
+    .search-line {
+        display: none
+    }
+
     /*** end搜索框 ***/
     /*** 工具 ***/
+    .min-path-tool-img,
     .last-tool-img,
     .first-tool-img,
     .sec-tool-img {
         left: 17%;
+        left: 0\9;  /*//IE9设置单独样式*/
     }
     .min-path-tool-img {
-        display: none;
+        display: block;
+        padding-bottom: 5px\9; /*为IE9设置单独的样式*/
     }
     .tool {
-        top: 38%;
+        top: 52%;
         left: 4%;
     }
     /*** end工具 ***/
     .search-line {
         top: 0;
-        right: -17%;
+        right: -24%;
 
         width: 40px;
         height: 40px;
@@ -165,6 +217,12 @@
     /*** 路线搜索 ***/
     .search-place-line {
         left: 5%;
+        width: 374px;
+        height: 116px;
+    }
+    .search-place-end > input,
+    .search-place-start > input {
+        width: 278px;
     }
     /*** end 路线搜索 ***/
     /** end map的制作 **/

@@ -15,6 +15,11 @@ $(function() {
         $('.endPlace').val('');
     })
 
+    $('.min-path-tool-img').bind('click', function() {
+        $('.search-place').css("display", 'none');
+        $('.search-place-line').css('display', 'block');
+    })
+
     $('.start-place').bind('blur', function() { //为startPlace的输入框添加时间驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
@@ -131,9 +136,9 @@ function getDrivingLine(str1, str2) {
     function addMarkersLine(data, str) {
         var pt = new BMap.Point(data.longitude, data.latitude);
         if (str == 'start') {
-            var myIcon = new BMap.Icon("../images/distination-point_blue.png", new BMap.Size(45, 76)); //创建一个覆盖物
+            var myIcon = new BMap.Icon("../images/distination_point_blue.png", new BMap.Size(40,85)); //创建一个覆盖物
         } else {
-            var myIcon = new BMap.Icon("../images/distination-point_green.png", new BMap.Size(45, 76)); //创建一个覆盖物
+            var myIcon = new BMap.Icon("../images/distination_point_green.png", new BMap.Size(40,85)); //创建一个覆盖物
         }
 
         var marker2 = new BMap.Marker(pt, {

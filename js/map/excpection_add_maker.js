@@ -53,7 +53,7 @@ function excpectionAdd() {
  */
 function addMarkerWarm(data) {
     var pt = new BMap.Point(data.longitude, data.latitude);
-    var myIcon = new BMap.Icon("../images/unusual-point.png", new BMap.Size(45, 76));   //创建一个覆盖物
+    var myIcon = new BMap.Icon("../images/unusual-point.png", new BMap.Size(40,85));   //创建一个覆盖物
     myIcon.setName("0"); //对这个图标设定它的name属性值为0；
     var marker2 = new BMap.Marker(pt, {
         icon: myIcon

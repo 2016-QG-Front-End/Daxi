@@ -75,6 +75,9 @@ $(function() {
     function searchPlaceAlo(str) {
         map.clearOverlays();    //清除地图上所有覆盖物
         function myFun(){
+            if (!local.getResults()) {
+                return ;
+            }
             var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
             map.clearOverlays();    //清除地图上所有覆盖物
             var myIcon = new BMap.Icon("../images/distination-point_blue.png", new BMap.Size(40,85));

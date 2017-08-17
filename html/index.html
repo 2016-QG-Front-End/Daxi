@@ -35,8 +35,8 @@
         <!-- 搜索框的制作 -->
         <div class="search-place">
 
-            <input class="searchPlace" type="text" name="search-name" placeholder="查询地点">
-            <div class="searchResultPanel"></div>
+            <input class="searchPlace" id="searchPlace" type="text" name="search-name" placeholder="查询地点">
+            <div class="searchResultPanel" id="searchResultPanel"></div>
             <button>
                 <img class="search-images" src="../images/cut-off-rule.png">
             </button>
@@ -47,13 +47,15 @@
         <div class="search-place-line">
             <div class="search-place-start">
                 <span>从</span>
-                <input class="start-place" type="text" name="search-name" placeholder="查询地点">
+                <input class="start-place" id="startPlace" type="text" name="search-name" placeholder="查询地点">
             </div>
             
             <div class="search-place-end">
                 <span>到</span>
-                <input class="end-place" type="text" name="search-name" placeholder="查询地点">
+                <input class="end-place" id="endPlace" type="text" name="search-name" placeholder="查询地点">
             </div>
+            <div class="searchResultPanel" id="searchlinePanelStart"></div>
+            <div class="searchResultPanel" id="searchlinePanelEnd"></div>
             <img class="search-line-img" src="../images/close-query-path.png">
         </div>
         <!-- end路线搜索 -->

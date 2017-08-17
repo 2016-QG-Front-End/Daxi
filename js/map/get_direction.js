@@ -4,19 +4,46 @@ $(function() {
         $('.search-place-line').css('display', 'block');
         map.clearOverlays(); //清除图层覆盖物
         $('.searchPlace').val('');
+
     })
 
     $('.search-line-img').bind('click', function() {
         $('.search-place').css("display", 'block');
         $('.search-place-line').css('display', 'none');
         map.clearOverlays(); //清除图层覆盖物
+        $('.startPlace').val('');
+        $('.endPlace').val('');
     })
 
-    $('.start-place').bind('blur', function() {
-        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) {
+    $('.start-place').bind('blur', function() { //为startPlace的输入框添加时间驱动
+        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
+            map.clearOverlays(); //清除图层覆盖物
         }
     })
+
+    $('.start-place').bind('keyup', function(e) {   //为startPlace的输入框添加回车驱动
+        var ev = window.event || e;
+        //13是键盘上面固定的回车键
+        if (ev.keyCode == 13) {
+            $('.start-place').trigger('blur');
+        }   
+    });
+
+    $('.end-place').bind('blur', function() { //为end-place的输入框添加时间驱动
+        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
+            getDrivingLine($('.start-place').val(), $('.end-place').val());
+            map.clearOverlays(); //清除图层覆盖物
+        }
+    })
+
+    $('.end-place').bind('keyup', function(e) {   //为end-place的输入框添加回车驱动
+        var ev = window.event || e;
+        //13是键盘上面固定的回车键
+        if (ev.keyCode == 13) {
+            $('.end-place').trigger('blur');
+        }   
+    });
 });
 /**
  * [getDrivingLine 获取驾车路线并把路线下昂后台请求]
@@ -137,3 +164,90 @@ function getDrivingLine(str1, str2) {
 
     }
 }
+
+/**
+ * [路线开始地点用于搜索提示]
+ * 
+ * 
+ */
+$(function() {
+    var acStart = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "startPlace"
+        ,"location" : '广州市'
+    });
+
+    acStart.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+        
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        // G("searchlinePanelStart").innerHTML = str;
+        G("searchlinePanelEnd").style.display = 'none';
+
+    });
+
+    var myValueStart;
+    acStart.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+    var _value = e.item.value;
+        myValueStart = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        G("searchlinePanelStart").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValueStart = " + myValueStart;
+        G("searchlinePanelStart").style.display = 'none';
+        $(".start-place").val(myValueStart);
+        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
+            getDrivingLine($('.start-place').val(), $('.end-place').val());
+        }
+    });
+
+})
+
+/**
+ * 用于结束地点的检索提醒
+ */
+$(function() {
+    var acEnd = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "endPlace"
+        ,"location" : '广州市'
+    });
+
+    acEnd.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+        
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        // G("searchlinePanelEnd").innerHTML = str;
+        G("searchlinePanelEnd").style.display = 'none';
+    });
+
+    var myValueStart;
+    acEnd.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+    var _value = e.item.value;
+        myValueStart = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        G("searchlinePanelEnd").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValueStart = " + myValueStart;
+        G("searchlinePanelEnd").style.display = 'none';
+        $(".end-place").val(myValueStart);
+        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
+            getDrivingLine($('.start-place').val(), $('.end-place').val());
+        }
+    });
+
+})

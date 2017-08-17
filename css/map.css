@@ -105,6 +105,9 @@
 
     cursor: pointer;
 }
+.searchResultPanel {
+    display: noen;
+}
 .search-place-end > input,
 .search-place-start > input {
     border: .1px solid;

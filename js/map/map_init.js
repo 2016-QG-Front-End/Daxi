@@ -36,7 +36,7 @@ $(function() {
             var pt = new BMap.Point(r.point.lng, r.point.lat);
             var myIcon = new BMap.Icon("../images/my-location-point.png", new BMap.Size(40,40));
             var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
-            marker2.disableMassClear()
+            marker2.disableMassClear();
             map.addOverlay(marker2); // 将标注添加到地图中
             map.panTo(r.point); //移到当前位置
             //alert('您的位置：'+r.point.lng+','+r.point.lat);

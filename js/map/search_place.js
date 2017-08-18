@@ -9,8 +9,19 @@ $(function() {
         map.clearOverlays();//清除图层覆盖物
         searchPlaceAlo($('.searchPlace').val());
         $('.searchPlace').val('');
+
         // alert(local.getResults());
-        
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'block');
+        }
+    });
+
+    $('.searchPlace').bind('focus', function() {
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'none');
+        }
     });
 
     $('.searchPlace').bind('keyup', function(e) {

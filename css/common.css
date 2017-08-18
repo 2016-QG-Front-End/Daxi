@@ -35,7 +35,7 @@
         width: 92%;;
     }
     .search-place > button {
-        left: 94%;
+        left: 88%;
     }
 
     /*** end搜索框 ***/
@@ -59,12 +59,12 @@
     .search-place-line {
         left: 5%;
 
-        width: 374px;
+        width: 75%;
         height: 116px;
     }
     .search-place-end > input,
     .search-place-start > input {
-        width: 278px;
+        width: 72%;
     }
     /*** end 路线搜索 ***/
     /** end map的制作 **/

@@ -25,11 +25,22 @@ $(function() {
         $('.search-place-line').css('display', 'block');
     })
 
+    $('.start-place').bind('focus', function() { //为startPlace的输入框添加焦点驱动
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'none');
+        }
+    })
+
     // 时间驱动 从设置路线变为搜索框
     $('.start-place').bind('blur', function() { //为startPlace的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
+        }
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'block');
         }
     })
 
@@ -41,10 +52,21 @@ $(function() {
         }   
     });
 
+    $('.end-place').bind('focus', function() { //为endPlace的输入框添加焦点驱动
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'none');
+        }
+    })
+
     $('.end-place').bind('blur', function() { //为end-place的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
+        }
+        var jud = judgePhone();
+        if(jud) {
+            $('.tool').css('display', 'block');
         }
     })
 

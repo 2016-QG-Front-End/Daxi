@@ -114,6 +114,7 @@ ul {
     border: .1px solid;
     border-radius: 6px;
     padding-left: 20px;
+    padding-right: 10px;
     height: 40px;
 
     line-height: 40px;

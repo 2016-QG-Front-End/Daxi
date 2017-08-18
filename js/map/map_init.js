@@ -69,7 +69,7 @@ $(function() {
     function getBoundary(str) {
         var bdary = new BMap.Boundary();
         bdary.get(str, function(rs) { //获取行政区域
-            map.clearOverlays(); //清除地图覆盖物       
+            // map.clearOverlays(); //清除地图覆盖物       
             var count = rs.boundaries.length; //行政区域的点有多少个
             if (count === 0) {
                 alert('未能获取当前输入行政区域');
@@ -78,7 +78,7 @@ $(function() {
             var pointArray = [];
             for (var i = 0; i < count; i++) {
                 var ply = new BMap.Polyline(rs.boundaries[i], {
-                    strokeWeight: 5,
+                    strokeWeight: 3,
                     strokeColor: "#1c62a3"
                 }); //建立多边形覆盖物
                 ply.disableMassClear();

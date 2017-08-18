@@ -1,6 +1,7 @@
 
-ul{
+ul {
     list-style-type: none;
+
     margin: 0;
     padding: 0;
 }
@@ -29,7 +30,6 @@ ul{
 
     border: none;
     border-radius: 6px;
-
     height: 40px;
 
     color: #626161;
@@ -43,7 +43,6 @@ ul{
 .search-place > button {
     position: absolute;
     top: 0;
-
     z-index: 3;
 
     border: none;
@@ -92,7 +91,6 @@ ul{
     top: 5%;
 
     border-radius: 6px;
- 
 
     background-color: #fff;
     background-image: url("../images/turn.png");
@@ -150,19 +148,19 @@ ul{
 /*** 时间选择 ***/
 .time-sel {
     position: absolute;
-    
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+
     border-radius: 6px;
     height: 168px;
 
     line-height: 42px;
-    
+
     background: #fff;
     background-image: url("../images/word.png");
     background-repeat: no-repeat;
     background-position: 236px 8px;
 
     opacity: .9;
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
 }
 .time-sel-first {
     margin: 46px 16px 11px 16px;
@@ -219,209 +217,260 @@ ul{
 .time-sel > img {
     position: absolute;
     right: 228px;
+
     cursor: pointer;
 }
 .time-sel > img:hover {
     opacity: 1;
 }
 .phone-web {
-    width: 89%;
-    background-color: #fff;
-    opacity: 0.9;
     position: absolute;
-    left: 5%;
     bottom: 2%;
-    height: 42px;
+    left: 5%;
+
     border-radius: 6px;
-    box-shadow:  0 0 4px rgba(0,0,0,.2);
+    width: 89%;
+    height: 42px;
+
+    background-color: #fff;
+
+    opacity: .9;
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
 }
 .phone-web > div {
     margin: 6px auto;
-    background-color: #bcd2fa;
+    border-radius: 6px;
     width: 97%;
     height: 30px;
-        line-height: 30px;
+
+    line-height: 30px;
     text-align: center;
-     border-radius: 6px;
-    box-shadow:  0 0 4px rgba(0,0,0,.2);
+
+    background-color: #bcd2fa;
+
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
+
+    cursor: pointer;
 }
-.phone-web:active div{
-    opacity: 1;
+.phone-web:active div {
     background-color: #6161f3;
+
+    opacity: 1;
 }
 /**** 手机屏幕上的选择 ****/
-.main_page{
+.main_page {
     width: 100%;
     height: 100%;
 }
-.top_div{
+.top_div {
+    overflow: hidden;
+
     width: 100%;
     height: 40vw;
+
     background: #506695;
-    overflow: hidden;
 }
-.logo{
-    width: 18%;
+.logo {
     margin: 10px auto 5px auto;
+    width: 18%;
 }
-.top_text_1,.top_text_2{
+.top_text_1,
+.top_text_2 {
     width: 100%;
-    text-align: center;
-    line-height: 7vw;
-    color: white;
+
     font-size: 4.5vw;
+    line-height: 7vw;
+    text-align: center;
+
+    color: white;
 }
-.top_text_2{
+.top_text_2 {
     margin-bottom: 5vw;
 }
-.nine_button{
+.nine_button {
     width: 100%;
 }
-.button{
+.button {
+    float: left;
+
     width: 33.33%;
     height: 33.33vw;
-    float: left;
+
     font-size: 4vw;
 }
-.button_img{
-    width: 20%;
+.button_img {
     margin: 30% auto 5% auto;
+    width: 20%;
 }
-.button_text{
+.button_text {
     width: 100%;
+
     text-align: center;
 }
-.release_main{
+.release_main {
     width: 100%;
 }
-.release_title{
+.release_title {
+    overflow: hidden;
+
     width: 100%;
     height: 15vw;
-    overflow: hidden;
+
     background: #f2f2f2;
 }
-.release_title_left{
-    width: 49.5%;
-    height: 10vw;
-    margin:2.5vw 0;
+.release_title_left {
     float: left;
-    border-right: 2px solid #8E97AF;
     overflow: hidden;
-}
-.left_img{
-    width: 15%;
-    margin: 1.4vw 3% 1.6vw 15%;
-    float: left;
-}
-.left_text{
-    width: 67%;
-    float: left;
-    font-size: 3vw;
-    line-height: 4vw;
-    margin-top: 1.5vw;
-    color: #506695;
-}
-.release_title_right{
+
+    margin: 2.5vw 0;
+    border-right: 2px solid #8e97af;
     width: 49.5%;
     height: 10vw;
-    margin:2.5vw 0;
-    float: right;
 }
-.right_img{
-    width: 15%;
+.left_img {
+    float: left;
+
     margin: 1.4vw 3% 1.6vw 15%;
-    float: left;
+    width: 15%;
 }
-.right_text{
-    width: 67%;
+.left_text {
     float: left;
+
+    margin-top: 1.5vw;
+    width: 67%;
+
     font-size: 3vw;
     line-height: 4vw;
-    margin-top: 1.5vw;
+
     color: #506695;
 }
-.gray_text{
-    color: #8D8D8D;
+.release_title_right {
+    float: right;
+
+    margin: 2.5vw 0;
+    width: 49.5%;
+    height: 10vw;
 }
-.release_records{
+.right_img {
+    float: left;
+
+    margin: 1.4vw 3% 1.6vw 15%;
+    width: 15%;
+}
+.right_text {
+    float: left;
+
+    margin-top: 1.5vw;
+    width: 67%;
+
+    font-size: 3vw;
+    line-height: 4vw;
+
+    color: #506695;
+}
+.gray_text {
+    color: #8d8d8d;
+}
+.release_records {
     width: 100%;
 }
-.record{
+.record {
+    border-bottom: 1px solid #ececec;
     width: 100%;
-    height:13vw ;
-    border-bottom: 1px solid #ECECEC;
+    height: 13vw ;
 }
-.record_left{
-    width: 47%;
+.record_left {
+    float: left;
+
+    margin-top: 1vw;
     padding-left: 3%;
-    float: left;
-    text-align: left;
-    margin-top: 1vw;
-}
-.record_right{
     width: 47%;
-    padding-right: 3%;
-    float: left;
-    text-align: right;
-    margin-top: 1vw;
+
+    text-align: left;
 }
-.record_left_top,.record_right_top{
+.record_right {
+    float: left;
+
+    margin-top: 1vw;
+    padding-right: 3%;
+    width: 47%;
+
+    text-align: right;
+}
+.record_left_top,
+.record_right_top {
     font-size: 4.1vw;
     line-height: 7vw;
 }
-.record_left_bottom,.record_right_bottom{
+.record_left_bottom,
+.record_right_bottom {
     font-size: 3.5vw;
-    color: #8D8D8D;
+
+    color: #8d8d8d;
 }
-.record_small{
+.record_small {
     font-size: 2.5vw;
-    color: #8D8D8D;
+
+    color: #8d8d8d;
 }
 /*select_record*/
-.select_start_date{
+.select_start_date {
+    overflow: hidden;
+
+    border-bottom: 1px solid darkgray;
     width: 100%;
     height: 12vw;
+
     font-size: 4vw;
-    color: #666666;
-    overflow: hidden;
     line-height: 12vw;
-    border-bottom: 1px solid darkgray;
+
+    color: #666;
 }
-.start_date_left{
-    width: 47%;
+.start_date_left {
+    float: left;
+
     padding-left: 3%;
-    float: left;
-}
-.start_date_right{
     width: 47%;
-    padding-right: 3%;
-    text-align: right;
+}
+.start_date_right {
     float: left;
+
+    padding-right: 3%;
+    width: 47%;
+
+    text-align: right;
 }
-.start_date_right input{
-    background:transparent;
+.start_date_right input {
     border: none;
+
     font-size: 4vw;
-    color: #666666;
     text-align: center;
+
+    color: #666;
+    background: transparent;
 }
-.select_records{
-    width: 100%;
+.select_records {
     margin-top: 6vw;
+    width: 100%;
 }
 
 .gear.date_dd {
     display: none;
 }
-.date_grid{
+.date_grid {
     display: block;
+
     text-indent: -90rem;
 }
-.date_roll>div:nth-child(1), .datetime_roll>div:nth-child(1),.date_roll>div:nth-child(2), .datetime_roll>div:nth-child(2)  {
+.date_roll > div:nth-child(1),
+.datetime_roll > div:nth-child(1),
+.date_roll > div:nth-child(2),
+.datetime_roll > div:nth-child(2) {
     -webkit-box-flex: 4;
+
     -webkit-flex: 4;
-    -ms-flex: 4;
-    flex: 4;
+        -ms-flex: 4;
+            flex: 4;
 }
 /**** end 手机屏幕上的选择 ****/
 /*** end时间选择 ***/

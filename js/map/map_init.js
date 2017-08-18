@@ -25,28 +25,39 @@ function changeMapStyle(style) {
     });
 
 }
+
+//设置一个数组存储每个区的名字和‘广州市’
 var administrativeArea = new Array("越秀区", "海珠区", "荔湾区", '天河区', '白云区', '黄埔区', '花都区', '番禺区', '南沙区', '从化区', '增城区', '广州');
 
+/**
+ * [获取一进去就获取当前]
+ */
 $(function() {
     map.enableScrollWheelZoom(); //开启鼠标滚轮缩放
 
-    var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function(r) {
-        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-            var pt = new BMap.Point(r.point.lng, r.point.lat);
-            var myIcon = new BMap.Icon("../images/my-location-point.png", new BMap.Size(40,40));
-            var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
-            marker2.disableMassClear();
-            map.addOverlay(marker2); // 将标注添加到地图中
-            map.panTo(r.point); //移到当前位置
-            //alert('您的位置：'+r.point.lng+','+r.point.lat);
-        } else {
-            alert('failed' + this.getStatus());
-        }
-    }, {
-        enableHighAccuracy: true
-    });
+    // 这个注释里面的内容可以用于获取用于当前地址
+    // var geolocation = new BMap.Geolocation();
+    // geolocation.getCurrentPosition(function(r) {
+    //     if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+    //         var pt = new BMap.Point(r.point.lng, r.point.lat);
+    //         var myIcon = new BMap.Icon("../images/my-location-point.png", new BMap.Size(40,40));
+    //         myIcon.setName("1"); //对这个图标设定它的name属性值为1；
+    //         var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+    //         marker2.disableMassClear();
+    //         map.addOverlay(marker2); // 将标注添加到地图中
+    //         map.panTo(r.point); //移到当前位置
+    //         //alert('您的位置：'+r.point.lng+','+r.point.lat);
+    //     } else {
+    //         alert('failed' + this.getStatus());
+    //     }
+    // }, {
+    //     enableHighAccuracy: true
+    // });
+ 
+    // 请求获取时间
+    getMyPosition();    
 
+    // 遍历数组画出边界
     for (var j = 0; j < administrativeArea.length; j++) {
         getBoundary(administrativeArea[j]);
     }

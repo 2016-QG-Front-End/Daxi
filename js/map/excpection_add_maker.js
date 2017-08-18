@@ -39,10 +39,31 @@ function excpectionAdd() {
             withCredentials: true
         },
         success: function(data) {
-            for (var i = 0; i < data.exceptions.length; i++) {
-                addMarkerWarm(data.exceptions[i]);
-            };
-            hideMaker();    //隐藏标记点
+            if (data.state == 1) {
+                for (var i = 0; i < data.exceptions.length; i++) {
+                    addMarkerWarm(data.exceptions[i]);
+                };
+                hideMaker();    //隐藏标记点
+            } else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else {
+                alert('出现其它错误');
+            }
+
         },
     });
 }

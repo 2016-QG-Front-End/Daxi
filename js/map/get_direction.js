@@ -1,4 +1,6 @@
 $(function() {
+    //当大于1300px时
+    // 时间驱动 从搜索框变为设置路线
     $('.search-line').bind('click', function() {
         $('.search-place').css("display", 'none');
         $('.search-place-line').css('display', 'block');
@@ -7,6 +9,7 @@ $(function() {
 
     })
 
+    // 时间驱动 从设置路线变为搜索框
     $('.search-line-img').bind('click', function() {
         $('.search-place').css("display", 'block');
         $('.search-place-line').css('display', 'none');
@@ -15,12 +18,15 @@ $(function() {
         $('.endPlace').val('');
     })
 
+    // 当小于1300px时
+    // 时间驱动 从搜索框变为设置路线
     $('.min-path-tool-img').bind('click', function() {
         $('.search-place').css("display", 'none');
         $('.search-place-line').css('display', 'block');
     })
 
-    $('.start-place').bind('blur', function() { //为startPlace的输入框添加时间驱动
+    // 时间驱动 从设置路线变为搜索框
+    $('.start-place').bind('blur', function() { //为startPlace的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
@@ -35,7 +41,7 @@ $(function() {
         }   
     });
 
-    $('.end-place').bind('blur', function() { //为end-place的输入框添加时间驱动
+    $('.end-place').bind('blur', function() { //为end-place的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
             getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
@@ -57,17 +63,21 @@ $(function() {
  * 
  */
 function getDrivingLine(str1, str2) {
-    var plans = {
+    var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
+    var plans = {   //申明一个用于传递的变量
         road: [],
-        timeStart: timeSel[0].value + '-' + timeSel[1].value + '-' + timeSel[2].value + ' ' + timeSel[3].value + ':' + timeSel[4].value + ':' + '00',
-        timeEnd: timeSel[5].value + '-' + timeSel[6].value + '-' + timeSel[7].value + ' ' + timeSel[8].value + ':' + timeSel[9].value + ':' + '00'
+        time: timeSel[0].value + '-' + timeSel[1].value + '-' + timeSel[2].value + ' ' + timeSel[3].value + ':' + timeSel[4].value + ':' + '00'
     };
     map.clearOverlays(); //清除图层覆盖物
-    var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
-    var options = {
+    var options = { //设置搜索用的参数
+
+        //搜索成功后的回调函数
         onSearchComplete: function(results) {
-            if (driving.getStatus() == BMAP_STATUS_SUCCESS) {
-                for (var j = 0; j < results.getNumPlans(); j++) {
+
+            //判断是否为成功
+            if (driving.getStatus() == BMAP_STATUS_SUCCESS) {   
+                //用于获取路线
+                for (var j = 0; j < results.getNumPlans(); j++) {     
                     var plan = results.getPlan(j); //获取驾车计划
                     for (var k = 0; k < getNumRoutes(); k++) {
                         var route = plan.getRoute(k); // 获取方案的驾车线路
@@ -95,6 +105,8 @@ function getDrivingLine(str1, str2) {
                 }
 
             }
+
+            // 请求路线
             $.ajax({
                 type: "post",
                 url: 'http://ip:80/estimation/drivetime',
@@ -106,8 +118,33 @@ function getDrivingLine(str1, str2) {
                     withCredentials: true
                 },
                 success: function(data) {
-                    addRoute(plans.roads[data.index]);
-                    addMessage(data.time, data.driveTime, plans.roads[data.index][Math.floor(plans.roads[data.index].length/2)]);
+                    if (data.state == 1) { //判断是否成功
+
+                        //画出路线
+                        addRoute(plans.roads[data.index]);  
+
+                        //为路线添加信息
+                        addMessage(data.time, data.driveTime, plans.roads[data.index][Math.floor(plans.roads[data.index].length/2)]);
+                    } else if (data.state == 2) {
+                        alert('时间为空');
+                    } else if (data.state == 3) {
+                        alert('起始时间大于终止时间');
+                    } else if (data.state == 4) {
+                        alert('请求时间段超出范围');
+                    } else if (data.state == 5) {
+                        alert('请求时间段超出范围');
+                    } else if (data.state == 6) {
+                        alert('请求时间点太过超前');
+                    } else if (data.state == 7) {
+                        alert('区域范围为空');
+                    } else if (data.state == 7) {
+                        alert('请求坐标点为空');
+                    } else if (data.state == 10) {
+                        alert('路径的途径点为空');
+                    } else {
+                        alert('出现其它错误');
+                    }
+                    
                 },
             });
         }

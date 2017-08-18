@@ -16,8 +16,11 @@
     .time-sel {
         display: none;
     }
-    #date {
-        opacity: 0;
+    #picktime {
+       /* opacity: 0;*/
+       display: none;
+        position: absolute;
+        bottom: 5px;
     }
     /*** end时间选择 ***/
     /*** 搜索框 ***/
@@ -88,7 +91,7 @@
     .phone-web {
         display: none;
     }
-    #date {
+    #picktime {
         display: none;
     }
     /*** end 时间选择 ***/
@@ -166,7 +169,7 @@
     .phone-web {
         display: none;
     }
-    #date {
+    #picktime {
         display: none;
     }
     /*** end时间选择 ***/

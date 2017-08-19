@@ -21,6 +21,7 @@ $(function() {
 function excpectionAdd(bool) {
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
+    map.clearOverlays();
     if (bool == 1) {
         var obj = {
             minLongitude: 112.62357,

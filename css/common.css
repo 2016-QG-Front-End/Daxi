@@ -200,12 +200,16 @@
     .first-tool-img,
     .sec-tool-img {
         left: 17%;
-        left: 0\9;  /*//IE9设置单独样式*/
+        left: 0\0;  /*//IE9设置单独样式*/
+   
     }
+    /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+    select::-ms-expand { display: none; }
     .min-path-tool-img {
         display: block;
 
-        padding-bottom: 5px\9; /*为IE9设置单独的样式*/
+        padding-bottom: 5px\0; /*为IE9设置单独的样式*/
+
     }
     .tool {
         top: 52%;

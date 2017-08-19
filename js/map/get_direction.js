@@ -23,6 +23,7 @@ $(function() {
     $('.min-path-tool-img').bind('click', function() {
         $('.search-place').css("display", 'none');
         $('.search-place-line').css('display', 'block');
+        map.clearOverlays(); //清除图层覆盖物
     })
 
     $('.start-place').bind('focus', function() { //为startPlace的输入框添加焦点驱动
@@ -35,8 +36,9 @@ $(function() {
     // 时间驱动 从设置路线变为搜索框
     $('.start-place').bind('blur', function() { //为startPlace的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
-            getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
+            getDrivingLine($('.start-place').val(), $('.end-place').val());
+            
         }
         var jud = judgePhone();
         if(jud) {
@@ -61,8 +63,9 @@ $(function() {
 
     $('.end-place').bind('blur', function() { //为end-place的输入框添加失去焦点驱动
         if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
-            getDrivingLine($('.start-place').val(), $('.end-place').val());
             map.clearOverlays(); //清除图层覆盖物
+            getDrivingLine($('.start-place').val(), $('.end-place').val());
+            
         }
         var jud = judgePhone();
         if(jud) {
@@ -85,12 +88,12 @@ $(function() {
  * 
  */
 function getDrivingLine(str1, str2) {
-    var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
+    var timeStart = document.getElementById('timeStart').getElementsByTagName('select');
     var plans = {   //申明一个用于传递的变量
         road: [],
-        time: timeSel[0].value + '-' + timeSel[1].value + '-' + timeSel[2].value + ' ' + timeSel[3].value + ':' + timeSel[4].value + ':' + '00'
+        time: timeStart[0].value + '-' + timeStart[1].value + '-' + timeStart[2].value + ' ' + timeStart[3].value + ':' + timeStart[4].value + ':' + '00'
     };
-    map.clearOverlays(); //清除图层覆盖物
+    
     var options = { //设置搜索用的参数
 
         //搜索成功后的回调函数
@@ -101,12 +104,13 @@ function getDrivingLine(str1, str2) {
                 //用于获取路线
                 for (var j = 0; j < results.getNumPlans(); j++) {     
                     var plan = results.getPlan(j); //获取驾车计划
-                    for (var k = 0; k < getNumRoutes(); k++) {
+                    for (var k = 0; k < plan.getNumRoutes(); k++) {
                         var route = plan.getRoute(k); // 获取方案的驾车线路
                         var obj = { //开始的地点
                             lng: results.getStart().point.lng,
                             lat: results.getStart().point.lat
                         }
+                        addMarkersLine(obj, 'start');
                         var s = [];
                         s.push(obj);
                         for (var i = 0; i < route.getNumSteps(); i++) {
@@ -121,6 +125,7 @@ function getDrivingLine(str1, str2) {
                             lng: results.getEnd().point.lng,
                             lat: results.getEnd().point.lat
                         }
+                        addMarkersLine(objEnd, 'end');
                         s.push(objEnd);
                         plans.road.push(s);
                     }
@@ -193,9 +198,10 @@ function getDrivingLine(str1, str2) {
      * @param {[string]} str  [用于判断是起始点还是结束点]
      */
     function addMarkersLine(data, str) {
-        var pt = new BMap.Point(data.longitude, data.latitude);
+        var pt = new BMap.Point(data.lng, data.lat);
         if (str == 'start') {
             var myIcon = new BMap.Icon("../images/distination_point_blue.png", new BMap.Size(40,85)); //创建一个覆盖物
+            map.panTo(pt);
         } else {
             var myIcon = new BMap.Icon("../images/distination_point_green.png", new BMap.Size(40,85)); //创建一个覆盖物
         }

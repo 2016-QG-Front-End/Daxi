@@ -1,4 +1,4 @@
-excpectionAdd();
+excpectionAdd(0);
 
 $(function() {
     $('.first-tool-img').bind('click', function() {
@@ -12,21 +12,44 @@ $(function() {
     })
 });
 
+
 /**
  * [excpectionAdd 添加异常点]
- * @return {[none]} [none]
+ * @param  {[Boolean]} bool [布尔值用来判断是动态异常点还是静态]
+ * @return {[none}      [none]
  */
-function excpectionAdd() {
-    var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
+function excpectionAdd(bool) {
+    // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
-    var obj = {
-        minLongitude: 112.62357,
-        minLatitude: 22.490739,
-        maxLongitude: 114.069097,
-        maxLatitude: 23.978401,
-        timeStart: timeSel[0].value + '-' + timeSel[1].value + '-' + timeSel[2].value + ' ' + timeSel[3].value + ':' + timeSel[4].value + ':' + '00',
-        timeEnd: timeSel[5].value + '-' + timeSel[6].value + '-' + timeSel[7].value + ' ' + timeSel[8].value + ':' + timeSel[9].value + ':' + '00'
+    if (bool == 1) {
+        var obj = {
+            minLongitude: 112.62357,
+            minLatitude: 22.490739,
+            maxLongitude: 114.069097,
+            maxLatitude: 23.978401,
+            timeStart: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
+            timeEnd: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+        }
+    } else if (bool ==2) {
+        var obj = {
+            minLongitude: 112.62357,
+            minLatitude: 22.490739,
+            maxLongitude: 114.069097,
+            maxLatitude: 23.978401,
+            timeStart: $('#picktime').val() + ':00',
+            timeEnd: $('#picktime').val() + ':15'
+        }
+    } else {
+        var obj = {
+            minLongitude: 112.62357,
+            minLatitude: 22.490739,
+            maxLongitude: 114.069097,
+            maxLatitude: 23.978401,
+            timeStart: $('.first-input-secondChange').val() + ':00',
+            timeEnd: $('.second-input-secondChange').val() + ':00'
+        }
     }
+    
 
 
     $.ajax({

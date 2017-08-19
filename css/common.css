@@ -13,7 +13,7 @@
         height: 100%;
     }
     /*** 时间选择 ***/
-    .time-sel {
+    .time-select-second-change {
         display: none;
     }
     #picktime {
@@ -35,7 +35,9 @@
         width: 92%;;
     }
     .search-place > button {
-        left: 88%;
+            
+        left: 95%;
+        box-shadow: 2px 3px 1px rgba(0,0,0,.4);
     }
 
     /*** end搜索框 ***/

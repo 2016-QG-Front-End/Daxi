@@ -1,3 +1,7 @@
+/**
+ * [judgePhone 判断当前是手机还是pc端浏览器]
+ * @return {[Boolean]} [当为手机端时返回true，pc端时返回false]
+ */
 function judgePhone() {
     var browser = {
         versions: function() {

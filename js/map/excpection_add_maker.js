@@ -1,5 +1,5 @@
 excpectionAdd(0);
-
+var time = new Date(2017, 1, 3, 17, 50, 55); 
 $(function() {
     $('.first-tool-img').bind('click', function() {
         if($('.first-tool-img').attr('src') == "../images/display-unusual.png") {
@@ -24,28 +24,28 @@ function excpectionAdd(bool) {
     map.clearOverlays();
     if (bool == 1) {
         var obj = {
-            minLongitude: 112.62357,
-            minLatitude: 22.490739,
-            maxLongitude: 114.069097,
-            maxLatitude: 23.978401,
+            minX: 112.62357,
+            minY: 22.490739,
+            maxX: 114.069097,
+            maxY: 23.978401,
             timeStart: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
             timeEnd: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
         }
     } else if (bool ==2) {
         var obj = {
-            minLongitude: 112.62357,
-            minLatitude: 22.490739,
-            maxLongitude: 114.069097,
-            maxLatitude: 23.978401,
+            minX: 112.62357,
+            minY: 22.490739,
+            maxX: 114.069097,
+            maxY: 23.978401,
             timeStart: $('#picktime').val() + ':00',
             timeEnd: $('#picktime').val() + ':15'
         }
     } else {
         var obj = {
-            minLongitude: 112.62357,
-            minLatitude: 22.490739,
-            maxLongitude: 114.069097,
-            maxLatitude: 23.978401,
+            minX: 112.62357,
+            minY: 22.490739,
+            maxX: 114.069097,
+            maxY: 23.978401,
             timeStart: $('.first-input-secondChange').val() + ':00',
             timeEnd: $('.second-input-secondChange').val() + ':00'
         }
@@ -64,8 +64,8 @@ function excpectionAdd(bool) {
         },
         success: function(data) {
             if (data.state == 1) {
-                for (var i = 0; i < data.exceptions.length; i++) {
-                    addMarkerWarm(data.exceptions[i]);
+                for (var i = 0; i < data.data.length; i++) {
+                    addMarkerWarm(data.data[i]);
                 };
                 hideMaker();    //隐藏标记点
             } else if (data.state == 2) {
@@ -84,10 +84,14 @@ function excpectionAdd(bool) {
                 alert('请求坐标点为空');
             } else if (data.state == 10) {
                 alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
             } else {
-                alert('出现其它错误');
+                alert('请求出现错误');
             }
-
+ 
         },
     });
 }
@@ -97,7 +101,7 @@ function excpectionAdd(bool) {
  * @param {[object]} data [里面存储坐标点的坐标等信息]
  */
 function addMarkerWarm(data) {
-    var pt = new BMap.Point(data.longitude, data.latitude);
+    var pt = new BMap.Point(data.x, data.y);
     var myIcon = new BMap.Icon("../images/unusual-point.png", new BMap.Size(40,85));   //创建一个覆盖物
     myIcon.setName("0"); //对这个图标设定它的name属性值为0；
     var marker2 = new BMap.Marker(pt, {

@@ -1,6 +1,7 @@
 /**图表公共容器**/
 	body {
 		margin:0;
+		font-family: Microsoft YaHei;
 	}
 
 	#mainContainer {
@@ -31,7 +32,7 @@
 	    width: 82%;
 	    height: 97%;
 
-	    font-size: 18px;
+	    font-size: 19px;
 	}
 
 	.left-chart::after {
@@ -43,7 +44,7 @@
 	    margin: 0 auto;
 	    width: 235px;
 
-	    color: #233222;
+	    color: #24292c;
 	    text-align: center;
 
 	    content: "该路段出租车流量统计";

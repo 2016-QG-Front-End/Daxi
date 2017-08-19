@@ -148,7 +148,7 @@ option = {
 
 			data: [
 				{
-					value: 35, 
+					value: 1, 
 					name:'空车',
 					itemStyle: {
 						normal: {
@@ -205,86 +205,86 @@ resizeCharts();
  * 刚进入页面时加载图表数据
  * @return {[type]} [description]
  */
-function getFlow() {
-	if(!isCheck) {
-		var now = new Date();
-		var pre = new Date(now.getTime() - 15000*12);
-		var newest = now;
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
-			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
-			barCount: 12,
-			isFuture: 0
-		}		
-	} else {
-		var newest = timeEnd;
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: ,
-			timeEnd: ,
-			barCount: 12,
-			isFuture: 
-		}
-	}
+// function getFlow() {
+// 	if(!isCheck) {
+// 		var now = new Date();
+// 		var pre = new Date(now.getTime() - 15000*12);
+// 		var newest = now;
+// 		var list = {
+// 			x: ,		// 在地图上选择的地点的经度
+// 	  		y: ,		    // 在地图上选择的地点的纬度
+// 			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
+// 			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
+// 			barCount: 12,
+// 			isFuture: 0
+// 		}		
+// 	} else {
+// 		var newest = timeEnd;
+// 		var list = {
+// 			x: ,		// 在地图上选择的地点的经度
+// 	  		y: ,		    // 在地图上选择的地点的纬度
+// 			timeStart: ,
+// 			timeEnd: ,
+// 			barCount: 12,
+// 			isFuture: 
+// 		}
+// 	}
     
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/estimation/flowchange",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == 1) {
-			printFlowCharts(data.data, newest);		
-			}
-		}
-	});
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/estimation/flowchange",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == 1) {
+// 			printFlowCharts(data.data, newest);		
+// 			}
+// 		}
+// 	});
 	
-}
+// }
 
-function getUseAtio() {
-	if(!isCheck) {
-		var now = new Date();
-		var pre = new Date(now.getTime() - 15000*12);
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
-			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
-			isFuture: 0
-		}		
-	} else {
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: ,
-			timeEnd: ,
-			isFuture: 
-		}
-	}
+// function getUseAtio() {
+// 	if(!isCheck) {
+// 		var now = new Date();
+// 		var pre = new Date(now.getTime() - 15000*12);
+// 		var list = {
+// 			x: ,		// 在地图上选择的地点的经度
+// 	  		y: ,		    // 在地图上选择的地点的纬度
+// 			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
+// 			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
+// 			isFuture: 0
+// 		}		
+// 	} else {
+// 		var list = {
+// 			x: ,		// 在地图上选择的地点的经度
+// 	  		y: ,		    // 在地图上选择的地点的纬度
+// 			timeStart: ,
+// 			timeEnd: ,
+// 			isFuture: 
+// 		}
+// 	}
 
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/estimation/flowchange",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == 1) {
-			printPieChart(data.data);		
-			}
-		}
-	});
-}
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/estimation/flowchange",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == 1) {
+// 			printPieChart(data.data);		
+// 			}
+// 		}
+// 	});
+// }
 
 
 /**

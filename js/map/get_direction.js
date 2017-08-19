@@ -107,8 +107,8 @@ function getDrivingLine(str1, str2) {
                     for (var k = 0; k < plan.getNumRoutes(); k++) {
                         var route = plan.getRoute(k); // 获取方案的驾车线路
                         var obj = { //开始的地点
-                            lng: results.getStart().point.lng,
-                            lat: results.getStart().point.lat
+                            x: results.getStart().point.lng,
+                            y: results.getStart().point.lat
                         }
                         addMarkersLine(obj, 'start');
                         var s = [];
@@ -116,14 +116,14 @@ function getDrivingLine(str1, str2) {
                         for (var i = 0; i < route.getNumSteps(); i++) {
                             var step = route.getStep(i).getPosition(); // 获取每个关键步骤
                             var objNew = {
-                                lng: step.lng,
-                                lat: step.lat
+                                x: step.lng,
+                                y: step.lat
                             }
                             s.push(objNew);
                         }
                         var objEnd = { //结束的地点
-                            lng: results.getEnd().point.lng,
-                            lat: results.getEnd().point.lat
+                            x: results.getEnd().point.lng,
+                            y: results.getEnd().point.lat
                         }
                         addMarkersLine(objEnd, 'end');
                         s.push(objEnd);
@@ -148,10 +148,10 @@ function getDrivingLine(str1, str2) {
                     if (data.state == 1) { //判断是否成功
 
                         //画出路线
-                        addRoute(plans.roads[data.index]);  
+                        addRoute(plans.roads[data.data.index]);  
 
                         //为路线添加信息
-                        addMessage(data.time, data.driveTime, plans.roads[data.index][Math.floor(plans.roads[data.index].length/2)]);
+                        addMessage(data.data.time, data.data.driveTime, plans.roads[data.data.index][Math.floor(plans.roads[data.data.index].length/2)]);
                     } else if (data.state == 2) {
                         alert('时间为空');
                     } else if (data.state == 3) {
@@ -168,15 +168,20 @@ function getDrivingLine(str1, str2) {
                         alert('请求坐标点为空');
                     } else if (data.state == 10) {
                         alert('路径的途径点为空');
+                    } else if (data.state == 11) {
+                        alert('跨天请求');
+                    } else if (data.state == 12) {
+                        alert('请求参数为空');
                     } else {
-                        alert('出现其它错误');
+                        alert('请求出现错误');
                     }
+         
                     
                 },
             });
         }
     };
-    var driving = new BMap.DrivingRoute(map, options);
+    var driving = new BMap.DrivingRoute('广州市番禺区', options);
     driving.search(str1, str2);
 
     /**
@@ -243,7 +248,7 @@ function getDrivingLine(str1, str2) {
 $(function() {
     var acStart = new BMap.Autocomplete(    //建立一个自动完成的对象
         {"input" : "startPlace"
-        ,"location" : '广州市'
+        ,"location" : '广州市番禺区'
     });
 
     acStart.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
@@ -285,8 +290,8 @@ $(function() {
  */
 $(function() {
     var acEnd = new BMap.Autocomplete(    //建立一个自动完成的对象
-        {"input" : "endPlace"
-        ,"location" : '广州市'
+        {"input" : "endPlace",
+        "location" : '广州市番禺区'
     });
 
     acEnd.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件

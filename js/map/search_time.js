@@ -35,6 +35,12 @@ $(function() {
             /*
             结束添加
              */
+            $('.first-input-day').empty();
+            $('.first-input-min').empty();
+            $('.first-input-month').empty();
+            $('.second-sel-month').empty();
+            $('.second-sel-day').empty();
+            $('.second-sel-min').empty();
             $('.second-input-secondChange').val('');
             $('.first-input-secondChange').val('');
 
@@ -202,12 +208,12 @@ $(function() {
     })
 
     //禁止键盘输入事件
-    $('.first-input-secondChange').bind('keydown', function(e) {
+    $('.second-input-secondChange').bind('keydown', function(e) {
         return false;
     })
 
     //禁止键盘输入事件
-    $('.second-input-secondChange').bind('keydown', function(e) {
+    $('.first-input-secondChange').bind('keydown', function(e) {
         return false;
     })
 

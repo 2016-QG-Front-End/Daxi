@@ -1,0 +1,108 @@
+/**图表公共容器**/
+	body {
+		margin:0;
+		font-family: Microsoft YaHei;
+	}
+
+	#mainContainer {
+	    position: relative;
+
+	    margin: 0px auto;
+	    width: 88%;
+	    min-width: 
+	}
+/**end 图表公共容器 **/
+
+/**流量统计图**/
+	.content-left {
+		position: relative;
+
+	    border-radius: 2px;
+	    width: 73%;
+
+	    background-color: white;
+
+	    box-shadow: 0 0 100px #eaeaea;
+	}
+
+	.left-chart {
+	    position: relative;
+
+	    // margin: 0 10% 5% 8%;
+	    width: 82%;
+	    height: 97%;
+
+	    font-size: 19px;
+	}
+
+	.left-chart::after {
+	    display: block;
+
+	    position: relative;
+	    bottom: 23px;
+
+	    margin: 0 auto;
+	    width: 235px;
+
+	    color: #24292c;
+	    text-align: center;
+
+	    content: "该路段出租车流量统计";
+	}
+
+	.content-top {
+	    border-radius: 2px;
+	    width: 100%;
+
+	    background-color: white;
+
+	    box-shadow: 0 0 100px #eaeaea;
+	}
+/**end 流量统计图**/
+
+/**出租车使用率图**/
+	.content-right {
+	    position: absolute;
+	    left: 69%;
+	    // top: 20px;
+
+	    border-radius: 2px;
+	    width: 31%;
+
+	    font-size: 20px;
+
+	    background: #3b5c9a;
+
+	    box-shadow: 0 0 40px #e2e2e2;
+	}
+
+	.right-chart::after {
+	    display: block;
+
+	    position: relative;
+	    bottom: 15%;
+
+	    margin: 0 auto;
+	    width: 220px;
+
+	    text-align: center;
+
+	    color: rgba(255, 255, 255, 0.9);
+
+	    content: "该路段出租车使用情况";
+	}
+
+	.right-chart {
+	    width: 100%;
+	    height: 100%;
+	}
+
+
+	.content-bottom {
+	    border-radius: 2px;
+	    width: 100%;
+
+	    box-shadow: 0 0 40px #e2e2e2;
+	}
+
+/**end 出租车使用率图**/

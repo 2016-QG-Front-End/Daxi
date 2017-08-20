@@ -172,6 +172,8 @@ function getDrivingLine(str1, str2) {
                         alert('跨天请求');
                     } else if (data.state == 12) {
                         alert('请求参数为空');
+                    } else if (data.state == 13) {
+                        alert('无法预测');
                     } else {
                         alert('请求出现错误');
                     }

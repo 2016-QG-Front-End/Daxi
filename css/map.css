@@ -99,12 +99,26 @@ ul {
 
     opacity: .9;
 }
-.search-place-line > img {
+    
+.search-line-img > span {
+    font-size: 10px;
+    position: relative;
+    z-index: 10;
+    top: 21px;
+    left: 9px;
+}
+.search-line-img {
     position: absolute;
     top: -3px;
     right: -55px;
 
     cursor: pointer;
+       background-color: #fff;
+    background-image: url("../images/close-query-path.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 40px;
+    height: 40px;
 }
 .searchResultPanel {
     display: none;
@@ -184,7 +198,7 @@ ul {
     left: 5%;
 
     border-radius: 6px;
-    width: 89%;
+    width: 85%;
     height: 42px;
 
     background-color: #fff;

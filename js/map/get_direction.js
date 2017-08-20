@@ -2,8 +2,8 @@ $(function() {
     //当大于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.search-line').bind('click', function() {
-        $('.search-place').css("display", 'none');
-        $('.search-place-line').css('display', 'block');
+        $('.search-place').hide(2000);
+        $('.search-place-line').fadeIn(1000);
         map.clearOverlays(); //清除图层覆盖物
         $('.searchPlace').val('');
 
@@ -11,8 +11,8 @@ $(function() {
 
     // 时间驱动 从设置路线变为搜索框
     $('.search-line-img').bind('click', function() {
-        $('.search-place').css("display", 'block');
-        $('.search-place-line').css('display', 'none');
+        $('.search-place').show(1000);
+        $('.search-place-line').fadeOut(2000);
         map.clearOverlays(); //清除图层覆盖物
         $('.startPlace').val('');
         $('.endPlace').val('');
@@ -20,9 +20,9 @@ $(function() {
 
     // 当小于1300px时
     // 时间驱动 从搜索框变为设置路线
-    $('.min-path-tool-img').bind('click', function() {
-        $('.search-place').css("display", 'none');
-        $('.search-place-line').css('display', 'block');
+    $('.min-search-line').bind('click', function() {
+          $('.search-place').hide(2000);
+        $('.search-place-line').fadeIn(1000);
         map.clearOverlays(); //清除图层覆盖物
     })
 

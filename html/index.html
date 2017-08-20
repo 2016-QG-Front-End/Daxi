@@ -58,7 +58,10 @@
             </div>
             <div class="searchResultPanel" id="searchlinePanelStart"></div>
             <div class="searchResultPanel" id="searchlinePanelEnd"></div>
-            <img class="search-line-img" src="../images/close-query-path.png">
+            
+            <div class="search-line-img">
+                <span>关闭</span>
+            </div>
         </div>
         <!-- end路线搜索 -->
         <!--  时间框 -->
@@ -78,17 +81,16 @@
                     <span class="time-child-anthor-span">年</span>
                     <select class="first-input-month"></select>
                     <span class="time-child-anthor-span">月</span>
-                    <select class="first-input-day"></select>
+                    <select class="first-input-day" ></select>
                     <span class="time-child-anthor-span">日</span>
                     <select class="first-input-hour"></select>
                     <span class="time-child-anthor-span">时</span>
-                    <select class="first-input-min"></select>
-                    <span class="time-last-child">分</span>
+                    <select class="first-input-min" style="display: none"></select>
+                    <span class="time-last-child" style="display: none">分</span>
                 </div>
             </div>
             <div id="timeEnd">
                 <div class="time-sel-first" id="timeSelStar">
-  
                     <select class="time-select" id="timeSelectFirst">
                             <option value ="2017">2017</option>
                     </select>
@@ -99,8 +101,8 @@
                     <span class="time-child-anthor-span">日</span>
                     <select class="second-sel-hour"></select>
                     <span class="time-child-anthor-span">时</span>
-                    <select class="second-sel-min"></select>
-                    <span class="time-last-child">分</span>
+                    <select class="second-sel-min" style="display: none"></select>
+                    <span class="time-last-child" style="display: none">分</span>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ $(function() {
             excpectionAdd(1);
             /**
              * 在这里添加搜索时间后的函数调用
-             */
+            */
 
 
 
@@ -38,6 +38,8 @@ $(function() {
             $('.first-input-day').empty();
             $('.first-input-min').empty();
             $('.first-input-month').empty();
+            $('.second-sel-hour').empty();
+            $('.first-input-hour').empty();
             $('.second-sel-month').empty();
             $('.second-sel-day').empty();
             $('.second-sel-min').empty();
@@ -80,10 +82,11 @@ $(function() {
         if ($('.second-sel-day').is(":empty")) {
             //向月份添加选项
             $('.first-input-month').append('<option value="02">02</option>');
-            $('.first-input-month').append('<option value="03">03</option>');
+            // $('.first-input-month').append('<option value="03">03</option>');
 
             //向日添加选项
-            for (var i = 1; i < 31; i++) {
+            
+            for (var i = 1; i < time.getDate(); i++) {
                 //判断是否需要添加一个0
                 if ( i < 10 ) {
                     var option = '<option value="0' + i + '">0' + i + '</option>';
@@ -94,6 +97,7 @@ $(function() {
             }
 
             //向小时添加选项
+            
             for (var i = 0; i < 24; i++) {
                 //判断是否需要添加一个0
                 if ( i < 10 ) {
@@ -139,6 +143,71 @@ $(function() {
             }
     })
 
+    // 判断是否为过去还是未来
+    $('.first-input-day').bind('select', function() {
+        if (($('.first-input-day').val() < time.getDate())) {
+            //开始时间显示时分
+            $('.first-input-hour').css('display', 'block');
+            $('.time-child-anthor-span').css('display', 'block');
+            $('.first-input-min').css('display', 'block');
+            $('.time-last-child').css('display', 'block');
+
+            //结束时间的显示时分
+            $('.second-sel-hour').css('display', 'block');
+            $('.time-child-anthor-span').css('display', 'block');
+            $('.second-sel-min').css('display', 'block');
+            $('.time-last-child').css('display', 'block');
+
+
+            //重新向小时和分钟添加时间
+
+            $('.first-input-min').empty();
+            for (var i = 0; i < time.getMinutes(); i++) {
+                //判断是否需要添加一个0
+                if ( i < 10 ) {
+                    var option = '<option value="0' + i + '">0' + i + '</option>';
+                } else {
+                    var option = '<option value="' + i + '">' + i + '</option>';
+                }
+                $('.first-input-min').append(option);
+            }
+            $('.second-sel-min').empty();
+            for (var i = 0; i < time.getMinutes(); i++) {
+                //判断是否需要添加一个0
+                if ( i < 10 ) {
+                    var option = '<option value="0' + i + '">0' + i + '</option>';
+                } else {
+                    var option = '<option value="' + i + '">' + i + '</option>';
+                }
+                $('.second-sel-min').append(option);
+            }
+
+        } else if ($('.first-input-hour').val() > time.getDate()){//未来时间
+            //开始时间显示时
+            $('.first-input-hour').css('display', 'block');
+            $('.time-child-anthor-span').css('display', 'block');
+
+            //结束时间的显示时
+            $('.second-sel-hour').css('display', 'block');
+            $('.time-child-anthor-span').css('display', 'block');
+
+            //为小时重新添加时间
+            $('.first-input-hour').empty();
+            var hour = time.getHours();
+            var len = hour + 3;
+            for(var i = hour; i <= len; i++) {
+                var option = '<option value="0' + i + '">0' + i + '</option>';
+                $('.first-input-hour').append(option);
+            }
+            $('.second-sel-hour').empty();
+            for(var i = $('.first-input-hour').val(); i <= len; i++) {
+                var option = '<option value="0' + i + '">0' + i + '</option>';
+                $('.second-sel-hour').append(option);
+            }
+        } 
+    })
+
+
     //点击结束输入框时出现的选择时间
     $('.second-input-secondChange').bind('focus', function() {
         $('#timeEnd').css('display', 'block');
@@ -150,7 +219,7 @@ $(function() {
         if ($('.first-input-day').is(":empty")) {
             //向月份添加选项
             $('.second-sel-month').append('<option value="02">02</option>');
-            $('.second-sel-month').append('<option value="03">03</option>');
+            // $('.second-sel-month').append('<option value="03">03</option>');
 
             //向日添加选项
             for (var i = 1; i < 31; i++) {
@@ -184,7 +253,7 @@ $(function() {
 
             $('.second-sel-hour').empty();
             var hour = parseInt($('.first-input-hour').val());
-            for (var i = hour; i < 24; i++) {
+            for (var i = hour; i < time.getHours(); i++) {
                 //判断是否需要添加一个0
                 if ( i < 10 ) {
                     var option = '<option value="0' + i + '">0' + i + '</option>';
@@ -268,7 +337,7 @@ $(function() {
         // $('.phone-web').hide(1000);
         $('#picktime').trigger('click');
         document.getElementById('picktime').focus();
-        $('.mt_poppanel').css('display', 'block')
+        $('.mt_poppanel').css('display', 'block');
 
     });
 })

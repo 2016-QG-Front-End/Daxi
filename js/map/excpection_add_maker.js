@@ -28,8 +28,8 @@ function excpectionAdd(bool) {
             minY: 22.490739,
             maxX: 114.069097,
             maxY: 23.978401,
-            timeStart: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
-            timeEnd: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+            timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
+            timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
         }
     } else if (bool ==2) {
         var obj = {

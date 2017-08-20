@@ -1,12 +1,16 @@
 excpectionAdd(0);
 var time = new Date(2017, 1, 3, 17, 50, 55); 
 $(function() {
-    $('.first-tool-img').bind('click', function() {
-        if($('.first-tool-img').attr('src') == "../images/display-unusual.png") {
-            $('.first-tool-img').attr('src', "../images/close-unusual.png");
+    $('.unusual').bind('click', function() {
+        if($('.unusual').attr('stat') == "off") {
+            $('.unusual').attr('stat','on');
+            $('.unusual span').text('关闭异常');
+            console.log("open ");
             showMaker();
         } else {
-            $('.first-tool-img').attr('src', "../images/display-unusual.png");
+            $('.unusual').attr('stat', "off");
+            $('.unusual span').text('显示异常');
+            console.log("close");
             hideMaker();
         }
     })
@@ -28,8 +32,8 @@ function excpectionAdd(bool) {
             minY: 22.490739,
             maxX: 114.069097,
             maxY: 23.978401,
-            timeStart: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
-            timeEnd: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+            timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
+            timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
         }
     } else if (bool ==2) {
         var obj = {
@@ -51,8 +55,6 @@ function excpectionAdd(bool) {
         }
     }
     
-
-
     $.ajax({
         type: "post",
         url: 'http://ip:80/estimation/trafficexception',

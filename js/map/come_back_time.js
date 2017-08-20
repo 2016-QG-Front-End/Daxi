@@ -7,12 +7,11 @@ timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
 $(function() {
     var time = new Date(2017, 1, 3, 17, 50, 55);    //设置时间为2017年2月3日17:50:55
     //查询时间的时间驱动
-    $('.sec-tool-img').bind('click', function() {
+    $('.refresh').bind('click', function() {
         excpectionAdd(0);
         /**
          * 在这里进行函数调用
          */
-        
         
     })
 })

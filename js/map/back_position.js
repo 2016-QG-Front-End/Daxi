@@ -1,5 +1,5 @@
 $(function() {
-    $('.last-tool-img').bind('click', function() {
+    $('.my-locations').bind('click', function() {
         getMyPosition();
     })
 });
@@ -43,7 +43,7 @@ function getMyPosition() {
     geolocation.getCurrentPosition(function(r) {    //获取当前位置成功的回调函数
         if (this.getStatus() == BMAP_STATUS_SUCCESS) {  //判断是否成功
             var pt = new BMap.Point(r.point.lng, r.point.lat);
-            var myIcon = new BMap.Icon("../images/my-location-point.png", new BMap.Size(40, 40));
+            var myIcon = new BMap.Icon("../images/my-location-point.png", new BMap.Size(40, -40));
             myIcon.setName("1"); //对这个图标设定它的name属性值为1；
             var marker2 = new BMap.Marker(pt, {
                 icon: myIcon

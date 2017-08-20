@@ -492,22 +492,38 @@ ul {
     position: absolute;
 
     padding: 0;
+    /*border:solid 1px black;*/
 }
-.tool img {
-    position: relative;
-
-    width: 50px;
-
-    opacity: .9;
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
-
+.tool li {
+    width:50px;
+    height: 50px;
+    margin:5px auto;
     cursor: pointer;
 }
-/*.tool img:hover {
-    width: 60px;
-}*/
-.tool li {
-    padding: 2px 0;
+.tool .unusual{
+    width:50px;
+    background: url(../images/unusual.png);
+    text-align: center;
+}
+
+.tool .refresh{
+    width:50px;
+    background: url(../images/refresh_new_time.png);
+    text-align: center;
+}
+
+.tool .my-location{
+    width:50px;
+    background: url(../images/my_location.png);
+    text-align: center;
+}
+
+.tool span {
+    /*float: bottom;*/
+    font-size: 10px;
+    position: relative;
+    z-index: 10;
+    top:25px;
 }
 /*** end 工具 ***/
 /** end map的制作 **/

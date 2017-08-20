@@ -1,3 +1,6 @@
+
+
+
 var points;
 $.ajax({
     type: "POST",

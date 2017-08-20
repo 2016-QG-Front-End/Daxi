@@ -1,5 +1,5 @@
 $(function() {
-    $('.searchPlace').bind('blur', function() {
+    $('.search-images').bind('click', function() {
 
         
         // var range = getBoundary('广州');
@@ -62,8 +62,8 @@ $(function() {
         myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
         G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
         
-        searchPlaceAlo(myValue);
-        G("searchPlace").blur();
+        // searchPlaceAlo(myValue);
+        $(".search-images").trigger('click');
     });
 
     // function setPlace(){

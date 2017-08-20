@@ -1,16 +1,23 @@
-
+var timeEnd = $('.second-input-secondChange').val()+ ':00';
 var timeline = [];
 var flow = [];
 
-resizeContainer();
+resizeContainer();//
 resizeAuto();	
 
+/**
+ * 是否动态显示图表
+ */
 if(move) {
 	dynamic();
 }
 
+/**
+ * 是否处于查看图表状态
+ */
 if(isCheck) {
 	clearInterval(intervalId);
+	//是否预测图表
 	if(isFuture) {
 		estimationFlowChange();
 		estimationUserAtio();
@@ -20,6 +27,9 @@ if(isCheck) {
 	}
 }
 
+/**
+ * [动态显示图表]
+ */
 function dynamic() {
 	var intervalId = setInterval (function() {
 		showFlowChange();
@@ -27,6 +37,10 @@ function dynamic() {
 	},15000);
 }
 
+/**
+ * 当浏览器窗口大小改变时自适应
+
+ */
 $(window).resize(function() {
 	resizeContainer();
 	resizeAuto();
@@ -34,7 +48,7 @@ $(window).resize(function() {
 })
 
 /**
- * 左边的柱状图和折线图反映车流量
+ * 初始化左边的柱状图折线图
  */
 var leftChart = echarts.init($(".left-chart")[0]);
 
@@ -132,7 +146,7 @@ leftChart.setOption(option);
 
 
 /**
- * 右边的饼状图显示空车的百分比
+ * 初始化右边的饼状图
  */
 var rightChart = echarts.init($(".right-chart")[0]);
 
@@ -207,30 +221,17 @@ rightChart.setOption(option);
 resizeCharts();
 
 /**
- * 刚进入页面时加载图表数据
- * @return {[type]} [description]
+ * 查看流量变化
  */
 function showFlowChange() {
-	if(!isCheck) {
-		var now = new Date();
-		var pre = new Date(now.getTime() - 20000*12);
-		var newest = now;
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
-			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
-			barCount: 10,
-		}		
-	} else {
-		var newest = timeEnd;
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: ,
-			timeEnd: ,
-			barCount: 10,
-		}
+	var timeStart = new Date(timeEnd).getTime()-20000*10;
+	var newest = now;
+	var list = {
+		x: ,		// 在地图上选择的地点的经度
+  		y: ,		    // 在地图上选择的地点的纬度
+		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
+		timeEnd: timeEnd,
+		barCount: 10
 	}
     
 	$.ajax({
@@ -251,13 +252,16 @@ function showFlowChange() {
 	
 }
 
+/**
+ * 预测流量变化
+ */
 function estimationFlowChange() {
 	var newest = timeEnd;
 	var list = {
 		x: ,		// 在地图上选择的地点的经度
   		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: ,
-		timeEnd: ,
+		timeStart: timeStart,
+		timeEnd: timeEnd,
 		timeNow: ,
 		barCount: 12,
 	}
@@ -280,23 +284,19 @@ function estimationFlowChange() {
 	
 }
 
+/**
+ * 查看车辆利用率
+ * @return {[type]} [description]
+ */
 function showUserAtio() {
-	if(!isCheck) {
-		var now = new Date();
-		var pre = new Date(now.getTime() - 20000*10);
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: now.Format('yyyy-MM-dd hh:mm:ss'),
-			timeEnd: pre.Format('yyyy-MM-dd hh:mm:ss'),
-		}		
-	} else {
-		var list = {
-			x: ,		// 在地图上选择的地点的经度
-	  		y: ,		    // 在地图上选择的地点的纬度
-			timeStart: ,
-			timeEnd: ,
-		}
+	var timeStart = new Date(timeEnd).getTime()-20000*10;
+	var newest = now;
+	var list = {
+		x: ,		// 在地图上选择的地点的经度
+  		y: ,		    // 在地图上选择的地点的纬度
+		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
+		timeEnd: timeEnd,
+		barCount: 10
 	}
 
 	$.ajax({
@@ -316,13 +316,16 @@ function showUserAtio() {
 	});
 }
 
+/**
+ * 预测车辆利用率
+ */
 function estimationUserAtio() {
  {
 	var list = {
 		x: ,		// 在地图上选择的地点的经度
   		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: ,
-		timeEnd: ,
+		timeStart: timeStart,
+		timeEnd: timeEnd,
 		timeNow: ,
 	}
 
@@ -345,7 +348,7 @@ function estimationUserAtio() {
 
 
 /**
- * 创建图表
+ * 创建左图表
  */
 function printFlowCharts(data, timeEnd) {
 	if((timeline == '') && (!isCheck)){
@@ -380,6 +383,9 @@ function printFlowCharts(data, timeEnd) {
 	});
 }
 
+/**
+ * 创建饼状图
+ */
 function printPieChart(data) {
 	rightChart.setOption({
 		series: [
@@ -410,7 +416,7 @@ function printPieChart(data) {
 }
 
 /**
- * 当容器变化时图表变化
+ * 当容器大小变化时图表的配置项变化
  */
 function resizeCharts() {
 	leftChart.resize();
@@ -575,13 +581,15 @@ function judgePhone() {
 }
 
 /**
- * 格式化显示在柱状图的时间
- * @return {[type]} [description]
+ * 格式化成hh:mm:ss格式
  */
 Date.prototype.format = function () { 
   return this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()
 }
 
+/**
+ * 格式化成yyyy-MM-dd hh:mm:ss格式
+ */
 Date.prototype.Format = function (fmt) {
   var o = {
     "y+": this.getFullYear(),

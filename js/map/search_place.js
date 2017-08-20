@@ -90,7 +90,6 @@ $(function() {
                 return ;
             }
             var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-            map.clearOverlays();    //清除地图上所有覆盖物
             var myIcon = new BMap.Icon("../images/distination-point_blue.png", new BMap.Size(40,85));
             var marker2 = new BMap.Marker(pp,{icon:myIcon});  // 创建标注
             map.addOverlay(marker2); // 将标注添加到地图中

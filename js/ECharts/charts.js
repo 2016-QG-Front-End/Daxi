@@ -258,8 +258,8 @@ function estimationFlowChange() {
   		y: ,		    // 在地图上选择的地点的纬度
 		timeStart: ,
 		timeEnd: ,
+		timeNow: ,
 		barCount: 12,
-		isFuture: 
 	}
     
 	$.ajax({
@@ -323,7 +323,7 @@ function estimationUserAtio() {
   		y: ,		    // 在地图上选择的地点的纬度
 		timeStart: ,
 		timeEnd: ,
-		isFuture: 
+		timeNow: ,
 	}
 
 	$.ajax({

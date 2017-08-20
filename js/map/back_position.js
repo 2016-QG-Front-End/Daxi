@@ -1,5 +1,5 @@
 $(function() {
-    $('.last-tool-img').bind('click', function() {
+    $('.my-locations').bind('click', function() {
         getMyPosition();
     })
 });

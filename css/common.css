@@ -56,8 +56,8 @@
     .min-search-line {
         padding-bottom: 5px\9; /*为IE9设置单独的样式*/
         display: block;
-        background: url(../images/query-path.png);
-        
+        background: url(../images/search_path.png);
+        text-align: center;
     }
     /*** end工具 ***/
     /*** 路线搜索 ***/
@@ -132,9 +132,10 @@
     }
     .min-search-line {
         display: none;
-        background: url(../images/query-path.png);
+        background: url(../images/search_path.png);
         background-size: 100%;
         width: 50px;
+        text-align: center;
     }
     .tool {
         top: 50%;
@@ -213,10 +214,12 @@
 
     /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
     select::-ms-expand { display: none; }
-    
+
     .min-search-line {
         display: block;
         padding-bottom: 5px\0; /*为IE9设置单独的样式*/
+        background: url(../images/search_path.png);
+        text-align: center;
 
     }
     .tool {

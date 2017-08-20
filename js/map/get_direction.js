@@ -20,7 +20,7 @@ $(function() {
 
     // 当小于1300px时
     // 时间驱动 从搜索框变为设置路线
-    $('.min-path-tool-img').bind('click', function() {
+    $('.min-search-line').bind('click', function() {
         $('.search-place').css("display", 'none');
         $('.search-place-line').css('display', 'block');
         map.clearOverlays(); //清除图层覆盖物

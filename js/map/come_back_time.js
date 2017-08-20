@@ -1,7 +1,7 @@
 
 /**获取查询时间
-timeStart: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00'
-timeEnd: time.getFullYear() + '-' + (time.getMonth + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00'
+timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
 这两个是对time这个变量，也就是当前时间的获取。它们的不同就是在秒数那里添加了15秒
  */
 $(function() {

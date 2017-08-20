@@ -504,18 +504,21 @@ ul {
     width:50px;
     background: url(../images/unusual.png);
     text-align: center;
+    opacity: 0.85;
 }
 
 .tool .refresh{
     width:50px;
     background: url(../images/refresh_new_time.png);
     text-align: center;
+    opacity: 0.85;
 }
 
 .tool .my-location{
     width:50px;
     background: url(../images/my_location.png);
     text-align: center;
+    opacity: 0.85;
 }
 
 .tool span {

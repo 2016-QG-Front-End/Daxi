@@ -54,6 +54,23 @@ $(function() {
 
     });
 
+
+
+    $('.first-input-secondChange').bind('keyup', function(e) {   //为startPlace的输入框添加回车驱动
+        var ev = window.event || e;
+        //13是键盘上面固定的回车键
+        if (ev.keyCode == 13) {
+            $('.time-select-second-change-img').trigger('click');
+        }   
+    });
+
+    $('.second-input-secondChange').bind('keyup', function(e) {   //为startPlace的输入框添加回车驱动
+        var ev = window.event || e;
+        //13是键盘上面固定的回车键
+        if (ev.keyCode == 13) {
+            $('.time-select-second-change-img').trigger('click');
+        }   
+    });
     //点击开始输入框时出现的选择时间
     $('.first-input-secondChange').bind('focus', function() {
         $('#timeStart').css('display', 'block');

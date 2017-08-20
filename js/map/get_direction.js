@@ -203,7 +203,7 @@ function getDrivingLine(str1, str2) {
      * @param {[string]} str  [用于判断是起始点还是结束点]
      */
     function addMarkersLine(data, str) {
-        var pt = new BMap.Point(data.lng, data.lat);
+        var pt = new BMap.Point(data.x, data.y);
         if (str == 'start') {
             var myIcon = new BMap.Icon("../images/distination_point_blue.png", new BMap.Size(40,85)); //创建一个覆盖物
             map.panTo(pt);
@@ -231,6 +231,7 @@ function getDrivingLine(str1, str2) {
             title: "预测时间", // 信息窗口标题
 
         };
+        var points = new BMap.Point(point.x, point.y);
         var content =   '<div style="margin:0;line-height:20px;padding:2px;">' +
                         '到达时间：' + str1 + '<br/>耗时：' + str2 + '<br/>' +
                         '</div>';

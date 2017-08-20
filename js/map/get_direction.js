@@ -21,13 +21,10 @@ $(function() {
     // 当小于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.min-search-line').bind('click', function() {
-<<<<<<< HEAD
+
           $('.search-place').hide(2000);
         $('.search-place-line').fadeIn(1000);
-=======
-        $('.search-place').css("display", 'none');
-        $('.search-place-line').css('display', 'block');
->>>>>>> bc9d18cc808529b01d84bfb72ca9c774004efda2
+
         map.clearOverlays(); //清除图层覆盖物
     })
 

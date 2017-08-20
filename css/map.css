@@ -99,26 +99,31 @@ ul {
 
     opacity: .9;
 }
-    
+
 .search-line-img > span {
-    font-size: 10px;
     position: relative;
-    z-index: 10;
     top: 21px;
     left: 9px;
+    z-index: 10;
+
+    font-size: 10px;
 }
 .search-line-img {
     position: absolute;
     top: -3px;
     right: -55px;
 
-    cursor: pointer;
-       background-color: #fff;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+
     background-image: url("../images/close-query-path.png");
     background-repeat: no-repeat;
     background-position: center center;
-    width: 40px;
-    height: 40px;
+
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
+
+    cursor: pointer;
 }
 .searchResultPanel {
     display: none;
@@ -127,8 +132,8 @@ ul {
 .search-place-start > input {
     border: .1px solid;
     border-radius: 6px;
-    padding-left: 20px;
     padding-right: 10px;
+    padding-left: 20px;
     height: 40px;
 
     line-height: 40px;
@@ -163,33 +168,37 @@ ul {
 /*** 时间选择 ***/
 /**/
 .time-sel-first {
-    width: 485px;
-    height: 40px;
-    line-height: 40px;
-    background-color: #fff;
     margin-top: 10px;
     border-radius: 6px;
+    width: 485px;
+    height: 40px;
+
+    line-height: 40px;
+
+    background-color: #fff;
+
     box-shadow: 0 0 4px rgba(0,0,0,.2);
 }
 #timeSelectFirst {
     margin-left: 28px;
 }
-.time-sel-first > select{
-     /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
-      border: none;
-        box-shadow: 0 0 4px rgba(0,0,0,.2);
-      /*很关键：将默认的select选择框样式清除*/
-      appearance:none;
-      -moz-appearance:none;
-      -webkit-appearance:none;
+.time-sel-first > select {
+    margin-left: 12px;
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: none;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+    width: 54px;
+    /*在选择框的最右侧中间显示小箭头图片*/
 
-      /*在选择框的最右侧中间显示小箭头图片*/
-      background: url("../images/query-time-icon.png") no-repeat scroll right center transparent;
-    width: 54px; 
+    background: url("../images/query-time-icon.png") no-repeat scroll right center transparent;
 
-      /*为下拉小箭头留出一点位置，避免被文字覆盖*/
-      padding-right: 14px;
-      margin-left: 12px;
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+    /*很关键：将默认的select选择框样式清除*/
+            appearance: none;
 }
 
 .phone-web {
@@ -237,47 +246,55 @@ ul {
     position: absolute;
     top: 5%;
     right: 3%;
+    /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
+
+    border-radius: 6px;
     width: 518px;
     height: 42px;
-
- /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
-    border-radius: 6px;
-
 }
 .time-select-second-change > img {
     position: absolute;
-    right: -30px;
     top: -10px;
-    box-shadow:  0 0 36px rgba(0,0,0,.2);
+    right: -30px;
+
     border-radius: 50%;
+
+    box-shadow: 0 0 36px rgba(0,0,0,.2);
+
     cursor: pointer;
 }
 .second-change-first-div {
-    width: 100%;
-    box-shadow:  0 0 6px rgba(0,0,0,.2);
-    border-radius: 6px;
- /*   padding: 10px;*/
-    line-height: 42px;
-    padding-left: 10px;
-        background-color: #fff;
-        display: none;
-}
-.second-change-first-div > span {
-    font-size: 18px;
-    color: #385C9A;
-    padding-left: 20px;
-}
-.second-change-first-div > input {
-    width: 136px;
+    display: none;
 
     border-radius: 6px;
-    height: 24px;
-    border: 0.1px solid #C4C4C4;
+    padding-left: 10px;
+    width: 100%;
+    /*   padding: 10px;*/
+
+    line-height: 42px;
+
+    background-color: #fff;
+
+    box-shadow: 0 0 6px rgba(0,0,0,.2);
+}
+.second-change-first-div > span {
+    padding-left: 20px;
+
+    font-size: 18px;
+
+    color: #385c9a;
+}
+.second-change-first-div > input {
+    border: .1px solid #c4c4c4;
+    border-radius: 6px;
     padding: 0 10px;
+    width: 136px;
+    height: 24px;
 }
 .second-change-first-div > input:focus {
     border-radius: 6px;
-    outline: none
+
+    outline: none;
 }
 .second-input-secondChange {
     margin-left: 24px;
@@ -509,38 +526,49 @@ ul {
     /*border:solid 1px black;*/
 }
 .tool li {
-    width:50px;
+    margin: 5px auto;
+    width: 50px;
     height: 50px;
-    margin:5px auto;
+
     cursor: pointer;
 }
-.tool .unusual{
-    width:50px;
+.tool .unusual {
+    width: 50px;
+
+    text-align: center;
+
     background: url(../images/unusual.png);
-    text-align: center;
-    opacity: 0.85;
+
+    opacity: .85;
 }
 
-.tool .refresh{
-    width:50px;
+.tool .refresh {
+    width: 50px;
+
+    text-align: center;
+
     background: url(../images/refresh_new_time.png);
-    text-align: center;
-    opacity: 0.85;
+
+    opacity: .85;
 }
 
-.tool .my-location{
-    width:50px;
-    background: url(../images/my_location.png);
+.tool .my-location {
+    width: 50px;
+
     text-align: center;
-    opacity: 0.85;
+
+    background: url(../images/my_location.png);
+
+    opacity: .85;
 }
 
 .tool span {
-    /*float: bottom;*/
-    font-size: 10px;
     position: relative;
+    top: 25px;
     z-index: 10;
-    top:25px;
+    /*float: bottom;*/
+
+    font-size: 10px;
 }
 /*** end 工具 ***/
 /** end map的制作 **/

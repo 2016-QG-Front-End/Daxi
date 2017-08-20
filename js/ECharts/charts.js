@@ -1,30 +1,74 @@
 var timeline = [];
 var flow = [];
+var isCheck = 0;
+var isFuture = 0;
 
 resizeContainer();//根据窗口大小决定是左右布局还是上下布局
 resizeAuto();//根据容器的宽度设定容器的高度
 
+
+/**
+ * 将时间格式化成hh:mm:ss格式
+ */
+Date.prototype.format = function () { 
+  return this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()
+}
+
+
+/**
+ * 将时间格式化成yyyy-MM-dd hh:mm:ss格式
+ */
+Date.prototype.Format = function (fmt) {
+  var o = {
+    "y+": this.getFullYear(),
+    "M+": this.getMonth() + 1,                 //月份
+    "d+": this.getDate(),                    //日
+    "h+": this.getHours(),                   //小时
+    "m+": this.getMinutes(),                 //分
+    "s+": this.getSeconds(),                 //秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+    "S+": this.getMilliseconds()             //毫秒
+  };
+  for (var k in o) {
+    if (new RegExp("(" + k + ")").test(fmt)){
+      if(k == "y+"){
+        fmt = fmt.replace(RegExp.$1, ("" + o[k]).substr(4 - RegExp.$1.length));
+      }
+      else if(k=="S+"){
+        var lens = RegExp.$1.length;
+        lens = lens==1?3:lens;
+        fmt = fmt.replace(RegExp.$1, ("00" + o[k]).substr(("" + o[k]).length - 1,lens));
+      }
+      else{
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      }
+    }
+  }
+  return fmt;
+}
+
+
 /**
  * 是否动态显示图表，如果是，则设定定时器
  */
-if(move) {
-	dynamic();
-}
+// if(move) {
+// 	dynamic();
+// }
 
 /**
  * 是否处于查看图表状态，如果是，则清除定时器且请求查看图表
  */
-if(isCheck) {
-	clearInterval(intervalId);
-	//是否预测图表
-	if(isFuture) {
-		estimationFlowChange();
-		estimationUserAtio();
-	} else {
-		showFlowChange();
-		showUserAtio();
-	}
-}
+// if(isCheck) {
+// 	clearInterval(intervalId);
+// 	//是否预测图表
+// 	if(isFuture) {
+// 		estimationFlowChange();
+// 		estimationUserAtio();
+// 	} else {
+// 		showFlowChange();
+// 		showUserAtio();
+// 	}
+// }
 
 /**
  * 动态显示图表，设置定时器
@@ -89,7 +133,7 @@ option = {
 		{
 			type: 'value',
 			name: '车流量(辆)',
-			min: 'dataMin',
+			// min: 'dataMin',
 			splitLine: {
             	"show": false
         	},
@@ -165,7 +209,7 @@ option = {
 
 			data: [
 				{
-					value: 1, 
+					value: 35, 
 					name:'空车',
 					itemStyle: {
 						normal: {
@@ -221,128 +265,129 @@ resizeCharts();
 /**
  * 请求查看流量变化
  */
-function showFlowChange() {
-	var timeStart = new Date(timeEnd).getTime()-20000*10;
-	var newest = now;
-	var list = {
-		x: ,		// 在地图上选择的地点的经度
-  		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-		timeEnd: timeEnd,
-		barCount: 10
-	}
+// function showFlowChange() {
+// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
+// 	var newest = now;
+// 	var list = {
+// 		x: ,		// 在地图上选择的地点的经度
+//   		y: ,		    // 在地图上选择的地点的纬度
+// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
+// 		timeEnd: timeEnd,
+// 		barCount: 10
+// 	}
     
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/show/flowchange",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == '1') {
-				printFlowCharts(data.data, newest);		
-			}
-		}
-	});
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/show/flowchange",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == '1') {
+// 				printFlowCharts(data.data, newest);		
+// 			}
+// 		}
+// 	});
 	
-}
+// }
 
 /**
  * 请求预测流量变化
  */
-function estimationFlowChange() {
-	var newest = timeEnd;
-	var list = {
-		x: ,		// 在地图上选择的地点的经度
-  		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: timeStart,
-		timeEnd: timeEnd,
-		timeNow: ,
-		barCount: 12,
-	}
+// function estimationFlowChange() {
+// 	var newest = timeEnd;
+// 	var list = {
+// 		x: ,		// 在地图上选择的地点的经度
+//   		y: ,		    // 在地图上选择的地点的纬度
+// 		timeStart: timeStart,
+// 		timeEnd: timeEnd,
+// 		timeNow: ,
+// 		barCount: 12,
+// 	}
     
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/estimation/flowchange",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == '1') {
-				printFlowCharts(data.data, newest);		
-			}
-		}
-	});
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/estimation/flowchange",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == '1') {
+// 				printFlowCharts(data.data, newest);		
+// 			}
+// 		}
+// 	});
 	
-}
+// }
 
 /**
  * 请求查看车辆利用率
  * @return {[type]} [description]
  */
-function showUserAtio() {
-	var timeStart = new Date(timeEnd).getTime()-20000*10;
-	var newest = now;
-	var list = {
-		x: ,		// 在地图上选择的地点的经度
-  		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-		timeEnd: timeEnd,
-		barCount: 10
-	}
+// function showUserAtio() {
+// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
+// 	var newest = now;
+// 	var list = {
+// 		x: ,		// 在地图上选择的地点的经度
+//   		y: ,		    // 在地图上选择的地点的纬度
+// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
+// 		timeEnd: timeEnd,
+// 		barCount: 10
+// 	}
 
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/show/useratio",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == '1') {
-				printPieChart(data.data);		
-			}
-		}
-	});
-}
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/show/useratio",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == '1') {
+// 				printPieChart(data.data);		
+// 			}
+// 		}
+// 	});
+// }
 
 /**
  * 请求预测车辆利用率
  */
-function estimationUserAtio() {
- {
-	var list = {
-		x: ,		// 在地图上选择的地点的经度
-  		y: ,		    // 在地图上选择的地点的纬度
-		timeStart: timeStart,
-		timeEnd: timeEnd,
-		timeNow: ,
-	}
+// function estimationUserAtio() {
+//  {
+// 	var list = {
+// 		x: ,		// 在地图上选择的地点的经度
+//   		y: ,		    // 在地图上选择的地点的纬度
+// 		timeStart: timeStart,
+// 		timeEnd: timeEnd,
+// 		timeNow: ,
+// 	}
 
-	$.ajax({
-		type: "POST",
-		url: "http://ip:80/estimation/useratio",
-		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
-		data: JSON.stringify(list),
-		dataType: "json",
-		success: function(data) {
-			if(data.status == '1') {
-				printPieChart(data.data);		
-			}
-		}
-	});
-}
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://ip:80/estimation/useratio",
+// 		contentType: "application/json; charset=utf-8",
+// 		xhrFields: {
+// 			withCredentials: true
+// 		},
+// 		data: JSON.stringify(list),
+// 		dataType: "json",
+// 		success: function(data) {
+// 			if(data.status == '1') {
+// 				printPieChart(data.data);		
+// 			}
+// 		}
+// 	});
+// }
+
 
 
 /**
@@ -352,14 +397,14 @@ function printFlowCharts(data, timeEnd) {
 	//假如时间轴数组为空而且不是处于查看状态，则表示该数组第一次进行动态请求，要重新赋十条柱子的值
 	if((timeline == '') && (!isCheck)){
 		for(var i = 0; i < data.length; i++) {
-			var time = new Date(timeEnd.getTime() - 20000*(data.length - i));
+			var time = new Date(new Date(timeEnd).getTime() - 20000*(data.length - i));
 			timeline.push(time.format());
 			flow.push(data[i].taxiCount);
 		}	
 	//假如时间轴柱子不为空而且也不处于查看状态，则表示它处于动态请求但不是第一次请求，直接改变第一条柱子和最后一条柱子
 	} else if((timeline != '') && (!isCheck)) {
 		timeline.shift();
-		timeline.push(timeEnd.format());
+		timeline.push(new Date(timeEnd).format());
 		flow.shift();
 		flow.push(data[data.length - 1].taxiCount);
 	}
@@ -368,7 +413,7 @@ function printFlowCharts(data, timeEnd) {
 		timeline.length = 0;
 		flow.length = 0;
 		for(var i = 0; i < data.length; i++) {
-			var time = new Date(timeEnd.getTime() - 20000*(data.length - i));
+			var time = new Date(new Date(timeEnd).getTime() - 20000*(data.length - i));
 			timeline.push(time.format());
 			flow.push(data[i].taxiCount);
 		}
@@ -378,9 +423,16 @@ function printFlowCharts(data, timeEnd) {
 		xAxis: {
 			data: timeline
 		},
-		yAxis: {
-			data: flow
-		}
+		series: [
+			{
+				type: 'bar',
+				data: flow
+			},
+			{
+				type: 'line',
+				data: flow
+			}
+		]
 	});
 }
 
@@ -581,43 +633,4 @@ function judgePhone() {
     } else {
         return false;
     }
-}
-
-/**
- * 将时间格式化成hh:mm:ss格式
- */
-Date.prototype.format = function () { 
-  return this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()
-}
-
-/**
- * 将时间格式化成yyyy-MM-dd hh:mm:ss格式
- */
-Date.prototype.Format = function (fmt) {
-  var o = {
-    "y+": this.getFullYear(),
-    "M+": this.getMonth() + 1,                 //月份
-    "d+": this.getDate(),                    //日
-    "h+": this.getHours(),                   //小时
-    "m+": this.getMinutes(),                 //分
-    "s+": this.getSeconds(),                 //秒
-    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-    "S+": this.getMilliseconds()             //毫秒
-  };
-  for (var k in o) {
-    if (new RegExp("(" + k + ")").test(fmt)){
-      if(k == "y+"){
-        fmt = fmt.replace(RegExp.$1, ("" + o[k]).substr(4 - RegExp.$1.length));
-      }
-      else if(k=="S+"){
-        var lens = RegExp.$1.length;
-        lens = lens==1?3:lens;
-        fmt = fmt.replace(RegExp.$1, ("00" + o[k]).substr(("" + o[k]).length - 1,lens));
-      }
-      else{
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-      }
-    }
-  }
-  return fmt;
 }

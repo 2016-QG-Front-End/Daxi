@@ -35,7 +35,7 @@ function excpectionAdd(bool) {
             timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
             timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
         }
-    } else if (bool ==2) {
+    } else if (bool == 2) {
         var obj = {
             minX: 112.62357,
             minY: 22.490739,

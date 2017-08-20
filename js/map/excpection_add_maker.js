@@ -1,12 +1,16 @@
 excpectionAdd(0);
 var time = new Date(2017, 1, 3, 17, 50, 55); 
 $(function() {
-    $('.first-tool-img').bind('click', function() {
-        if($('.first-tool-img').attr('src') == "../images/display-unusual.png") {
-            $('.first-tool-img').attr('src', "../images/close-unusual.png");
+    $('.unusual').bind('click', function() {
+        if($('.unusual').attr('stat') == "off") {
+            $('.unusual').attr('stat','on');
+            $('.unusual span').text('关闭异常');
+            console.log("open ");
             showMaker();
         } else {
-            $('.first-tool-img').attr('src', "../images/display-unusual.png");
+            $('.unusual').attr('stat', "off");
+            $('.unusual span').text('显示异常');
+            console.log("close");
             hideMaker();
         }
     })
@@ -51,8 +55,6 @@ function excpectionAdd(bool) {
         }
     }
     
-
-
     $.ajax({
         type: "post",
         url: 'http://ip:80/estimation/trafficexception',

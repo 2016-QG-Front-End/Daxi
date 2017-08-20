@@ -43,18 +43,21 @@
     /*** end搜索框 ***/
     /*** 工具 ***/
 
-    .sec-tool-img,
-    .last-tool-img,
-    .first-tool-img,
-    .min-path-tool-img {
+    .unusual,
+    .refresh,
+    .my-location,
+    .min-search-line {
         left: 7%;
     }
     .tool {
         top: 47%;
         left: 5%;
     }
-    .min-path-tool-img {
+    .min-search-line {
         padding-bottom: 5px\9; /*为IE9设置单独的样式*/
+        display: block;
+        background: url(../images/query-path.png);
+        
     }
     /*** end工具 ***/
     /*** 路线搜索 ***/
@@ -127,8 +130,11 @@
     .first-tool-img {
         left: -14%;
     }
-    .min-path-tool-img {
+    .min-search-line {
         display: none;
+        background: url(../images/query-path.png);
+        background-size: 100%;
+        width: 50px;
     }
     .tool {
         top: 50%;
@@ -195,14 +201,14 @@
 
     /*** end搜索框 ***/
     /*** 工具 ***/
-    .min-path-tool-img,
+    .min-search-line,
     .last-tool-img,
     .first-tool-img,
     .sec-tool-img {
         left: 17%;
         left: 0\9;  /*//IE9设置单独样式*/
     }
-    .min-path-tool-img {
+    .min-search-line {
         display: block;
 
         padding-bottom: 5px\9; /*为IE9设置单独的样式*/

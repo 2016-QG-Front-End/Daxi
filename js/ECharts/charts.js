@@ -1,19 +1,18 @@
-var timeEnd = $('.second-input-secondChange').val()+ ':00';
 var timeline = [];
 var flow = [];
 
-resizeContainer();//
-resizeAuto();	
+resizeContainer();//根据窗口大小决定是左右布局还是上下布局
+resizeAuto();//根据容器的宽度设定容器的高度
 
 /**
- * 是否动态显示图表
+ * 是否动态显示图表，如果是，则设定定时器
  */
 if(move) {
 	dynamic();
 }
 
 /**
- * 是否处于查看图表状态
+ * 是否处于查看图表状态，如果是，则清除定时器且请求查看图表
  */
 if(isCheck) {
 	clearInterval(intervalId);
@@ -28,7 +27,7 @@ if(isCheck) {
 }
 
 /**
- * [动态显示图表]
+ * 动态显示图表，设置定时器
  */
 function dynamic() {
 	var intervalId = setInterval (function() {
@@ -38,8 +37,7 @@ function dynamic() {
 }
 
 /**
- * 当浏览器窗口大小改变时自适应
-
+ * 当浏览器窗口大小改变时利用定义好的函数自适应，下面定义函数时有说明每个函数的功能
  */
 $(window).resize(function() {
 	resizeContainer();
@@ -221,7 +219,7 @@ rightChart.setOption(option);
 resizeCharts();
 
 /**
- * 查看流量变化
+ * 请求查看流量变化
  */
 function showFlowChange() {
 	var timeStart = new Date(timeEnd).getTime()-20000*10;
@@ -245,7 +243,7 @@ function showFlowChange() {
 		dataType: "json",
 		success: function(data) {
 			if(data.status == '1') {
-			printFlowCharts(data.data, newest);		
+				printFlowCharts(data.data, newest);		
 			}
 		}
 	});
@@ -253,7 +251,7 @@ function showFlowChange() {
 }
 
 /**
- * 预测流量变化
+ * 请求预测流量变化
  */
 function estimationFlowChange() {
 	var newest = timeEnd;
@@ -277,7 +275,7 @@ function estimationFlowChange() {
 		dataType: "json",
 		success: function(data) {
 			if(data.status == '1') {
-			printFlowCharts(data.data, newest);		
+				printFlowCharts(data.data, newest);		
 			}
 		}
 	});
@@ -285,7 +283,7 @@ function estimationFlowChange() {
 }
 
 /**
- * 查看车辆利用率
+ * 请求查看车辆利用率
  * @return {[type]} [description]
  */
 function showUserAtio() {
@@ -310,14 +308,14 @@ function showUserAtio() {
 		dataType: "json",
 		success: function(data) {
 			if(data.status == '1') {
-			printPieChart(data.data);		
+				printPieChart(data.data);		
 			}
 		}
 	});
 }
 
 /**
- * 预测车辆利用率
+ * 请求预测车辆利用率
  */
 function estimationUserAtio() {
  {
@@ -340,7 +338,7 @@ function estimationUserAtio() {
 		dataType: "json",
 		success: function(data) {
 			if(data.status == '1') {
-			printPieChart(data.data);		
+				printPieChart(data.data);		
 			}
 		}
 	});
@@ -348,21 +346,24 @@ function estimationUserAtio() {
 
 
 /**
- * 创建左图表
+ * 请求得到值之后，给柱状图折线图赋值
  */
 function printFlowCharts(data, timeEnd) {
+	//假如时间轴数组为空而且不是处于查看状态，则表示该数组第一次进行动态请求，要重新赋十条柱子的值
 	if((timeline == '') && (!isCheck)){
 		for(var i = 0; i < data.length; i++) {
 			var time = new Date(timeEnd.getTime() - 20000*(data.length - i));
 			timeline.push(time.format());
 			flow.push(data[i].taxiCount);
 		}	
+	//假如时间轴柱子不为空而且也不处于查看状态，则表示它处于动态请求但不是第一次请求，直接改变第一条柱子和最后一条柱子
 	} else if((timeline != '') && (!isCheck)) {
 		timeline.shift();
 		timeline.push(timeEnd.format());
 		flow.shift();
 		flow.push(data[data.length - 1].taxiCount);
 	}
+	//假如处于查看状态，则所有柱子的值要重新获取
 	if(isCheck) {
 		timeline.length = 0;
 		flow.length = 0;
@@ -372,7 +373,7 @@ function printFlowCharts(data, timeEnd) {
 			flow.push(data[i].taxiCount);
 		}
 	} 	
-
+	//给柱状图折线图赋值
 	leftChart.setOption({
 		xAxis: {
 			data: timeline
@@ -384,7 +385,7 @@ function printFlowCharts(data, timeEnd) {
 }
 
 /**
- * 创建饼状图
+ * 得到请求的数据之后给饼状图赋值
  */
 function printPieChart(data) {
 	rightChart.setOption({
@@ -422,6 +423,7 @@ function resizeCharts() {
 	leftChart.resize();
 	rightChart.resize();
 
+	//如果窗口小于992px，则折线图的线条变细，折线图的转折点由图片变成空心圆，而且尺寸变小
 	if(window.innerWidth < 992) {
 		leftChart.setOption({
 			series:[
@@ -471,6 +473,7 @@ function resizeCharts() {
 			]
 		})
 	}
+	//如果不是移动端而且窗口大小小于1300px,则把饼状图的标签放到里面，否则，放到外面，用标签线连接
 	if((!judgePhone()) && window.innerWidth < 1300) {
 		rightChart.setOption({
 			series: [
@@ -581,14 +584,14 @@ function judgePhone() {
 }
 
 /**
- * 格式化成hh:mm:ss格式
+ * 将时间格式化成hh:mm:ss格式
  */
 Date.prototype.format = function () { 
   return this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()
 }
 
 /**
- * 格式化成yyyy-MM-dd hh:mm:ss格式
+ * 将时间格式化成yyyy-MM-dd hh:mm:ss格式
  */
 Date.prototype.Format = function (fmt) {
   var o = {

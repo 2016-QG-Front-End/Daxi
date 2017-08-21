@@ -1,4 +1,38 @@
 $(function() {
+    var obj = [
+        {
+            x: 113.262232, 
+            y: 23.154345
+        },
+        {
+            x: 113.263232, 
+            y: 23.155345
+        },
+        {
+            x: 113.264232, 
+            y: 23.156345
+        },
+    ]
+    addRoute(obj);
+    function addRoute(path) {
+        var line = [];
+        for(var i in path) {
+            // var objPonit = {
+            //     // new BMap.Point(116.387112,39.920977)
+            //     lng: path[i].x,
+            //     lat: path[i].y
+            // }
+            // line.push(objPonit);
+            line.push(new BMap.Point(path[i].x,path[i].y));
+        }
+        
+        map.addOverlay(new BMap.Polyline(line, {
+            strokeColor: 'green',
+            enableClicking: false
+        }));
+        // addMarkersLine(line[0], 'start');
+        // addMarkersLine(line[line.length - 1], 'end');
+    }
     //当大于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.search-line').bind('click', function() {
@@ -192,13 +226,23 @@ function getDrivingLine(str1, str2) {
      * [addRoute 将路线添加到地图中]
      * @param {[Array]} path [从起始到结束的各点的位置]
      */
+
     function addRoute(path) {
-        map.addOverlay(new BMap.Polyline(path, {
+        var line = [];
+        for(var i in path) {
+            var objPonit = {
+                lng: path[i].x,
+                lat: path[i].y
+            }
+            line.push(objPonit);
+        }
+        
+        map.addOverlay(new BMap.Polyline(line, {
             strokeColor: '#42CB5A',
             enableClicking: false
         }));
-        addMarkersLine(path[0], 'start');
-        addMarkersLine(path[path.length - 1], 'end');
+        addMarkersLine(line[0], 'start');
+        addMarkersLine(line[line.length - 1], 'end');
     }
 
     /**
@@ -207,7 +251,7 @@ function getDrivingLine(str1, str2) {
      * @param {[string]} str  [用于判断是起始点还是结束点]
      */
     function addMarkersLine(data, str) {
-        var pt = new BMap.Point(data.x, data.y);
+        var pt = new BMap.Point(data);
         if (str == 'start') {
             var myIcon = new BMap.Icon("../images/distination_point_blue.png", new BMap.Size(40,85)); //创建一个覆盖物
             map.panTo(pt);

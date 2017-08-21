@@ -99,7 +99,13 @@ function excpectionAdd(bool) {
         },
     });
 }
-
+// var obj = {
+//     x: 113.262232,
+//     y: 23.154345,
+//     exception: '异常',
+//     reason: '11111'
+// }
+// addMarkerWarm(obj);
 /**
  * [addMarkerWarm 创建坐标点向其中添加]
  * @param {[object]} data [里面存储坐标点的坐标等信息]
@@ -113,6 +119,7 @@ function addMarkerWarm(data) {
     }); // 创建标注
     marker2.disableMassClear();
     map.addOverlay(marker2); // 将标注添加到地图中
+    // hideMaker();
     addClickHandler(data.exception, data.reason, marker2);
 }
 
@@ -143,11 +150,12 @@ function openInfo(headTit, content, e) {
         // enableMessage:true//设置允许信息窗发送短息
     };
     var p = e.target;
-    var bs = map.getBounds(); //获取可视区域
-    var bssw = bs.getSouthWest(); //可视区域左下角
-    var bsne = bs.getNorthEast(); //可视区域右上角
-    // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
-    var point = new BMap.Point(bsne.lng - 0.0002, bssw.lat + 0.0002);
+    var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+    // var bs = map.getBounds(); //获取可视区域
+    // var bssw = bs.getSouthWest(); //可视区域左下角
+    // var bsne = bs.getNorthEast(); //可视区域右上角
+    // // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
+    // var point = new BMap.Point(bsne.lng - 0.0002, bssw.lat + 0.0002);
     var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
     map.openInfoWindow(infoWindow, point); //开启信息窗口
 }

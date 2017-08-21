@@ -168,37 +168,64 @@ ul {
 /*** 时间选择 ***/
 /**/
 .time-sel-first {
-    margin-top: 10px;
-    border-radius: 6px;
-    width: 485px;
-    height: 40px;
+    margin-top: 5px;
+    border-radius: 4px;
+    width: 515px;
+    height: 41px;
 
-    line-height: 40px;
+    line-height: 41px;
 
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, .95);
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 #timeSelectFirst {
-    margin-left: 28px;
+    margin-left: 20px;
 }
+select::-ms-expand {
+    display: none;
+}
+
+
 .time-sel-first > select {
     margin-left: 12px;
     /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
     border: none;
+    border-radius: 4px;
     /*为下拉小箭头留出一点位置，避免被文字覆盖*/
-    padding-right: 14px;
-    width: 54px;
+    padding-right: 18px;
+    padding-left: 3px;
+    width: 56px;
+    height: 25px;
+
+    font-size: 15px;
     /*在选择框的最右侧中间显示小箭头图片*/
 
-    background: url("../images/query-time-icon.png") no-repeat scroll right center transparent;
+    color: #24292c;
+    background: url("../images/query-time-icon.png") no-repeat scroll 92.5% center transparent;
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 40px rgba(0,0,0,.1);
 
     -webkit-appearance: none;
        -moz-appearance: none;
     /*很关键：将默认的select选择框样式清除*/
             appearance: none;
+}
+
+.time-sel-first > span {
+    font-size: 15px;
+
+    color: #6e6e6e;
+}
+
+.time-select-clear-img {
+    position: relative;
+    top: -1px;
+    left: 9px;
+
+    vertical-align: middle;
+
+    cursor: pointer;
 }
 
 .phone-web {
@@ -249,43 +276,141 @@ ul {
     /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
 
     border-radius: 6px;
-    width: 518px;
-    height: 42px;
+    width: 535px;
+    height: 45px;
 }
-.time-select-second-change > img {
+.time-select-second-change-img {
     position: absolute;
     top: -10px;
     right: -30px;
 
     border-radius: 50%;
 
-    box-shadow: 0 0 36px rgba(0,0,0,.2);
+    box-shadow: 0 0 36px 5px rgba(0,0,0,.2);
 
     cursor: pointer;
 }
-.second-change-first-div {
+
+.time-select-second-change-img:hover {
+    box-shadow: 0 0 36px rgba(255, 136, 136, .2);
+}
+/*** 提示框 ***/
+.warning {
     display: none;
 
-    border-radius: 6px;
-    padding-left: 10px;
+    position: absolute;
+    top: 0;
+    left: -192px;
+}
+
+.warning-text {
+    position: relative;
+    top: -48px;
+    left: 10px;
+    z-index: 1000;
+
+    font-size: 13px;
+
+    color: #444;
+}
+/*** end 提示框 ***/
+
+/*这个div是包裹了整个弹出来的框*/
+.time-select-whole-div {
+    display: none;
+}
+/***选择过去还是未来的框***/
+
+.time-select-time {
+    position: absolute;
+    top: -29px;
+
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.time-select-time a {
+    text-decoration: none;
+}
+
+.on-check,
+.on-check:hover,
+.on-check:link,
+.on-check:visited,
+.on-check:active {
+    display: inline-block;
+
+    border-radius: 3px 3px 0 0;
+    width: 72px;
+    height: 29px;
+
+    font-size: 18px;
+    line-height: 29px;
+    vertical-align: bottom;
+
+    color: #283f68;
+    background-color: #fff;
+
+    box-shadow: 0 rgba(0,0,0,.2);
+}
+
+.off-check,
+.off-check:link,
+.off-check:visited {
+    display: inline-block;
+
+    border-radius: 3px 3px 0 0;
+    width: 72px;
+    height: 24px;
+
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: bottom;
+
+    color: rgba(255, 255, 255, .9);
+    background-color: #3b5c9a;
+}
+
+.off-check:hover,
+.off-check:active {
+    display: inline-block;
+
+    border-radius: 3px 3px 0 0;
+    width: 72px;
+    height: 24px;
+
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: bottom;
+
+    color: #fff;
+    background-color: #3b5c9a;
+}
+
+/***end 选择过去和未来的框 ***/
+
+.second-change-first-div {
+    display: block;
+
+    border-radius: 0 4px 4px 4px;
     width: 100%;
     /*   padding: 10px;*/
 
-    line-height: 42px;
+    line-height: 45px;
 
     background-color: #fff;
 
-    box-shadow: 0 0 6px rgba(0,0,0,.2);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 .second-change-first-div > span {
     padding-left: 20px;
 
     font-size: 18px;
 
-    color: #385c9a;
+    color: #626161;
 }
 .second-change-first-div > input {
-    border: .1px solid #c4c4c4;
+    border: .1px solid #3b5c9a;
     border-radius: 6px;
     padding: 0 10px;
     width: 136px;
@@ -299,6 +424,16 @@ ul {
 .second-input-secondChange {
     margin-left: 24px;
 }
+.time-select-retract-img {
+    position: relative;
+    top: -2px;
+    left: 12px;
+
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
 /**** 手机屏幕上的选择 ****/
 .main_page {
     width: 100%;

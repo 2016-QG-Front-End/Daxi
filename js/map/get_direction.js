@@ -127,8 +127,7 @@ function getDrivingLine(str1, str2) {
     // var timeStart = document.getElementById('timeStart').getElementsByTagName('select');
     var plans = {   //申明一个用于传递的变量
         road: [],
-        time: '2017-02-03 12:00:00'
-        // timeStart[0].value + '-' + timeStart[1].value + '-' + timeStart[2].value + ' ' + timeStart[3].value + ':' + timeStart[4].value + ':' + '00'
+        time: $('.first-input-secondChange').val() + ":00"
     };
     
     var options = { //设置搜索用的参数

@@ -50,8 +50,8 @@ function excpectionAdd(bool) {
             minY: 22.490739,
             maxX: 114.069097,
             maxY: 23.978401,
-            timeStart: $('.first-input-secondChange').val() + ':00',
-            timeEnd: $('.second-input-secondChange').val() + ':00'
+            timeStart:  $('.first-input-secondChange').val() + ":00",
+            timeEnd:  $('.second-input-secondChange').val() + ":00"
         }
     }
     

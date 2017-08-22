@@ -3,8 +3,8 @@
  * 
  */
 /**获取查询时间
-timeStart: $('.first-input-secondChange').val()+ ':00'
-timeEnd: $('.second-input-secondChange').val()+ ':00'
+timeStart: $('.first-input-secondChange').val()
+timeEnd: $('.second-input-secondChange').val()
  */
 
 time = new Date(2017, 1, 3, 17, 50, 55); 
@@ -47,13 +47,13 @@ $(function() {
             $('.second-sel-month').empty();
             $('.second-sel-day').empty();
             $('.second-sel-min').empty();
-            $('.second-input-secondChange').val('');
-            $('.first-input-secondChange').val('');
 
 
             return;
         }
         if ($('.time-select-second-change-img').attr('src') == '../images/button.png') {
+            $('.second-input-secondChange').val('');
+            $('.first-input-secondChange').val('');
             $('.time-select-whole-div').css('display', 'block');
             $('.time-select-second-change-img').attr('src', '../images/magnifier.png');
         }

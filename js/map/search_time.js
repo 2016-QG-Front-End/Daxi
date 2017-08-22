@@ -6,6 +6,9 @@
 timeStart: $('.first-input-secondChange').val()+ ':00'
 timeEnd: $('.second-input-secondChange').val()+ ':00'
  */
+
+time = new Date(2017, 1, 3, 17, 50, 55); 
+
 $(function() {
 
 
@@ -142,6 +145,7 @@ $(function() {
 $('.first-input-secondChange').bind('focus', function() {
     $('#timeStart').css('display', 'block');
     $('#timeEnd').css('display', 'none');
+    $('.second-input-secondChange').val('');
     
     //分成过去和未来根据不同规则来选择时间
     //假如当前是过去，则在遵循if中的规则
@@ -150,11 +154,12 @@ $('.first-input-secondChange').bind('focus', function() {
        $('.warning').css('display','block');
 
        //向月份添加选项
+       $('.first-input-month').empty();
         $('.first-input-month').append('<option value="02">02</option>');
         // $('.first-input-month').append('<option value="03">03</option>');
 
         //向日添加选项
-        
+        $('.first-input-day').empty();
         for (var i = 1; i <= time.getDate(); i++) {
             //判断是否需要添加一个0
             if ( i < 10 ) {
@@ -167,6 +172,7 @@ $('.first-input-secondChange').bind('focus', function() {
 
         //向小时添加选项
         //如果选择的日期是当天的日期，则只能选择现在时间之前的小时，否则，则可以选择24小时
+        $('.first-input-hour').empty();
         if($('.first-input-day').val() == '0' + time.getDate()) {
             for (var i = 0; i < time.getHours(); i++) {
                 //判断是否需要添加一个0
@@ -191,6 +197,7 @@ $('.first-input-secondChange').bind('focus', function() {
 
         //向分钟添加选项
         //如果是当天的日期而且是当前小时，则只能选择比当前分钟要小的分钟，否则可选60分钟
+        $('.first-input-min').empty();
         if((parseInt($('.first-input-day').val()) == time.getDate()) && (parseInt($('.first-input-hour').val()) == getHours())){
             for (var i = 0; i < time.getMinutes(); i++) {
                 //判断是否需要添加一个0
@@ -218,11 +225,11 @@ $('.first-input-secondChange').bind('focus', function() {
        $('.warning').css('display','block');
 
        //向月份添加选项
+       $('.first-input-month').empty();
         $('.first-input-month').append('<option value="02">02</option>');
         // $('.second-sel-month').append('<option value="03">03</option>');
 
         //向日添加选项
-        
         $('.first-input-day').empty()
         var option = '<option value="0' + time.getDate() + '">0' + time.getDate() + '</option>';      
         $('.first-input-day').append(option);
@@ -230,6 +237,7 @@ $('.first-input-secondChange').bind('focus', function() {
    
         //向小时添加选项
         //只能选择大于等于当前时间，小于等于当前时间+2个小时的小时数
+        $('.first-input-hour').empty()
         for (var i = time.getHours(); i < time.getHours() + 3; i++) {
             //判断是否需要添加一个0
             if ( i < 10 ) {
@@ -303,6 +311,16 @@ $('.second-input-secondChange').bind('focus', function() {
 
         //向分钟添加选项
         var min = parseInt($('.first-input-min').val());
+        $('.second-sel-min').empty();
+        for(var i = 0; i < 60; i++) {
+            if(i < 10) {
+                var option = '<option value"0' + i + '">0' + i + '</option>';
+            } else {
+                var option = '<option value"' + i + '">' + i + '</option>'
+            }
+            $('.second-sel-min').append(option);
+        }
+
         //当分钟的选择获取到焦点时，检查当前选择框的小时
         $('.second-sel-min').bind('focus', function() {
             $('.second-sel-min').empty();
@@ -357,11 +375,12 @@ $('.second-input-secondChange').bind('focus', function() {
        $('.warning').css('display','block');
 
        //向月份添加选项
+       $('.second-sel-month').empty();
         $('.second-sel-month').append('<option value="02">02</option>');
         // $('.second-sel-month').append('<option value="03">03</option>');
 
         //向日添加选项
-            
+        $('.second-sel-day').empty();
         $('.second-sel-day').append('<option value="0' + time.getDate() + '">0' + time.getDate() + '</option>');
 
         //向小时添加选项
@@ -403,9 +422,8 @@ $('.second-input-secondChange').bind('focus', function() {
 
     //点击关闭按钮会置空文本框并且关闭select选择框
     $('.time-select-clear-img').bind('click', function() {
-        reset();
-        $('#timeStart').css('display', 'none');
-        $('#timeEnd').css('display', 'none');
+        $('.second-input-secondChange').val('');
+        $('.first-input-secondChange').val('').focus();
 
     })
 

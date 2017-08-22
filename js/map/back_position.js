@@ -6,13 +6,13 @@ $(function() {
 
 /**
  * [getMyPosition 获取当前函数]
- * @return {[none]} [返回空以停止函数的运行]
+ * @return {[Object]} [x为当前位置的静度，y为当前位置的纬度]
  */
 function getMyPosition() {
 
     var allmap = map.getOverlays(); //获取全部的覆盖物
     var map_length = allmap.length; //获取覆盖物的长度
-
+    var p = new Object();
     // 遍历覆盖物
     for (var i = 0; i < map_length; i++) {  
 
@@ -27,13 +27,17 @@ function getMyPosition() {
                         var pt = new BMap.Point(r.point.lng, r.point.lat);
                         map.panTo(r.point); //移到当前位置
                             //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                        p = {
+                            x: r.point.lng,
+                            y: r.point.lat
+                        }
                     } else {
                         alert('failed' + this.getStatus());
                     }
                 }, {
                     enableHighAccuracy: true
                 });
-                return;
+                return p;
             }
         }
 
@@ -52,10 +56,15 @@ function getMyPosition() {
             map.addOverlay(marker2); // 将标注添加到地图中
             map.panTo(r.point); //移到当前位置
                 //alert('您的位置：'+r.point.lng+','+r.point.lat);
+            p = {
+                            x: r.point.lng,
+                            y: r.point.lat
+                        }
         } else {
             alert('failed' + this.getStatus());
         }
     }, {
         enableHighAccuracy: true
     });
+    return p;
 }

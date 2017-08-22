@@ -1,5 +1,4 @@
 $(function() {
-  //当大于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.search-line').bind('click', function() {
         $('.search-place').hide(2000);
@@ -88,10 +87,10 @@ $(function() {
  * 
  */
 function getDrivingLine(str1, str2) {
-    var timeStart = document.getElementById('timeStart').getElementsByTagName('select');
+    // var timeStart = document.getElementById('timeStart').getElementsByTagName('select');
     var plans = {   //申明一个用于传递的变量
         road: [],
-        time: timeStart[0].value + '-' + timeStart[1].value + '-' + timeStart[2].value + ' ' + timeStart[3].value + ':' + timeStart[4].value + ':' + '00'
+        time: $('.first-input-secondChange').val() + ":00"
     };
     
     var options = { //设置搜索用的参数
@@ -136,22 +135,22 @@ function getDrivingLine(str1, str2) {
             // 请求路线
             $.ajax({
                 type: "post",
-                url: 'http://ip:80/estimation/drivetime',
+                url: 'http://192.168.199.56:8080/estimation/drivetime',
                 data: JSON.stringify(plans),
                 dataType: "json",
                 async: false,
                 contentType: "application/json",
-                xhrFields: {
-                    withCredentials: true
-                },
+                // xhrFields: {
+                //     withCredentials: true
+                // },
                 success: function(data) {
                     if (data.state == 1) { //判断是否成功
 
                         //画出路线
-                        addRoute(plans.roads[data.data.index]);  
+                        addRoute(plans.road[data.data.index]);  
 
                         //为路线添加信息
-                        addMessage(data.data.time, data.data.driveTime, plans.roads[data.data.index][Math.floor(plans.roads[data.data.index].length/2)]);
+                        addMessage(data.data.time, data.data.driveTime, plans.road[data.data.index][Math.floor(plans.road[data.data.index].length/2)]);
                     } else if (data.state == 2) {
                         alert('时间为空');
                     } else if (data.state == 3) {
@@ -172,8 +171,10 @@ function getDrivingLine(str1, str2) {
                         alert('跨天请求');
                     } else if (data.state == 12) {
                         alert('请求参数为空');
+                    } else if (data.state == 13) {
+                        alert('无法预测');
                     } else {
-                        alert('请求出现错误');
+                        alert('请求出现错误,请刷新页面');
                     }
          
                     
@@ -188,13 +189,19 @@ function getDrivingLine(str1, str2) {
      * [addRoute 将路线添加到地图中]
      * @param {[Array]} path [从起始到结束的各点的位置]
      */
+
     function addRoute(path) {
-        map.addOverlay(new BMap.Polyline(path, {
+        var line = [];
+        for(var i in path) {
+            line.push(new BMap.Point(path[i].x,path[i].y));
+        }
+        
+        map.addOverlay(new BMap.Polyline(line, {
             strokeColor: '#42CB5A',
             enableClicking: false
         }));
-        addMarkersLine(path[0], 'start');
-        addMarkersLine(path[path.length - 1], 'end');
+        addMarkersLine(line[0], 'start');
+        addMarkersLine(line[line.length - 1], 'end');
     }
 
     /**
@@ -203,15 +210,15 @@ function getDrivingLine(str1, str2) {
      * @param {[string]} str  [用于判断是起始点还是结束点]
      */
     function addMarkersLine(data, str) {
-        var pt = new BMap.Point(data.x, data.y);
+        // var pt = new BMap.Point(data);
         if (str == 'start') {
             var myIcon = new BMap.Icon("../images/distination_point_blue.png", new BMap.Size(40,85)); //创建一个覆盖物
-            map.panTo(pt);
+            map.panTo(data);
         } else {
             var myIcon = new BMap.Icon("../images/distination_point_green.png", new BMap.Size(40,85)); //创建一个覆盖物
         }
 
-        var marker2 = new BMap.Marker(pt, {
+        var marker2 = new BMap.Marker(data, {
             icon: myIcon
         }); // 创建标注
         map.addOverlay(marker2); // 将标注添加到地图中
@@ -236,7 +243,7 @@ function getDrivingLine(str1, str2) {
                         '到达时间：' + str1 + '<br/>耗时：' + str2 + '<br/>' +
                         '</div>';
         var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
-        map.openInfoWindow(infoWindow, point); //开启信息窗口
+        map.openInfoWindow(infoWindow, points); //开启信息窗口
 
     }
 }

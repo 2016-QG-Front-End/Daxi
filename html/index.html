@@ -60,16 +60,30 @@
             </div>
             <div class="searchResultPanel" id="searchlinePanelStart"></div>
             <div class="searchResultPanel" id="searchlinePanelEnd"></div>
-            <img class="search-line-img" src="../images/close-query-path.png">
+            
+            <div class="search-line-img">
+                <span>关闭</span>
+            </div>
         </div>
         <!-- end路线搜索 -->
         <!--  时间框 -->
         <div class="time-select-second-change">
             <img class="time-select-second-change-img" src="../images/button.png">
-            <div class="second-change-first-div">
-                <span>查询时间：</span>
-                <input class="first-input-secondChange" type="text" name="startTime" placeholder="从">
-                <input class="second-input-secondChange" type="text" name="endtime" placeholder="到">
+            <div class="warning">
+                <img class="warning-img" src="../images/frame_.png">
+                <p class="warning-text">最长可以选择不跨天的两个<br>小时进行查询</p>
+            </div>
+            <div class="time-select-whole-div">
+                <div class="time-select-time">              
+                    <a href="#" class="time-select-past-time on-check">过去</a>  
+                    <a href="#" class="time-select-future-time off-check">未来</a>
+                </div>
+                <div class="second-change-first-div">
+                    <span>查询时间：</span>
+                    <input class="first-input-secondChange" type="text" name="startTime" placeholder="从">
+                    <input class="second-input-secondChange" type="text" name="endtime" placeholder="到">
+                    <img class="time-select-retract-img" src="../images/retract.png">
+                </div>
             </div>
             <div id="timeStart">
                 <div class="time-sel-first" id="timeSelStar">
@@ -80,17 +94,17 @@
                     <span class="time-child-anthor-span">年</span>
                     <select class="first-input-month"></select>
                     <span class="time-child-anthor-span">月</span>
-                    <select class="first-input-day"></select>
+                    <select class="first-input-day" ></select>
                     <span class="time-child-anthor-span">日</span>
                     <select class="first-input-hour"></select>
                     <span class="time-child-anthor-span">时</span>
                     <select class="first-input-min"></select>
                     <span class="time-last-child">分</span>
+                    <img class="time-select-clear-img" src="../images/reset.png">
                 </div>
             </div>
             <div id="timeEnd">
                 <div class="time-sel-first" id="timeSelStar">
-  
                     <select class="time-select" id="timeSelectFirst">
                             <option value ="2017">2017</option>
                     </select>
@@ -103,13 +117,14 @@
                     <span class="time-child-anthor-span">时</span>
                     <select class="second-sel-min"></select>
                     <span class="time-last-child">分</span>
+                    <img class="time-select-clear-img" src="../images/reset.png">
                 </div>
             </div>
         </div>
         <div class="phone-web">
             <div class="phone-search-time">查询时间</div>
         </div>
-        <input type="text" id="picktime" value="" readonly="readonly"> 
+        <input type="text" id="picktime" value="" readonly="readonly" > 
 <!--         <input type="text" name="date" id="date" placeholder="查询时间" readonly="readonly" /> -->
         <!-- end  时间框 -->
         <!-- 工具 -->

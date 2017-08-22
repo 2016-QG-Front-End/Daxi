@@ -29,6 +29,7 @@ $(function() {
     $('.searchPlace').bind('blur', function() {
         var jud;
         jud = judgePhone();
+
         if(jud) {
             $('.tool').css('display', 'block');
         }

@@ -582,12 +582,12 @@ function resizeCharts() {
  */
 function resizeContainer() {
 	if(judgePhone() || window.innerWidth < 900) {
-		$("#mainContainer").css('width','100%');
+		$("#mainContainer").css({'width':'100%','margin':'0,auto'});
 		$(".left-chart").css({'width':'92%','margin':'0 auto'});
 		$("#float").removeClass().addClass('content-top');
 		$("#percent").removeClass().addClass('content-bottom');
 	} else {
-		$("#mainContainer").css('width','88%');
+		$("#mainContainer").css({'width':'88%','margin':'40px auto'});
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');

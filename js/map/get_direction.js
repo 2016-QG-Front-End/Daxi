@@ -1,39 +1,4 @@
 $(function() {
-    // var obj = [
-    //     {
-    //         x: 113.262232, 
-    //         y: 23.154345
-    //     },
-    //     {
-    //         x: 113.263232, 
-    //         y: 23.155345
-    //     },
-    //     {
-    //         x: 113.264232, 
-    //         y: 23.156345
-    //     },
-    // ]
-    // addRoute(obj);
-    // function addRoute(path) {
-    //     var line = [];
-    //     for(var i in path) {
-    //         // var objPonit = {
-    //         //     // new BMap.Point(116.387112,39.920977)
-    //         //     lng: path[i].x,
-    //         //     lat: path[i].y
-    //         // }
-    //         // line.push(objPonit);
-    //         line.push(new BMap.Point(path[i].x,path[i].y));
-    //     }
-        
-    //     map.addOverlay(new BMap.Polyline(line, {
-    //         strokeColor: 'green',
-    //         enableClicking: false
-    //     }));
-    //     // addMarkersLine(line[0], 'start');
-    //     // addMarkersLine(line[line.length - 1], 'end');
-    // }
-    //当大于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.search-line').bind('click', function() {
         $('.search-place').hide(2000);
@@ -55,10 +20,8 @@ $(function() {
     // 当小于1300px时
     // 时间驱动 从搜索框变为设置路线
     $('.min-search-line').bind('click', function() {
-
           $('.search-place').hide(2000);
         $('.search-place-line').fadeIn(1000);
-
         map.clearOverlays(); //清除图层覆盖物
     })
 

@@ -3,12 +3,9 @@
  * 
  */
 /**获取查询时间
-timeStart: $('.first-input-secondChange').val()
-timeEnd: $('.second-input-secondChange').val()
+timeStart: $('.first-input-secondChange').val() + ':00'
+timeEnd: $('.second-input-secondChange').val() + ':00'
  */
-
-time = new Date(2017, 1, 3, 17, 50, 55); 
-
 $(function() {
 
 

@@ -1,5 +1,6 @@
-excpectionAdd(0);
 var time = new Date(2017, 1, 3, 17, 50, 55); 
+
+excpectionAdd(0);
 $(function() {
     $('.unusual').bind('click', function() {
         if($('.unusual').attr('stat') == "off") {
@@ -23,10 +24,11 @@ $(function() {
  * @return {[none}      [none]
  */
 function excpectionAdd(bool) {
+    deleteMaker();
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
     map.clearOverlays();
-    if (bool == 1) {
+    if (bool == 0) {
         var obj = {
             minX: 112.62357,
             minY: 22.490739,
@@ -57,13 +59,14 @@ function excpectionAdd(bool) {
     
     $.ajax({
         type: "post",
-        url: 'http://ip:80/estimation/trafficexception',
+        url: 'http://192.168.199.33:10000/estimation/trafficexception',
         data: JSON.stringify(obj),
         dataType: "json",
+        contentType: "application/json",
         async: false,
-        xhrFields: {
-            withCredentials: true
-        },
+        // xhrFields: {
+        //     withCredentials: true
+        // },
         success: function(data) {
             if (data.state == 1) {
                 for (var i = 0; i < data.data.length; i++) {
@@ -120,7 +123,7 @@ function addMarkerWarm(data) {
     marker2.disableMassClear();
     map.addOverlay(marker2); // 将标注添加到地图中
     // hideMaker();
-    addClickHandler(data.exception, data.reason, marker2);
+    addClickHandler(data.exceptions, data.reason, marker2);
 }
 
 /**

@@ -25,7 +25,7 @@ $(function() {
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
 
-            deleteMaker();
+            
             excpectionAdd(1);
             /**
              * 在这里添加搜索时间后的函数调用

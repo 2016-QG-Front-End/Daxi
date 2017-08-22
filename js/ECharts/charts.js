@@ -1,6 +1,11 @@
 var time = new Date(2017, 1, 3, 17, 50, 55); 
 var timeline = [];
 var flow = [];
+var isCheck = 0;
+var intervalId = setInterval (function() {
+        showFlowChange();
+        showUserAtio();
+    },20000);
 
 
 resizeContainer();//根据窗口大小决定是左右布局还是上下布局

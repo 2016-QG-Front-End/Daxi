@@ -1,16 +1,22 @@
-
 ul {
     list-style-type: none;
 
     margin: 0;
     padding: 0;
 }
+
+
+
 /** map的制作 **/
+
 .map {
     position: relative;
 }
 
+
+
 /*** 搜索框 ***/
+
 .search-place {
     position: absolute;
     top: 5%;
@@ -24,7 +30,8 @@ ul {
 
     opacity: .9;
 }
-.search-place > input {
+
+.search-place>input {
     /*border: 0.1px solid #fff;*/
     overflow: hidden;
 
@@ -34,13 +41,14 @@ ul {
 
     color: #626161;
     /*border:0px;*/
-
-    box-shadow: 0 1px 4px rgba(0,0,0,.4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
 }
-.search-place > input:focus {
+
+.search-place>input:focus {
     outline: none;
 }
-.search-place > button {
+
+.search-place>button {
     position: absolute;
     top: 0;
     z-index: 3;
@@ -59,19 +67,29 @@ ul {
 
     cursor: pointer;
 }
+
 .search-line {
     position: absolute;
 
     border-radius: 6px;
 
-    background-image: url("../images/query-path.png");
+    background: url(../images/search_path.png);
+    opacity: 0.85;
     background-repeat: no-repeat;
     background-position: center center;
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
-
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    text-align: center;
     cursor: pointer;
 }
+
+.search-line span {
+    font-size: 9px;
+    position: relative;
+    z-index: 10;
+    top: 10px;
+}
+
 .search-images {
     position: absolute;
     top: 7px;
@@ -82,8 +100,14 @@ ul {
 
     background-color: #cadcfc;
 }
+
+
+
 /*** end 搜索框 ***/
+
+
 /*** 路线搜索 ***/
+
 .search-place-line {
     display: none;
 
@@ -99,18 +123,21 @@ ul {
 
     opacity: .9;
 }
-.search-place-line > img {
+
+.search-place-line>img {
     position: absolute;
     top: -3px;
     right: -55px;
 
     cursor: pointer;
 }
+
 .searchResultPanel {
     display: none;
 }
-.search-place-end > input,
-.search-place-start > input {
+
+.search-place-end>input,
+.search-place-start>input {
     border: .1px solid;
     border-radius: 6px;
     padding-left: 20px;
@@ -121,12 +148,15 @@ ul {
 
     outline: none;
 }
-.search-place-start > input {
+
+.search-place-start>input {
     border-color: #256df0;
 }
-.search-place-end > input {
+
+.search-place-end>input {
     border-color: #3ecc59;
 }
+
 .search-place-start {
     padding: 10px 10px 10px 30px;
 
@@ -136,6 +166,7 @@ ul {
     background-repeat: no-repeat;
     background-position: 14px 25px;
 }
+
 .search-place-end {
     padding: 0 10px 10px 30px;
 
@@ -145,9 +176,17 @@ ul {
     background-repeat: no-repeat;
     background-position: 14px 16px;
 }
+
+
+
 /*** end路线搜索 ***/
+
+
 /*** 时间选择 ***/
+
+
 /**/
+
 .time-sel-first {
     width: 485px;
     height: 40px;
@@ -155,27 +194,29 @@ ul {
     background-color: #fff;
     margin-top: 10px;
     border-radius: 6px;
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 }
+
 #timeSelectFirst {
     margin-left: 28px;
 }
-.time-sel-first > select{
-     /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
-      border: none;
-        box-shadow: 0 0 4px rgba(0,0,0,.2);
-      /*很关键：将默认的select选择框样式清除*/
-      appearance:none;
-      -moz-appearance:none;
-      -webkit-appearance:none;
 
-      /*在选择框的最右侧中间显示小箭头图片*/
-      background: url("../images/query-time-icon.png") no-repeat scroll right center transparent;
-    width: 54px; 
+.time-sel-first>select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    /*很关键：将默认的select选择框样式清除*/
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 
-      /*为下拉小箭头留出一点位置，避免被文字覆盖*/
-      padding-right: 14px;
-      margin-left: 12px;
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("../images/query-time-icon.png") no-repeat scroll right center transparent;
+    width: 54px;
+
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+    margin-left: 12px;
 }
 
 .phone-web {
@@ -190,9 +231,10 @@ ul {
     background-color: #fff;
 
     opacity: .9;
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 }
-.phone-web > div {
+
+.phone-web>div {
     margin: 6px auto;
     border-radius: 6px;
     width: 97%;
@@ -203,15 +245,17 @@ ul {
 
     background-color: #bcd2fa;
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 
     cursor: pointer;
 }
+
 .phone-web:active div {
     background-color: #6161f3;
 
     opacity: 1;
 }
+
 #timeStart {
     display: none;
 }
@@ -219,6 +263,7 @@ ul {
 #timeEnd {
     display: none;
 }
+
 .time-select-second-change {
     position: absolute;
     top: 5%;
@@ -226,34 +271,37 @@ ul {
     width: 518px;
     height: 42px;
 
- /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
+    /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
     border-radius: 6px;
-
 }
-.time-select-second-change > img {
+
+.time-select-second-change>img {
     position: absolute;
     right: -30px;
     top: -10px;
-    box-shadow:  0 0 36px rgba(0,0,0,.2);
+    box-shadow: 0 0 36px rgba(0, 0, 0, .2);
     border-radius: 50%;
     cursor: pointer;
 }
+
 .second-change-first-div {
     width: 100%;
-    box-shadow:  0 0 6px rgba(0,0,0,.2);
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
     border-radius: 6px;
- /*   padding: 10px;*/
+    /*   padding: 10px;*/
     line-height: 42px;
     padding-left: 10px;
-        background-color: #fff;
-        display: none;
+    background-color: #fff;
+    display: none;
 }
-.second-change-first-div > span {
+
+.second-change-first-div>span {
     font-size: 18px;
     color: #385C9A;
     padding-left: 20px;
 }
-.second-change-first-div > input {
+
+.second-change-first-div>input {
     width: 136px;
 
     border-radius: 6px;
@@ -261,18 +309,25 @@ ul {
     border: 0.1px solid #C4C4C4;
     padding: 0 10px;
 }
-.second-change-first-div > input:focus {
+
+.second-change-first-div>input:focus {
     border-radius: 6px;
     outline: none
 }
+
 .second-input-secondChange {
     margin-left: 24px;
 }
+
+
+
 /**** 手机屏幕上的选择 ****/
+
 .main_page {
     width: 100%;
     height: 100%;
 }
+
 .top_div {
     overflow: hidden;
 
@@ -281,10 +336,12 @@ ul {
 
     background: #506695;
 }
+
 .logo {
     margin: 10px auto 5px auto;
     width: 18%;
 }
+
 .top_text_1,
 .top_text_2 {
     width: 100%;
@@ -295,12 +352,15 @@ ul {
 
     color: white;
 }
+
 .top_text_2 {
     margin-bottom: 5vw;
 }
+
 .nine_button {
     width: 100%;
 }
+
 .button {
     float: left;
 
@@ -309,18 +369,22 @@ ul {
 
     font-size: 4vw;
 }
+
 .button_img {
     margin: 30% auto 5% auto;
     width: 20%;
 }
+
 .button_text {
     width: 100%;
 
     text-align: center;
 }
+
 .release_main {
     width: 100%;
 }
+
 .release_title {
     overflow: hidden;
 
@@ -329,6 +393,7 @@ ul {
 
     background: #f2f2f2;
 }
+
 .release_title_left {
     float: left;
     overflow: hidden;
@@ -338,12 +403,14 @@ ul {
     width: 49.5%;
     height: 10vw;
 }
+
 .left_img {
     float: left;
 
     margin: 1.4vw 3% 1.6vw 15%;
     width: 15%;
 }
+
 .left_text {
     float: left;
 
@@ -355,6 +422,7 @@ ul {
 
     color: #506695;
 }
+
 .release_title_right {
     float: right;
 
@@ -362,12 +430,14 @@ ul {
     width: 49.5%;
     height: 10vw;
 }
+
 .right_img {
     float: left;
 
     margin: 1.4vw 3% 1.6vw 15%;
     width: 15%;
 }
+
 .right_text {
     float: left;
 
@@ -379,17 +449,21 @@ ul {
 
     color: #506695;
 }
+
 .gray_text {
     color: #8d8d8d;
 }
+
 .release_records {
     width: 100%;
 }
+
 .record {
     border-bottom: 1px solid #ececec;
     width: 100%;
-    height: 13vw ;
+    height: 13vw;
 }
+
 .record_left {
     float: left;
 
@@ -399,6 +473,7 @@ ul {
 
     text-align: left;
 }
+
 .record_right {
     float: left;
 
@@ -408,23 +483,30 @@ ul {
 
     text-align: right;
 }
+
 .record_left_top,
 .record_right_top {
     font-size: 4.1vw;
     line-height: 7vw;
 }
+
 .record_left_bottom,
 .record_right_bottom {
     font-size: 3.5vw;
 
     color: #8d8d8d;
 }
+
 .record_small {
     font-size: 2.5vw;
 
     color: #8d8d8d;
 }
+
+
+
 /*select_record*/
+
 .select_start_date {
     overflow: hidden;
 
@@ -437,12 +519,14 @@ ul {
 
     color: #666;
 }
+
 .start_date_left {
     float: left;
 
     padding-left: 3%;
     width: 47%;
 }
+
 .start_date_right {
     float: left;
 
@@ -451,6 +535,7 @@ ul {
 
     text-align: right;
 }
+
 .start_date_right input {
     border: none;
 
@@ -460,6 +545,7 @@ ul {
     color: #666;
     background: transparent;
 }
+
 .select_records {
     margin-top: 6vw;
     width: 100%;
@@ -468,24 +554,34 @@ ul {
 .gear.date_dd {
     display: none;
 }
+
 .date_grid {
     display: block;
 
     text-indent: -90rem;
 }
-.date_roll > div:nth-child(1),
-.datetime_roll > div:nth-child(1),
-.date_roll > div:nth-child(2),
-.datetime_roll > div:nth-child(2) {
+
+.date_roll>div:nth-child(1),
+.datetime_roll>div:nth-child(1),
+.date_roll>div:nth-child(2),
+.datetime_roll>div:nth-child(2) {
     -webkit-box-flex: 4;
 
     -webkit-flex: 4;
-        -ms-flex: 4;
-            flex: 4;
+    -ms-flex: 4;
+    flex: 4;
 }
+
+
+
 /**** end 手机屏幕上的选择 ****/
+
+
 /*** end时间选择 ***/
+
+
 /*** 工具 ***/
+
 .tool {
     list-style: none;
 
@@ -494,31 +590,45 @@ ul {
     padding: 0;
     /*border:solid 1px black;*/
 }
+
 .tool li {
-    width:50px;
+    width: 50px;
     height: 50px;
-    margin:5px auto;
+    margin: 5px auto;
     cursor: pointer;
 }
-.tool .unusual{
-    width:50px;
+
+.tool .unusual {
+    width: 50px;
     background: url(../images/unusual.png);
     text-align: center;
     opacity: 0.85;
 }
 
-.tool .refresh{
-    width:50px;
+.tool .unusual:hover {
+    opacity: 1;
+}
+
+.tool .refresh {
+    width: 50px;
     background: url(../images/refresh_new_time.png);
     text-align: center;
     opacity: 0.85;
 }
 
-.tool .my-location{
-    width:50px;
+.tool .refresh:hover {
+    opacity: 1;
+}
+
+.tool .my-location {
+    width: 50px;
     background: url(../images/my_location.png);
     text-align: center;
     opacity: 0.85;
+}
+
+.tool .my-location:hover {
+    opacity: 1;
 }
 
 .tool span {
@@ -526,7 +636,12 @@ ul {
     font-size: 10px;
     position: relative;
     z-index: 10;
-    top:25px;
+    top: 28px;
 }
+
+
+
 /*** end 工具 ***/
+
+
 /** end map的制作 **/

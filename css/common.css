@@ -39,7 +39,9 @@
         left: 95%;
         box-shadow: 2px 3px 1px rgba(0,0,0,.4);
     }
-
+    .search-line {
+        display: none;
+    }
     /*** end搜索框 ***/
     /*** 工具 ***/
 
@@ -58,6 +60,11 @@
         display: block;
         background: url(../images/search_path.png);
         text-align: center;
+        opacity: 0.85;
+    }
+
+    .min-search-line:hover {
+            opacity: 1;
     }
     /*** end工具 ***/
     /*** 路线搜索 ***/
@@ -233,6 +240,7 @@
 
         width: 40px;
         height: 40px;
+
     }
 
     /*** 路线搜索 ***/

@@ -268,7 +268,7 @@ $(function() {
         // $('.phone-web').hide(1000);
         $('#picktime').trigger('click');
         document.getElementById('picktime').focus();
-        $('.mt_poppanel').css('display', 'block')
+        $('.mt_poppanel').css('display', 'block');
 
     });
 })

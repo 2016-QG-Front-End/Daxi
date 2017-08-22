@@ -604,8 +604,15 @@ function resizeContainer() {
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');
-	}	
+	}
+	if(window.innerWidth < 1295) {
+		$("#mainContainer").css('top','0')
+	} else {
+		$("#mainContainer").css('top','-16%')
+	}
 }
+
+
 
 /**
  *浏览器大小变化时容器的高度随宽度变化

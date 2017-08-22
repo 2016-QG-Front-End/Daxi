@@ -75,14 +75,12 @@ Date.prototype.Format = function (fmt) {
 /**
  * 动态显示图表，设置定时器
  */
-function dynamic() {
+
 	var intervalId = setInterval (function() {
 		showFlowChange();
 		showUserAtio();
 	},15000);
-}
 
-// dynamic();
 
 /**
  * 当浏览器窗口大小改变时利用定义好的函数自适应，下面定义函数时有说明每个函数的功能
@@ -307,13 +305,12 @@ function showFlowChange(start,end) {
  * 请求预测流量变化
  */
 // function estimationFlowChange(start,end) {
-// 	var newest = timeEnd;
 // 	var list = {
 // 		x: ,		// 在地图上选择的地点的经度
 //   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: timeStart,
-// 		timeEnd: timeEnd,
-// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss').,
+// 		timeStart: start,
+// 		timeEnd: end,
+// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
 // 		barCount: 10,
 // 	}
     
@@ -328,7 +325,7 @@ function showFlowChange(start,end) {
 // 		dataType: "json",
 // 		success: function(data) {
 // 			if(data.status == '1') {
-// 				printFlowCharts(data.data, newest);		
+// 				printFlowCharts(data.data, end);		
 // 			}
 // 		}
 // 	});
@@ -339,7 +336,7 @@ function showFlowChange(start,end) {
  * 请求查看车辆利用率
  * @return {[type]} [description]
  */
-function showUserAtio(start,end) {
+function showUserAtio(start,end,lng,lat) {
 	if(!isCheck){
 		timeStart = new Date(time.getTime()-20000*10).Format('yyyy-MM-dd hh:mm:ss');
 		timeEnd = time.Format('yyyy-MM-dd hh:mm:ss')

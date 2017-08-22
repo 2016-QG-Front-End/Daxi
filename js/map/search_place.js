@@ -92,7 +92,11 @@ $(function() {
     //     local.search(myValue);
     //     G("searchResultPanel").style.display = "none";
     // }
-
+    /**
+     * [searchPlaceAlo description]
+     * @param  {[type]} str [description]
+     * @return {[type]}     [description]
+     */
     function searchPlaceAlo(str) {
         map.clearOverlays();    //清除地图上所有覆盖物
         function myFun(){

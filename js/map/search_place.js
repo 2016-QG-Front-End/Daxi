@@ -113,16 +113,15 @@ $(function() {
             map.addOverlay(marker2); // 将标注添加到地图中
             map.panTo(pp); //移到当前位置
 
-            isCheck = 1;
             clearInterval(intervalId);
-            var p = getMyPosition();//获取当前坐标位置
-            var lng = p.x;//获取当前经度
-            var lat = p.y;//获取当前纬度
+            isCheck = 1;
+            longitude = pp.lng;
+            latitude = pp.lat;
             var end = time.Format('yyyy-MM-dd hh:mm:ss');//格式化当前时间
             var start = new Date(time.getTime() - 1000*60*5).Format('yyyy-MM-dd hh:mm:ss')//将开始时间设为5分钟之前，并格式化
 
-            showFlowChange(start, end, lng, lat);//调用查看柱状图和饼状图的函数
-            showUserAtio(start, end, lng, lat);
+            showFlowChange(start, end);//调用查看柱状图和饼状图的函数
+            showUserAtio(start, end);
         }
         var local = new BMap.LocalSearch('广州市', { //智能搜索
           onSearchComplete: myFun

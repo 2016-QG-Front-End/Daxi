@@ -193,10 +193,10 @@ resizeCharts();
 /**
  * 请求查看流量变化
  */
-function showFlowChange(start,end, lng, lat) {
+function showFlowChange(start,end) {
 	var list = {
-		x: 113.262232,		// 在地图上选择的地点的经度
-  		y: 23.154345,		    // 在地图上选择的地点的纬度
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
 		timeStart: start,
 		timeEnd: end,
 		barCount: 10
@@ -204,18 +204,24 @@ function showFlowChange(start,end, lng, lat) {
     
 	$.ajax({
 		type: "POST",
-		url: "http://ip:80/show/flowchange",
+		url: "http://192.168.1.132:10000/show/flowchange",
 		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
 		data: JSON.stringify(list),
 		dataType: "json",
+		anysc: false,
+		// xhrFields: {
+  //           withCredentials: true
+  //       },
 		success: function(data) {
-			if(data.status == '1') {
+			if(data.state == 1) {
 				printFlowCharts(data.data, start, end);		
 			}
-		}
+		},
+		error: function(jqXHR, error, notmodified) {
+                alert("发生错误：" + jqXHR.status);
+                alert(error);
+                alert(notmodified);
+            },
 	});
 	
 }
@@ -223,10 +229,10 @@ function showFlowChange(start,end, lng, lat) {
 /**
  * 请求预测流量变化
  */
-// function estimationFlowChange(start,end, lng, lat) {
+// function estimationFlowChange(start,end) {
 // 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
+// 		x: longitude,		// 在地图上选择的地点的经度
+//   		y: latitude,		    // 在地图上选择的地点的纬度
 // 		timeStart: start,
 // 		timeEnd: end,
 // 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
@@ -235,7 +241,7 @@ function showFlowChange(start,end, lng, lat) {
     
 // 	$.ajax({
 // 		type: "POST",
-// 		url: "http://ip:80/estimation/flowchange",
+// 		url: "http::8080/estimation/flowchange",
 // 		contentType: "application/json; charset=utf-8",
 // 		xhrFields: {
 // 			withCredentials: true
@@ -243,7 +249,7 @@ function showFlowChange(start,end, lng, lat) {
 // 		data: JSON.stringify(list),
 // 		dataType: "json",
 // 		success: function(data) {
-// 			if(data.status == '1') {
+// 			if(data.state == '1') {
 // 				printFlowCharts(data.data, start, end);		
 // 			}
 // 		}
@@ -255,39 +261,47 @@ function showFlowChange(start,end, lng, lat) {
  * 请求查看车辆利用率
  * @return {[type]} [description]
  */
-function showUserAtio(start,end,lng,lat) {
+function showUserAtio(start,end) {
 	var list = {
-		x: 113.262232,		// 在地图上选择的地点的经度
-  		y: 23.154345,		    // 在地图上选择的地点的纬度
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
 		timeStart: start,
 		timeEnd: end,
 	}
 
 	$.ajax({
 		type: "POST",
-		url: "http://ip:80/show/useratio",
+		url: "http://192.168.199.56:8080/show/useratio",
 		contentType: "application/json; charset=utf-8",
-		xhrFields: {
-			withCredentials: true
-		},
+		// xhrFields: {
+		// 	withCredentials: true
+		// },
 		data: JSON.stringify(list),
 		dataType: "json",
+		anysc: false,
 		success: function(data) {
-			if(data.status == '1') {
+			if(data.state == 1) {
 				printPieChart(data.data);		
 			}
-		}
+		},
+		// error: function(jqXHR, error, notmodified) {
+  //               alert("发生错误：" + jqXHR.status);
+  //               alert(error);
+  //               alert(notmodified);
+  //           },
+
+
 	});
 }
 
 /**
  * 请求预测车辆利用率
  */
-// function estimationUserAtio(start,end, lng,lat) {
+// function estimationUserAtio(start,end) {
 //  {
 // 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
+// 		x: longitude,		// 在地图上选择的地点的经度
+//   		y: latitude,		    // 在地图上选择的地点的纬度
 // 		timeStart: start,
 // 		timeEnd: end,
 // 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
@@ -303,7 +317,7 @@ function showUserAtio(start,end,lng,lat) {
 // 		data: JSON.stringify(list),
 // 		dataType: "json",
 // 		success: function(data) {
-// 			if(data.status == '1') {
+// 			if(data.state == '1') {
 // 				printPieChart(data.data);		
 // 			}
 // 		}

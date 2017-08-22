@@ -1,7 +1,9 @@
+var time = new Date(2017, 1, 3, 17, 50, 55); 
 var timeline = [];
 var flow = [];
 var isCheck = 0;
 var isFuture = 0;
+
 
 resizeContainer();//根据窗口大小决定是左右布局还是上下布局
 resizeAuto();//根据容器的宽度设定容器的高度
@@ -79,6 +81,8 @@ function dynamic() {
 		showUserAtio();
 	},15000);
 }
+
+// dynamic();
 
 /**
  * 当浏览器窗口大小改变时利用定义好的函数自适应，下面定义函数时有说明每个函数的功能
@@ -265,47 +269,52 @@ resizeCharts();
 /**
  * 请求查看流量变化
  */
-// function showFlowChange() {
-// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
-// 	var newest = now;
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-// 		timeEnd: timeEnd,
-// 		barCount: 10
-// 	}
+function showFlowChange(start,end) {
+	if(!isCheck){
+		timeStart = new Date(time.getTime()-20000*10).Format('yyyy-MM-dd hh:mm:ss');
+		timeEnd = time.Format('yyyy-MM-dd hh:mm:ss')
+	} else {
+		timeEnd = end
+		timeStart = start
+	}
+	var list = {
+		x: 113.262232,		// 在地图上选择的地点的经度
+  		y: 23.154345,		    // 在地图上选择的地点的纬度
+		timeStart: timeStart,
+		timeEnd: timeEnd,
+		barCount: 10
+	}
     
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/show/flowchange",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printFlowCharts(data.data, newest);		
-// 			}
-// 		}
-// 	});
+	$.ajax({
+		type: "POST",
+		url: "http://ip:80/show/flowchange",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.status == '1') {
+				printFlowCharts(data.data, timeEnd);		
+			}
+		}
+	});
 	
-// }
+}
 
 /**
  * 请求预测流量变化
  */
-// function estimationFlowChange() {
+// function estimationFlowChange(start,end) {
 // 	var newest = timeEnd;
 // 	var list = {
 // 		x: ,		// 在地图上选择的地点的经度
 //   		y: ,		    // 在地图上选择的地点的纬度
 // 		timeStart: timeStart,
 // 		timeEnd: timeEnd,
-// 		timeNow: ,
-// 		barCount: 12,
+// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss').,
+// 		barCount: 10,
 // 	}
     
 // 	$.ajax({
@@ -330,45 +339,49 @@ resizeCharts();
  * 请求查看车辆利用率
  * @return {[type]} [description]
  */
-// function showUserAtio() {
-// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
-// 	var newest = now;
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-// 		timeEnd: timeEnd,
-// 		barCount: 10
-// 	}
+function showUserAtio(start,end) {
+	if(!isCheck){
+		timeStart = new Date(time.getTime()-20000*10).Format('yyyy-MM-dd hh:mm:ss');
+		timeEnd = time.Format('yyyy-MM-dd hh:mm:ss')
+	} else {
+		timeEnd = end
+		timeStart = start
+	}
+	var list = {
+		x: 113.262232,		// 在地图上选择的地点的经度
+  		y: 23.154345,		    // 在地图上选择的地点的纬度
+		timeStart: timeStart,
+		timeEnd: timeEnd,
+	}
 
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/show/useratio",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printPieChart(data.data);		
-// 			}
-// 		}
-// 	});
-// }
+	$.ajax({
+		type: "POST",
+		url: "http://ip:80/show/useratio",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.status == '1') {
+				printPieChart(data.data);		
+			}
+		}
+	});
+}
 
 /**
  * 请求预测车辆利用率
  */
-// function estimationUserAtio() {
+// function estimationUserAtio(start,end) {
 //  {
 // 	var list = {
 // 		x: ,		// 在地图上选择的地点的经度
 //   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: timeStart,
-// 		timeEnd: timeEnd,
-// 		timeNow: ,
+// 		timeStart: start,
+// 		timeEnd: end,
+// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
 // 	}
 
 // 	$.ajax({

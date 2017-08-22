@@ -201,10 +201,7 @@ ul {
 
 
 /*** 时间选择 ***/
-
-
 /**/
-
 .time-sel-first {
     margin-top: 5px;
     border-radius: 4px;
@@ -217,7 +214,6 @@ ul {
 
     box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
-
 #timeSelectFirst {
     margin-left: 20px;
 }
@@ -279,10 +275,9 @@ select::-ms-expand {
     background-color: #fff;
 
     opacity: .9;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
 }
-
-.phone-web>div {
+.phone-web > div {
     margin: 6px auto;
     border-radius: 6px;
     width: 97%;
@@ -293,17 +288,15 @@ select::-ms-expand {
 
     background-color: #bcd2fa;
 
-    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
 
     cursor: pointer;
 }
-
 .phone-web:active div {
     background-color: #6161f3;
 
     opacity: 1;
 }
-
 #timeStart {
     display: none;
 }
@@ -311,15 +304,12 @@ select::-ms-expand {
 #timeEnd {
     display: none;
 }
-
 .time-select-second-change {
     position: absolute;
     top: 5%;
     right: 3%;
-    border-radius: 6px;
-}
+    /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
 
-.time-select-second-change>img {
     border-radius: 6px;
     width: 535px;
     height: 45px;
@@ -328,6 +318,7 @@ select::-ms-expand {
     position: absolute;
     top: -10px;
     right: -30px;
+
     border-radius: 50%;
 
     box-shadow: 0 0 36px 5px rgba(0,0,0,.2);
@@ -438,18 +429,12 @@ select::-ms-expand {
 
     border-radius: 0 4px 4px 4px;
     width: 100%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
-    line-height: 42px;
-    padding-left: 10px;
-    background-color: #fff;
-    display: none;
-}
+    /*   padding: 10px;*/
 
-.second-change-first-div>span {
-    font-size: 18px;
-    color: #385C9A;
     line-height: 45px;
+
     background-color: #fff;
+
     box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 .second-change-first-div > span {
@@ -459,7 +444,6 @@ select::-ms-expand {
 
     color: #626161;
 }
-
 .second-change-first-div > input {
     border: .1px solid #3b5c9a;
     border-radius: 6px;
@@ -467,17 +451,14 @@ select::-ms-expand {
     width: 136px;
     height: 24px;
 }
-
-.second-change-first-div>input:focus {
+.second-change-first-div > input:focus {
     border-radius: 6px;
 
     outline: none;
 }
-
 .second-input-secondChange {
     margin-left: 24px;
 }
-
 .time-select-retract-img {
     position: relative;
     top: -2px;

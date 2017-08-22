@@ -54,7 +54,7 @@ $(function() {
     //     enableHighAccuracy: true
     // });
  
-    // 请求获取时间
+    // 请求获取地点
     getMyPosition();    
 
     // 遍历数组画出边界

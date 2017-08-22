@@ -88,11 +88,19 @@ $(function() {
     //     local.search(myValue);
     //     G("searchResultPanel").style.display = "none";
     // }
-
+    /**
+     * [searchPlaceAlo 用于获得和搜索地点]
+     * @param  {[string]} str [地点的名字]
+     * @return {[none]}     [description]
+     */
     function searchPlaceAlo(str) {
         map.clearOverlays();    //清除地图上所有覆盖物
-        function myFun(){
-            if (!local.getResults()) {
+        /**
+         * [myFun 搜索成功后调用的函数]
+         * @return {[none]}
+         */
+        function myFun(){   //搜索成功后调用的函数
+            if (!local.getResults()) {//判断是否有搜索结果
                 return ;
             }
             var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
@@ -104,7 +112,7 @@ $(function() {
         var local = new BMap.LocalSearch('广州市', { //智能搜索
           onSearchComplete: myFun
         });
-        local.search(str);
+        local.search(str); //搜索使用的api
         G("searchResultPanel").style.display = "none";
     }
 })

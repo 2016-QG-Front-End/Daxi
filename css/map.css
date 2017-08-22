@@ -799,3 +799,10 @@ select::-ms-expand {
 
 
 /** end map的制作 **/
+
+/** 版权声明 **/
+.footer {
+    text-align: center;
+    font-size: 10px;
+}
+/** end版权声明 **/

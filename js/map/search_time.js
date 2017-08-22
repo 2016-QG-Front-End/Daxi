@@ -25,7 +25,7 @@ $(function() {
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
 
-            deleteMaker();
+            
             excpectionAdd(1);
             /**
              * 在这里添加搜索时间后的函数调用
@@ -512,6 +512,6 @@ $$('#picktime').mdatetimer({
 });
 //因为只有一个时间框，所以只能获取到开始时间
 //下方是回调函数的函数申明
-// function smallSizeScreen() {
-//     excpectionAdd(2);
-// }
+function smallSizeScreen() {
+    excpectionAdd(2);
+}

@@ -55,7 +55,7 @@ $(function() {
     // });
  
     // 请求获取地点
-    getMyPosition();    
+    alert(getMyPosition().x);    
 
     // 遍历数组画出边界
     for (var j = 0; j < administrativeArea.length; j++) {

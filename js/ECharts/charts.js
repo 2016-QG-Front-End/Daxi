@@ -3,6 +3,7 @@ var timeline = [];
 var flow = [];
 
 
+
 resizeContainer();//根据窗口大小决定是左右布局还是上下布局
 resizeAuto();//根据容器的宽度设定容器的高度
 

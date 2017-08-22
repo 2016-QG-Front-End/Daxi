@@ -11,21 +11,25 @@ $(function() {
         $('.searchPlace').val('');
 
         // alert(local.getResults());
-        var jud = judgePhone();
+        var jud;
+        jud = judgePhone();
         if(jud) {
             $('.tool').css('display', 'block');
         }
     });
 
     $('.searchPlace').bind('focus', function() {
-        var jud = judgePhone();
+        var jud;
+        jud = judgePhone();
         if(jud) {
             $('.tool').css('display', 'none');
         }
     });
 
     $('.searchPlace').bind('blur', function() {
-        var jud = judgePhone();
+        var jud;
+        jud = judgePhone();
+
         if(jud) {
             $('.tool').css('display', 'block');
         }
@@ -96,7 +100,7 @@ $(function() {
                 return ;
             }
             var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-            var myIcon = new BMap.Icon("../images/distination-point_blue.png", new BMap.Size(40,85));
+            var myIcon = new BMap.Icon("../images/icon/start.ico", new BMap.Size(48,100));
             var marker2 = new BMap.Marker(pp,{icon:myIcon});  // 创建标注
             map.addOverlay(marker2); // 将标注添加到地图中
             map.panTo(pp); //移到当前位置

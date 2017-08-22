@@ -1,16 +1,22 @@
-
 ul {
     list-style-type: none;
 
     margin: 0;
     padding: 0;
 }
+
+
+
 /** map的制作 **/
+
 .map {
     position: relative;
 }
 
+
+
 /*** 搜索框 ***/
+
 .search-place {
     position: absolute;
     top: 5%;
@@ -24,7 +30,8 @@ ul {
 
     opacity: .9;
 }
-.search-place > input {
+
+.search-place>input {
     /*border: 0.1px solid #fff;*/
     overflow: hidden;
 
@@ -34,13 +41,14 @@ ul {
 
     color: #626161;
     /*border:0px;*/
-
-    box-shadow: 0 1px 4px rgba(0,0,0,.4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
 }
-.search-place > input:focus {
+
+.search-place>input:focus {
     outline: none;
 }
-.search-place > button {
+
+.search-place>button {
     position: absolute;
     top: 0;
     z-index: 3;
@@ -59,19 +67,29 @@ ul {
 
     cursor: pointer;
 }
+
 .search-line {
     position: absolute;
 
     border-radius: 6px;
 
-    background-image: url("../images/query-path.png");
+    background: url(../images/search_path.png);
+    opacity: 0.85;
     background-repeat: no-repeat;
     background-position: center center;
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
-
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    text-align: center;
     cursor: pointer;
 }
+
+.search-line span {
+    font-size: 9px;
+    position: relative;
+    z-index: 10;
+    top: 10px;
+}
+
 .search-images {
     position: absolute;
     top: 7px;
@@ -82,8 +100,14 @@ ul {
 
     background-color: #cadcfc;
 }
+
+
+
 /*** end 搜索框 ***/
+
+
 /*** 路线搜索 ***/
+
 .search-place-line {
     display: none;
 
@@ -125,11 +149,13 @@ ul {
 
     cursor: pointer;
 }
+
 .searchResultPanel {
     display: none;
 }
-.search-place-end > input,
-.search-place-start > input {
+
+.search-place-end>input,
+.search-place-start>input {
     border: .1px solid;
     border-radius: 6px;
     padding-right: 10px;
@@ -140,12 +166,15 @@ ul {
 
     outline: none;
 }
-.search-place-start > input {
+
+.search-place-start>input {
     border-color: #256df0;
 }
-.search-place-end > input {
+
+.search-place-end>input {
     border-color: #3ecc59;
 }
+
 .search-place-start {
     padding: 10px 10px 10px 30px;
 
@@ -155,6 +184,7 @@ ul {
     background-repeat: no-repeat;
     background-position: 14px 25px;
 }
+
 .search-place-end {
     padding: 0 10px 10px 30px;
 
@@ -164,9 +194,17 @@ ul {
     background-repeat: no-repeat;
     background-position: 14px 16px;
 }
+
+
+
 /*** end路线搜索 ***/
+
+
 /*** 时间选择 ***/
+
+
 /**/
+
 .time-sel-first {
     margin-top: 5px;
     border-radius: 4px;
@@ -179,6 +217,7 @@ ul {
 
     box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
+
 #timeSelectFirst {
     margin-left: 20px;
 }
@@ -240,9 +279,10 @@ select::-ms-expand {
     background-color: #fff;
 
     opacity: .9;
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 }
-.phone-web > div {
+
+.phone-web>div {
     margin: 6px auto;
     border-radius: 6px;
     width: 97%;
@@ -253,15 +293,17 @@ select::-ms-expand {
 
     background-color: #bcd2fa;
 
-    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 
     cursor: pointer;
 }
+
 .phone-web:active div {
     background-color: #6161f3;
 
     opacity: 1;
 }
+
 #timeStart {
     display: none;
 }
@@ -269,12 +311,15 @@ select::-ms-expand {
 #timeEnd {
     display: none;
 }
+
 .time-select-second-change {
     position: absolute;
     top: 5%;
     right: 3%;
-    /*   box-shadow:  0 0 4px rgba(0,0,0,.2);*/
+    border-radius: 6px;
+}
 
+.time-select-second-change>img {
     border-radius: 6px;
     width: 535px;
     height: 45px;
@@ -283,7 +328,6 @@ select::-ms-expand {
     position: absolute;
     top: -10px;
     right: -30px;
-
     border-radius: 50%;
 
     box-shadow: 0 0 36px 5px rgba(0,0,0,.2);
@@ -394,12 +438,18 @@ select::-ms-expand {
 
     border-radius: 0 4px 4px 4px;
     width: 100%;
-    /*   padding: 10px;*/
-
-    line-height: 45px;
-
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+    line-height: 42px;
+    padding-left: 10px;
     background-color: #fff;
+    display: none;
+}
 
+.second-change-first-div>span {
+    font-size: 18px;
+    color: #385C9A;
+    line-height: 45px;
+    background-color: #fff;
     box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 .second-change-first-div > span {
@@ -409,6 +459,7 @@ select::-ms-expand {
 
     color: #626161;
 }
+
 .second-change-first-div > input {
     border: .1px solid #3b5c9a;
     border-radius: 6px;
@@ -416,14 +467,17 @@ select::-ms-expand {
     width: 136px;
     height: 24px;
 }
-.second-change-first-div > input:focus {
+
+.second-change-first-div>input:focus {
     border-radius: 6px;
 
     outline: none;
 }
+
 .second-input-secondChange {
     margin-left: 24px;
 }
+
 .time-select-retract-img {
     position: relative;
     top: -2px;
@@ -435,10 +489,12 @@ select::-ms-expand {
 }
 
 /**** 手机屏幕上的选择 ****/
+
 .main_page {
     width: 100%;
     height: 100%;
 }
+
 .top_div {
     overflow: hidden;
 
@@ -447,10 +503,12 @@ select::-ms-expand {
 
     background: #506695;
 }
+
 .logo {
     margin: 10px auto 5px auto;
     width: 18%;
 }
+
 .top_text_1,
 .top_text_2 {
     width: 100%;
@@ -461,12 +519,15 @@ select::-ms-expand {
 
     color: white;
 }
+
 .top_text_2 {
     margin-bottom: 5vw;
 }
+
 .nine_button {
     width: 100%;
 }
+
 .button {
     float: left;
 
@@ -475,18 +536,22 @@ select::-ms-expand {
 
     font-size: 4vw;
 }
+
 .button_img {
     margin: 30% auto 5% auto;
     width: 20%;
 }
+
 .button_text {
     width: 100%;
 
     text-align: center;
 }
+
 .release_main {
     width: 100%;
 }
+
 .release_title {
     overflow: hidden;
 
@@ -495,6 +560,7 @@ select::-ms-expand {
 
     background: #f2f2f2;
 }
+
 .release_title_left {
     float: left;
     overflow: hidden;
@@ -504,12 +570,14 @@ select::-ms-expand {
     width: 49.5%;
     height: 10vw;
 }
+
 .left_img {
     float: left;
 
     margin: 1.4vw 3% 1.6vw 15%;
     width: 15%;
 }
+
 .left_text {
     float: left;
 
@@ -521,6 +589,7 @@ select::-ms-expand {
 
     color: #506695;
 }
+
 .release_title_right {
     float: right;
 
@@ -528,12 +597,14 @@ select::-ms-expand {
     width: 49.5%;
     height: 10vw;
 }
+
 .right_img {
     float: left;
 
     margin: 1.4vw 3% 1.6vw 15%;
     width: 15%;
 }
+
 .right_text {
     float: left;
 
@@ -545,17 +616,21 @@ select::-ms-expand {
 
     color: #506695;
 }
+
 .gray_text {
     color: #8d8d8d;
 }
+
 .release_records {
     width: 100%;
 }
+
 .record {
     border-bottom: 1px solid #ececec;
     width: 100%;
-    height: 13vw ;
+    height: 13vw;
 }
+
 .record_left {
     float: left;
 
@@ -565,6 +640,7 @@ select::-ms-expand {
 
     text-align: left;
 }
+
 .record_right {
     float: left;
 
@@ -574,23 +650,30 @@ select::-ms-expand {
 
     text-align: right;
 }
+
 .record_left_top,
 .record_right_top {
     font-size: 4.1vw;
     line-height: 7vw;
 }
+
 .record_left_bottom,
 .record_right_bottom {
     font-size: 3.5vw;
 
     color: #8d8d8d;
 }
+
 .record_small {
     font-size: 2.5vw;
 
     color: #8d8d8d;
 }
+
+
+
 /*select_record*/
+
 .select_start_date {
     overflow: hidden;
 
@@ -603,12 +686,14 @@ select::-ms-expand {
 
     color: #666;
 }
+
 .start_date_left {
     float: left;
 
     padding-left: 3%;
     width: 47%;
 }
+
 .start_date_right {
     float: left;
 
@@ -617,6 +702,7 @@ select::-ms-expand {
 
     text-align: right;
 }
+
 .start_date_right input {
     border: none;
 
@@ -626,6 +712,7 @@ select::-ms-expand {
     color: #666;
     background: transparent;
 }
+
 .select_records {
     margin-top: 6vw;
     width: 100%;
@@ -634,24 +721,34 @@ select::-ms-expand {
 .gear.date_dd {
     display: none;
 }
+
 .date_grid {
     display: block;
 
     text-indent: -90rem;
 }
-.date_roll > div:nth-child(1),
-.datetime_roll > div:nth-child(1),
-.date_roll > div:nth-child(2),
-.datetime_roll > div:nth-child(2) {
+
+.date_roll>div:nth-child(1),
+.datetime_roll>div:nth-child(1),
+.date_roll>div:nth-child(2),
+.datetime_roll>div:nth-child(2) {
     -webkit-box-flex: 4;
 
     -webkit-flex: 4;
-        -ms-flex: 4;
-            flex: 4;
+    -ms-flex: 4;
+    flex: 4;
 }
+
+
+
 /**** end 手机屏幕上的选择 ****/
+
+
 /*** end时间选择 ***/
+
+
 /*** 工具 ***/
+
 .tool {
     list-style: none;
 
@@ -660,16 +757,17 @@ select::-ms-expand {
     padding: 0;
     /*border:solid 1px black;*/
 }
+
 .tool li {
-    margin: 5px auto;
+<<<<<<< HEAD
     width: 50px;
     height: 50px;
-
+    margin: 5px auto;
     cursor: pointer;
 }
+
 .tool .unusual {
     width: 50px;
-
     text-align: center;
 
     background: url(../images/unusual.png);
@@ -677,9 +775,12 @@ select::-ms-expand {
     opacity: .85;
 }
 
+.tool .unusual:hover {
+    opacity: 1;
+}
+
 .tool .refresh {
     width: 50px;
-
     text-align: center;
 
     background: url(../images/refresh_new_time.png);
@@ -687,9 +788,12 @@ select::-ms-expand {
     opacity: .85;
 }
 
+.tool .refresh:hover {
+    opacity: 1;
+}
+
 .tool .my-location {
     width: 50px;
-
     text-align: center;
 
     background: url(../images/my_location.png);
@@ -697,13 +801,20 @@ select::-ms-expand {
     opacity: .85;
 }
 
+.tool .my-location:hover {
+    opacity: 1;
+}
+
 .tool span {
     position: relative;
-    top: 25px;
     z-index: 10;
-    /*float: bottom;*/
-
+    top: 28px;
     font-size: 10px;
 }
+
+
+
 /*** end 工具 ***/
+
+
 /** end map的制作 **/

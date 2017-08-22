@@ -78,7 +78,7 @@ $(function() {
             var pointArray = [];
             for (var i = 0; i < count; i++) {
                 var ply = new BMap.Polyline(rs.boundaries[i], {
-                    strokeWeight: 3,
+                    strokeWeight: 2,
                     strokeColor: "#1c62a3"
                 }); //建立多边形覆盖物
                 ply.disableMassClear();

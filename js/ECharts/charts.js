@@ -209,18 +209,45 @@ function showFlowChange(start,end) {
 		data: JSON.stringify(list),
 		dataType: "json",
 		anysc: false,
-		// xhrFields: {
-  //           withCredentials: true
-  //       },
+		xhrFields: {
+            withCredentials: true
+        },
 		success: function(data) {
 			if(data.state == 1) {
 				printFlowCharts(data.data, start, end);		
-			}
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+ 
 		},
 		error: function(jqXHR, error, notmodified) {
-                alert("发生错误：" + jqXHR.status);
-                alert(error);
-                alert(notmodified);
+                alert("请求出现错误");
             },
 	});
 	
@@ -229,33 +256,61 @@ function showFlowChange(start,end) {
 /**
  * 请求预测流量变化
  */
-// function estimationFlowChange(start,end) {
-// 	var list = {
-// 		x: longitude,		// 在地图上选择的地点的经度
-//   		y: latitude,		    // 在地图上选择的地点的纬度
-// 		timeStart: start,
-// 		timeEnd: end,
-// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
-// 		barCount: 10,
-// 	}
+function estimationFlowChange(start,end) {
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
+		barCount: 10,
+	}
     
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http::8080/estimation/flowchange",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.state == '1') {
-// 				printFlowCharts(data.data, start, end);		
-// 			}
-// 		}
-// 	});
+	$.ajax({
+		type: "POST",
+		url: "http::8080/estimation/flowchange",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.state == '1') {
+				printFlowCharts(data.data, start, end);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+		}
+	});
 	
-// }
+}
 
 /**
  * 请求查看车辆利用率
@@ -273,22 +328,50 @@ function showUserAtio(start,end) {
 		type: "POST",
 		url: "http://192.168.199.56:8080/show/useratio",
 		contentType: "application/json; charset=utf-8",
-		// xhrFields: {
-		// 	withCredentials: true
-		// },
+		xhrFields: {
+			withCredentials: true
+		},
 		data: JSON.stringify(list),
 		dataType: "json",
 		anysc: false,
 		success: function(data) {
 			if(data.state == 1) {
 				printPieChart(data.data);		
-			}
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
 		},
-		// error: function(jqXHR, error, notmodified) {
-  //               alert("发生错误：" + jqXHR.status);
-  //               alert(error);
-  //               alert(notmodified);
-  //           },
+		error: function(jqXHR, error, notmodified) {
+                alert("发生错误：" + jqXHR.status);
+                alert(error);
+                alert(notmodified);
+            },
 
 
 	});
@@ -297,32 +380,60 @@ function showUserAtio(start,end) {
 /**
  * 请求预测车辆利用率
  */
-// function estimationUserAtio(start,end) {
-//  {
-// 	var list = {
-// 		x: longitude,		// 在地图上选择的地点的经度
-//   		y: latitude,		    // 在地图上选择的地点的纬度
-// 		timeStart: start,
-// 		timeEnd: end,
-// 		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
-// 	}
+function estimationUserAtio(start,end) {
+ 
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
+	}
 
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/estimation/useratio",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.state == '1') {
-// 				printPieChart(data.data);		
-// 			}
-// 		}
-// 	});
-// }
+	$.ajax({
+		type: "POST",
+		url: "http://ip:80/estimation/useratio",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.state == 1) {
+				printPieChart(data.data);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+		}
+	});
+}
 
 
 

@@ -39,7 +39,7 @@ $(function() {
                 showFlowChange(timeStart, timeEnd);
                 showUserAtio(timeStart, timeEnd);
             } else {//假如现在处于未来标签，即请求未来的数据，调用预测的函数
-                estimationFlowChange(timeStart, timeEnd);
+                // estimationFlowChange(timeStart, timeEnd);
                 estimationUserAtio(timeStart, timeEnd);
             }
 

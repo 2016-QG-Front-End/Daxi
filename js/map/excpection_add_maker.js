@@ -27,6 +27,20 @@ function excpectionAdd(bool) {
     deleteMaker();
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
+    var timeDay;
+    if (time.getDate() < 10) {
+        timeDay = '0' + time.getDate();
+    } else {
+        timeDay = time.getDate();
+    }
+
+    var timeHour;
+    if (time.getHours() < 10) {
+        timeHour = '0' + time.getHours();
+    } else {
+        timeHour = time.getHours();
+    }
+
     map.clearOverlays();
     if (bool == 0) {
         var obj = {
@@ -34,8 +48,8 @@ function excpectionAdd(bool) {
             minY: 22.490739,
             maxX: 114.069097,
             maxY: 23.978401,
-            timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
-            timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+            timeStart: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':00',
+            timeEnd: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':15'
         }
     } else if (bool == 2) {
         var obj = {
@@ -59,7 +73,7 @@ function excpectionAdd(bool) {
     
     $.ajax({
         type: "post",
-        url: 'http://192.168.199.33:10000/estimation/trafficexception',
+        url: 'http://192.168.1.130:10000/estimation/trafficexception',
         data: JSON.stringify(obj),
         dataType: "json",
         contentType: "application/json",
@@ -95,8 +109,12 @@ function excpectionAdd(bool) {
                 alert('请求参数为空');
             } else if (data.state == 13) {
                 alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (data.state == 15) {
+                alert('时间格式有误');
             } else {
-                alert('请求出现错误');
+                alert('请求出现错误,请刷新页面');
             }
  
         },

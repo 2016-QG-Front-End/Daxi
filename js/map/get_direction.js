@@ -173,6 +173,10 @@ function getDrivingLine(str1, str2) {
                         alert('请求参数为空');
                     } else if (data.state == 13) {
                         alert('无法预测');
+                    } else if (data.state == 14) {
+                        alert('请求时间点非法');
+                    } else if (data.state == 15) {
+                        alert('时间格式有误');
                     } else {
                         alert('请求出现错误,请刷新页面');
                     }

@@ -24,13 +24,28 @@ $(function() {
             $('#timeStart').css('display', 'none');
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
+            var timeDay;
+            if (time.getDate() < 10) {
+                timeDay = '0' + time.getDate();
+            } else {
+                timeDay = time.getDate();
+            }
 
-            
-            excpectionAdd(1);
+            var timeHour;
+            if (time.getHours() < 10) {
+                timeHour = '0' + time.getHours();
+            } else {
+                timeHour = time.getHours();
+            }
+            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            if (timeReq > $('.second-input-secondChange').val()) {
+                excpectionAdd(1);
+            }
+           
             /**
              * 在这里添加搜索时间后的函数调用
             */
-            var start = $('.first-input-secondChange').val() + ':00'
+            // var start = $('.first-input-secondChange').val() + ':00'
             var end = $('.second-input-secondChange').val() + ':00'
             
             clearInterval(intervalId);//清除定时器使其变成静态

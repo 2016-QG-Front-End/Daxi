@@ -82,7 +82,7 @@ ul {
     text-align: center;
     cursor: pointer;
 }
-.search-line {
+.search-line :hover {
     opacity: 1;
 }
 .search-line span {

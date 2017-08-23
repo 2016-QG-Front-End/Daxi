@@ -1,84 +1,12 @@
+var time = new Date(2017, 1, 3, 17, 50, 55); 
 var timeline = [];
 var flow = [];
-var isCheck = 0;
-var isFuture = 0;
+
+
 
 resizeContainer();//根据窗口大小决定是左右布局还是上下布局
 resizeAuto();//根据容器的宽度设定容器的高度
 
-
-/**
- * 将时间格式化成hh:mm:ss格式
- */
-Date.prototype.format = function () { 
-  return this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()
-}
-
-
-/**
- * 将时间格式化成yyyy-MM-dd hh:mm:ss格式
- */
-Date.prototype.Format = function (fmt) {
-  var o = {
-    "y+": this.getFullYear(),
-    "M+": this.getMonth() + 1,                 //月份
-    "d+": this.getDate(),                    //日
-    "h+": this.getHours(),                   //小时
-    "m+": this.getMinutes(),                 //分
-    "s+": this.getSeconds(),                 //秒
-    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-    "S+": this.getMilliseconds()             //毫秒
-  };
-  for (var k in o) {
-    if (new RegExp("(" + k + ")").test(fmt)){
-      if(k == "y+"){
-        fmt = fmt.replace(RegExp.$1, ("" + o[k]).substr(4 - RegExp.$1.length));
-      }
-      else if(k=="S+"){
-        var lens = RegExp.$1.length;
-        lens = lens==1?3:lens;
-        fmt = fmt.replace(RegExp.$1, ("00" + o[k]).substr(("" + o[k]).length - 1,lens));
-      }
-      else{
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-      }
-    }
-  }
-  return fmt;
-}
-
-
-/**
- * 是否动态显示图表，如果是，则设定定时器
- */
-// if(move) {
-// 	dynamic();
-// }
-
-/**
- * 是否处于查看图表状态，如果是，则清除定时器且请求查看图表
- */
-// if(isCheck) {
-// 	clearInterval(intervalId);
-// 	//是否预测图表
-// 	if(isFuture) {
-// 		estimationFlowChange();
-// 		estimationUserAtio();
-// 	} else {
-// 		showFlowChange();
-// 		showUserAtio();
-// 	}
-// }
-
-/**
- * 动态显示图表，设置定时器
- */
-function dynamic() {
-	var intervalId = setInterval (function() {
-		showFlowChange();
-		showUserAtio();
-	},15000);
-}
 
 /**
  * 当浏览器窗口大小改变时利用定义好的函数自适应，下面定义函数时有说明每个函数的功能
@@ -265,139 +193,259 @@ resizeCharts();
 /**
  * 请求查看流量变化
  */
-// function showFlowChange() {
-// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
-// 	var newest = now;
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-// 		timeEnd: timeEnd,
-// 		barCount: 10
-// 	}
+function showFlowChange(start,end) {
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+		barCount: 10
+	}
     
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/show/flowchange",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printFlowCharts(data.data, newest);		
-// 			}
-// 		}
-// 	});
+	$.ajax({
+		type: "POST",
+		url: "http://192.168.1.132:10000/show/flowchange",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(list),
+		dataType: "json",
+		anysc: false,
+		xhrFields: {
+            withCredentials: true
+        },
+		success: function(data) {
+			if(data.state == 1) {
+				printFlowCharts(data.data, start, end);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+ 
+		},
+		error: function(jqXHR, error, notmodified) {
+                alert("请求出现错误");
+            },
+	});
 	
-// }
+}
 
 /**
  * 请求预测流量变化
  */
-// function estimationFlowChange() {
-// 	var newest = timeEnd;
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: timeStart,
-// 		timeEnd: timeEnd,
-// 		timeNow: ,
-// 		barCount: 12,
-// 	}
+function estimationFlowChange(start,end) {
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
+		barCount: 10,
+	}
     
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/estimation/flowchange",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printFlowCharts(data.data, newest);		
-// 			}
-// 		}
-// 	});
+	$.ajax({
+		type: "POST",
+		url: "http::8080/estimation/flowchange",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.state == '1') {
+				printFlowCharts(data.data, start, end);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+		}
+	});
 	
-// }
+}
 
 /**
  * 请求查看车辆利用率
  * @return {[type]} [description]
  */
-// function showUserAtio() {
-// 	var timeStart = new Date(timeEnd).getTime()-20000*10;
-// 	var newest = now;
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: new Date(timeStart).Format('yyyy-MM-dd hh:mm:ss'),
-// 		timeEnd: timeEnd,
-// 		barCount: 10
-// 	}
+function showUserAtio(start,end) {
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+	}
 
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/show/useratio",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printPieChart(data.data);		
-// 			}
-// 		}
-// 	});
-// }
+	$.ajax({
+		type: "POST",
+		url: "http://192.168.199.56:8080/show/useratio",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		anysc: false,
+		success: function(data) {
+			if(data.state == 1) {
+				printPieChart(data.data);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+		},
+		error: function(jqXHR, error, notmodified) {
+                alert("发生错误：" + jqXHR.status);
+                alert(error);
+                alert(notmodified);
+            },
+
+
+	});
+}
 
 /**
  * 请求预测车辆利用率
  */
-// function estimationUserAtio() {
-//  {
-// 	var list = {
-// 		x: ,		// 在地图上选择的地点的经度
-//   		y: ,		    // 在地图上选择的地点的纬度
-// 		timeStart: timeStart,
-// 		timeEnd: timeEnd,
-// 		timeNow: ,
-// 	}
+function estimationUserAtio(start,end) {
+ 
+	var list = {
+		x: longitude,		// 在地图上选择的地点的经度
+  		y: latitude,		    // 在地图上选择的地点的纬度
+		timeStart: start,
+		timeEnd: end,
+		timeNow: time.Format('yyyy-MM-dd hh:mm:ss'),
+	}
 
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://ip:80/estimation/useratio",
-// 		contentType: "application/json; charset=utf-8",
-// 		xhrFields: {
-// 			withCredentials: true
-// 		},
-// 		data: JSON.stringify(list),
-// 		dataType: "json",
-// 		success: function(data) {
-// 			if(data.status == '1') {
-// 				printPieChart(data.data);		
-// 			}
-// 		}
-// 	});
-// }
+	$.ajax({
+		type: "POST",
+		url: "http://ip:80/estimation/useratio",
+		contentType: "application/json; charset=utf-8",
+		xhrFields: {
+			withCredentials: true
+		},
+		data: JSON.stringify(list),
+		dataType: "json",
+		success: function(data) {
+			if(data.state == 1) {
+				printPieChart(data.data);		
+			} else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else if (data.state == 14) {
+                alert('请求时间点非法');
+            } else if (date.state == 15) {
+            	alert('时间格式有误')
+            } else {
+            	alert('请求出现错误')
+            }
+		}
+	});
+}
 
 
 
 /**
  * 请求得到值之后，给柱状图折线图赋值
  */
-function printFlowCharts(data, timeEnd) {
+function printFlowCharts(data, start, end) {
+	var gap = ((new Date(end)).getTime() - (new Date(start)).getTime())/10 
 	//假如时间轴数组为空而且不是处于查看状态，则表示该数组第一次进行动态请求，要重新赋十条柱子的值
 	if((timeline == '') && (!isCheck)){
 		for(var i = 0; i < data.length; i++) {
-			var time = new Date(new Date(timeEnd).getTime() - 20000*(data.length - i));
+			var time = new Date(new Date(end).getTime() - gap*(data.length - i));
 			timeline.push(time.format());
 			flow.push(data[i].taxiCount);
 		}	
@@ -413,7 +461,7 @@ function printFlowCharts(data, timeEnd) {
 		timeline.length = 0;
 		flow.length = 0;
 		for(var i = 0; i < data.length; i++) {
-			var time = new Date(new Date(timeEnd).getTime() - 20000*(data.length - i));
+			var time = new Date(new Date(end).getTime() - gap*(data.length - i));
 			timeline.push(time.format());
 			flow.push(data[i].taxiCount);
 		}
@@ -582,17 +630,24 @@ function resizeCharts() {
  */
 function resizeContainer() {
 	if(judgePhone() || window.innerWidth < 900) {
-		$("#mainContainer").css('width','100%');
+		$("#mainContainer").css({'width':'100%','margin':'0,auto'});
 		$(".left-chart").css({'width':'92%','margin':'0 auto'});
 		$("#float").removeClass().addClass('content-top');
 		$("#percent").removeClass().addClass('content-bottom');
 	} else {
-		$("#mainContainer").css('width','88%');
+		$("#mainContainer").css({'width':'88%','margin':'40px auto'});
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');
-	}	
+	}
+	if(window.innerWidth < 1295) {
+		$("#mainContainer").css('top','0')
+	} else {
+		$("#mainContainer").css('top','-16%')
+	}
 }
+
+
 
 /**
  *浏览器大小变化时容器的高度随宽度变化

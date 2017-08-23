@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../css/zepto.mdatetimer.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/map.css">
+    <link rel="stylesheet" href="../css/charts.css">
 
 </head>
 <body>
@@ -145,6 +146,16 @@
         <!-- end 工具 -->
     </div>
     <!-- end 地图 -->
+    <!-- ECharts图表 -->
+        <div id="mainContainer">
+        <div id="float" class="content-left">
+            <div class="left-chart"></div>
+        </div>
+        <div id="percent" class="content-right">
+            <div class="right-chart"></div>
+        </div>
+    </div>
+    <!-- end ECharts图表 -->
     <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
     <script src="../js/jquery_3.2.1/jquery_3.2.1.min.js"></script>
     <script src="../js/zepto/zepto.js"></script> 
@@ -153,6 +164,7 @@
     <script src="http://libs.baidu.com/underscore/1.3.3/underscore.js"></script>
  <!--    <script src="../js/LCalendar/LCalendar.min.js"></script> -->
     <script src="../js/map/judge_phone.js"></script>
+    <script src="../js/ECharts/timeFormat.js"></script>
     <script src="http://api.map.baidu.com/api?v=2.0&ak=kyZyufX67f6ElXpFvRAlevSh3Up9v3tv"></script>
     <script src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
      <script src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
@@ -162,11 +174,11 @@
     <script src="../js/map/come_back_time.js"></script>
     <script src="../js/map/get_direction.js"></script>
     <script src="../js/map/back_position.js"></script>
-    <script src="../js/map/excpection_add_maker.js"></script>
+    <!-- <script src="../js/map/excpection_add_maker.js"></script> -->
+    <script src="../js/ECharts/charts.js"></script>
     <script src="../js/map/search_place.js"></script>
     <script src="../js/map/search_time.js"></script>
     <script src="../js/map/dynamicHeatmap.js"></script>
     <!-- <script src="../js/map/staticHeatmap.js"></script> -->
-    
 </body>
 </html>

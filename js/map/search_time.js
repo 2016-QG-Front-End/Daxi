@@ -3,12 +3,9 @@
  * 
  */
 /**获取查询时间
-timeStart: $('.first-input-secondChange').val()
-timeEnd: $('.second-input-secondChange').val()
+timeStart: $('.first-input-secondChange').val() + ':00'
+timeEnd: $('.second-input-secondChange').val() + ':00'
  */
-
-time = new Date(2017, 1, 3, 17, 50, 55); 
-
 $(function() {
 
 
@@ -28,12 +25,23 @@ $(function() {
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
 
-            deleteMaker();
+            
             excpectionAdd(1);
             /**
              * 在这里添加搜索时间后的函数调用
             */
-
+            var timeStart = $('.first-input-secondChange').val() + ':00'
+            var timeEnd = $('.second-input-secondChange').val() + ':00'
+            
+            clearInterval(intervalId);//清除定时器使其变成静态
+            isCheck = 1;//转化为查看模式
+            if($('.time-select-past-time').hasClass('on-check')) {//假如现在处于过去标签，则请求查看流量和使用率
+                showFlowChange(timeStart, timeEnd);
+                showUserAtio(timeStart, timeEnd);
+            } else {//假如现在处于未来标签，即请求未来的数据，调用预测的函数
+                // estimationFlowChange(timeStart, timeEnd);
+                estimationUserAtio(timeStart, timeEnd);
+            }
 
 
             /*
@@ -504,6 +512,6 @@ $$('#picktime').mdatetimer({
 });
 //因为只有一个时间框，所以只能获取到开始时间
 //下方是回调函数的函数申明
-// function smallSizeScreen() {
-//     excpectionAdd(2);
-// }
+function smallSizeScreen() {
+    excpectionAdd(2);
+}

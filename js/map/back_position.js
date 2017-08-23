@@ -68,3 +68,56 @@ function getMyPosition() {
     });
     return p;
 }
+
+function getLocation() {
+
+    var allmap = map.getOverlays(); //获取全部的覆盖物
+    var map_length = allmap.length; //获取覆盖物的长度
+    var p = new Object();
+    // 遍历覆盖物
+    for (var i = 0; i < map_length; i++) {  
+
+        //因为Overlay多种类型，Marker是其中的一种，必须确定其是标注后才能用相应的方法进行操作
+        if (allmap[i].toString() == "[object Marker]") { 
+
+            // 对icon的name进行判断，判断是否为‘1’
+            if (allmap[i].getIcon().name == '1') {  
+                var geolocation = new BMap.Geolocation();   //获取当前位置
+                geolocation.getCurrentPosition(function(r) {    //获取当前位置成功的回调函数
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var pt = new BMap.Point(r.point.lng, r.point.lat);
+                        map.panTo(r.point); //移到当前位置
+                            //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                        p = {
+                            x: r.point.lng,
+                            y: r.point.lat
+                        }
+                    } else {
+                        alert('failed' + this.getStatus());
+                    }
+                }, {
+                    enableHighAccuracy: true
+                });
+                return p;
+            }
+        }
+
+    }
+
+    var geolocation = new BMap.Geolocation();   //获取当前位置
+    geolocation.getCurrentPosition(function(r) {    //获取当前位置成功的回调函数
+        if (this.getStatus() == BMAP_STATUS_SUCCESS) {  //判断是否成功
+            var pt = new BMap.Point(r.point.lng, r.point.lat);
+            console.log(pt);
+            latitude = pt.lat;
+            longitude = pt.lng;
+        } else {
+            alert('failed' + this.getStatus());
+        }
+    }, {
+        enableHighAccuracy: true
+    });
+    
+    return ;
+}
+

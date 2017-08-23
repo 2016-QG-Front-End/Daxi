@@ -5,18 +5,12 @@ ul {
     padding: 0;
 }
 
-
-
 /** map的制作 **/
 
 .map {
     position: relative;
 }
-
-
-
 /*** 搜索框 ***/
-
 .search-place {
     position: absolute;
     top: 5%;
@@ -100,8 +94,6 @@ ul {
 
     background-color: #cadcfc;
 }
-
-
 
 /*** end 搜索框 ***/
 
@@ -799,3 +791,10 @@ select::-ms-expand {
 
 
 /** end map的制作 **/
+
+/** 版权声明 **/
+.footer {
+    text-align: center;
+    font-size: 10px;
+}
+/** end版权声明 **/

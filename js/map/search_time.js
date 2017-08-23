@@ -192,56 +192,118 @@ $('.first-input-secondChange').bind('focus', function() {
             }
             $('.first-input-day').append(option);
         }
+        $('.first-input-day').bind('focus', function() {
+            if($('.time-select-past-time').hasClass('on-check')) {
+                $('.first-input-hour').empty();
+                for(var i = 0; i < 24; i++) {//重置小时选项
+                    if(i < 10) {
+                        var option = '<option value"0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value"' + i + '">' + i + '</option>'
+                    }
+                    $('.first-input-hour').append(option);
+                }
+                $('.first-input-min').empty();
+                for(var i = 0; i < 60; i++) {//重置分钟选项
+                    if(i < 10) {
+                        var option = '<option value"0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value"' + i + '">' + i + '</option>'
+                    }
+                    $('.first-input-min').append(option);
+                }
+                
+            }
+        })
+
 
         //向小时添加选项
-        //如果选择的日期是当天的日期，则只能选择现在时间之前的小时，否则，则可以选择24小时
         $('.first-input-hour').empty();
-        if($('.first-input-day').val() == '0' + time.getDate()) {
-            for (var i = 0; i < time.getHours(); i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
-                } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                }
-                $('.first-input-hour').append(option);
+        for(var i = 0; i < 24; i++) {
+            if(i < 10) {
+                var option = '<option value"0' + i + '">0' + i + '</option>';
+            } else {
+                var option = '<option value"' + i + '">' + i + '</option>'
             }
-        } else {
-                for (var i = 0; i < 24; i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
-                } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                }
-                $('.first-input-hour').append(option);
-            }
+            $('.first-input-hour').append(option);
         }
+        //如果选择的日期是当天的日期，则只能选择现在时间之前的小时，否则，则可以选择24小时
+        $('.first-input-hour').bind('focus', function() {
+            if($('.time-select-past-time').hasClass('on-check')) {
+                $('.first-input-min').empty();//重置分钟选项
+                for(var i = 0; i < 60; i++) {
+                    if(i < 10) {
+                        var option = '<option value"0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value"' + i + '">' + i + '</option>'
+                    }
+                    $('.first-input-min').append(option);
+                }           
+                
+            }
+            $('.first-input-hour').empty();
+            if(parseInt($('.first-input-day').val()) == time.getDate()) {
+                for (var i = 0; i <= time.getHours(); i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.first-input-hour').append(option);
+                }
+            } else {
+                    for (var i = 0; i < 24; i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.first-input-hour').append(option);
+                }
+            }
+        })
 
         //向分钟添加选项
         //如果是当天的日期而且是当前小时，则只能选择比当前分钟要小的分钟，否则可选60分钟
-        $('.first-input-min').empty();
-        if((parseInt($('.first-input-day').val()) == time.getDate()) && (parseInt($('.first-input-hour').val()) == getHours())){
-            for (var i = 0; i < time.getMinutes(); i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
+        if($('.time-select-past-time').hasClass('on-check')) {
+
+            $('.first-input-min').empty();
+            for(var i = 0; i < 60; i++) {
+                if(i < 10) {
+                    var option = '<option value"0' + i + '">0' + i + '</option>';
                 } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                }
-                $('.first-input-min').append(option);
-            }
-        } else {
-            for (var i = 0; i < 60; i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
-                } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
+                    var option = '<option value"' + i + '">' + i + '</option>'
                 }
                 $('.first-input-min').append(option);
             }
         }
+        $('.first-input-min').bind('focus', function() {
+
+            $('.first-input-min').empty();
+            if((parseInt($('.first-input-day').val()) == time.getDate()) && (parseInt($('.first-input-hour').val()) == time.getHours())){
+                for (var i = 0; i <= time.getMinutes() - 1; i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.first-input-min').append(option);
+                }
+            } else {
+                for (var i = 0; i < 60; i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.first-input-min').append(option);
+                }
+            }
+        })
         //现在是预测未来的模式
     } else {
        $('.warning-text').html('请从当前时间后的三个小时<br>内进行选择');
@@ -272,7 +334,13 @@ $('.first-input-secondChange').bind('focus', function() {
         }
 
         //固定分钟
-        $('.first-input-min').append('<option value="00">00</option>');
+        $('.first-input-min').empty();
+        if ( (time.getMinutes() + 1) < 10 ) {
+            var option = '<option value="0' + (time.getMinutes() + 1) + '">0' + (time.getMinutes() + 1) + '</option>';
+        } else {
+            var option = '<option value="' + (time.getMinutes() + 1) + '">' + (time.getMinutes() + 1) + '</option>';
+        }
+         $('.first-input-min').append(option);
 
     }
 
@@ -295,9 +363,47 @@ $('.second-input-secondChange').bind('focus', function() {
        $('.warning-text').html('最长可以选择不跨天的两个<br>小时进行查询');
        $('.warning').css('display','block'); 
 
-       var option = '<option value="' + $('.first-input-day').val() + '">' + $('.first-input-day').val() + '</option>';
+       //选择日期
         $('.second-sel-day').empty();
-        $('.second-sel-day').append(option);
+        //假如用户选择的是某天的22点或者23点
+        if((parseInt($('.first-input-day').val()) < time.getDate()) && ((parseInt($('.first-input-hour').val()) == 23) || (parseInt($('.first-input-hour').val()) == 22))) {
+            var option = '<option value="' + $('.first-input-day').val() + '">' + $('.first-input-day').val() + '</option>';
+            $('.second-sel-day').append(option);   
+            if ( parseInt($('.first-input-day').val()) + 1 < 10 ) {
+                    var option = '<option value="0' + (parseInt($('.first-input-day').val()) + 1) + '">0' + (parseInt($('.first-input-day').val()) + 1) + '</option>';
+                } else {
+                    var option = '<option value="' + (parseInt($('.first-input-day').val()) + 1) + '">' + (parseInt($('.first-input-day').val()) + 1) + '</option>';
+                }
+            $('.second-sel-day').append(option);  
+            
+        } else {
+            var option = '<option value="' + $('.first-input-day').val() + '">' + $('.first-input-day').val() + '</option>';
+            $('.second-sel-day').append(option);
+
+        }
+        $('.second-sel-day').bind('focus', function() {
+            $('.second-sel-hour').empty();
+            for(var i = 0; i < 24; i++) {//重置小时选项
+                if(i < 10) {
+                    var option = '<option value"0' + i + '">0' + i + '</option>';
+                } else {
+                    var option = '<option value"' + i + '">' + i + '</option>'
+                }
+                $('.second-sel-hour').append(option);
+            }
+            if($('.time-select-past-time').hasClass('on-check')) {
+
+                $('.second-sel-min').empty();
+                for(var i = 0; i < 60; i++) {//重置分钟选项
+                    if(i < 10) {
+                        var option = '<option value"0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value"' + i + '">' + i + '</option>'
+                    }
+                    $('.second-sel-min').append(option);
+                }
+            }
+        })
 
         option = '<option value="' + $('.first-input-month').val() + '">' + $('.first-input-month').val() + '</option>';
         $('.second-sel-month').empty();
@@ -305,31 +411,69 @@ $('.second-input-secondChange').bind('focus', function() {
 
         //向小时添加选项
         $('.second-sel-hour').empty();
-        var hour = parseInt($('.first-input-hour').val());
-        //假如选择的是当前日子，则跟选择开始时间一样只能选择当前时间之前的小时，并且要大于开始时间
-        //这是假如开始时间跟当前时间间隔小于两小时，则用户最大只能选择当前小时
-        if(($('.first-input-day').val() == '0' + time.getDate()) && (hour >= time.getHours())) {
-            for (var i = hour; i < time.getHours(); i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
-                } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                }
-                $('.second-sel-hour').append(option);
+        for(var i = 0; i < 24; i++) {
+            if(i < 10) {
+                var option = '<option value"0' + i + '">0' + i + '</option>';
+            } else {
+                var option = '<option value"' + i + '">' + i + '</option>'
             }
-        //否则，则可以选择当前小时两小时之内的时间
-        } else  {
-            for (var i = hour; i <= hour + 2; i++) {
-                //判断是否需要添加一个0
-                if ( i < 10 ) {
-                    var option = '<option value="0' + i + '">0' + i + '</option>';
-                } else {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                }
-                $('.second-sel-hour').append(option);
-            }
+            $('.second-sel-hour').append(option);
         }
+        $('.second-sel-hour').bind('focus', function() {
+            if($('.time-select-past-time').hasClass('on-check')) {
+
+                $('.second-sel-min').empty();
+                for(var i = 0; i < 60; i++) {//重置分钟选项
+                    if(i < 10) {
+                        var option = '<option value"0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value"' + i + '">' + i + '</option>'
+                    }
+                    $('.second-sel-min').append(option);
+                }         
+            } 
+
+            $('.second-sel-hour').empty();
+            var hour = parseInt($('.first-input-hour').val());
+            //假如选择的是当前日子，则跟选择开始时间一样只能选择当前时间之前的小时，并且要大于开始时间
+            //这是假如开始时间跟当前时间间隔小于两小时，则用户最大只能选择当前小时
+            
+            if($('.first-input-day').val() != $('.second-sel-day').val()) {
+                var option = '<option value="0' + '0' + '">' + '00' + '</option>';
+                $('.second-sel-hour').append(option);
+            } else if(parseInt($('.first-input-day').val()) == time.getDate()) {
+                for (var i = hour; i <= time.getHours(); i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.second-sel-hour').append(option);
+                }
+            //否则，则可以选择当前小时两小时之内的时间
+            } else if(hour + 2 <= time.getHours()) {
+                for (var i = hour; i <= hour + 2; i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.second-sel-hour').append(option);
+                }
+            } else {
+                for (var i = hour; i < 24; i++) {
+                    //判断是否需要添加一个0
+                    if ( i < 10 ) {
+                        var option = '<option value="0' + i + '">0' + i + '</option>';
+                    } else {
+                        var option = '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.second-sel-hour').append(option);
+                }
+            }
+        })
     
 
         //向分钟添加选项
@@ -348,8 +492,11 @@ $('.second-input-secondChange').bind('focus', function() {
         $('.second-sel-min').bind('focus', function() {
             $('.second-sel-min').empty();
             //假如选择了当前日子当前小时，则只可以选择当前时间的分钟
-            if(($('.first-input-day').val() == '0' + time.getDate()) && (parseInt($('.second-sel-hour').val()) == time.getHours())) {
-                for (var i = 0; i < time.getMinutes(); i++) {
+            if($('.first-input-day').val() != $('.second-sel-day').val()) {
+                var option = '<option value="0' + '0' + '">' + '00' + '</option>';
+                $('.second-sel-min').append(option);
+            }else if((parseInt($('.second-sel-day').val()) == time.getDate()) && (parseInt($('.second-sel-hour').val()) == time.getHours())) {
+                for (var i = parseInt($('.first-input-min').val())+1; i <= time.getMinutes(); i++) {
                     //判断是否需要添加一个0
                     if ( i < 10 ) {
                         var option = '<option value="0' + i + '">0' + i + '</option>';
@@ -392,6 +539,7 @@ $('.second-input-secondChange').bind('focus', function() {
                 }
             }
         })
+
     //现在是未来的状态，把提示换掉
     } else {
        $('.warning-text').html('请从当前时间后的三个小时<br>内进行选择');
@@ -408,7 +556,7 @@ $('.second-input-secondChange').bind('focus', function() {
 
         //向小时添加选项
         //只能选择比开始时间大一个小时，小于等于当前时间+3个小时的小时数
-        var hour = parseInt($('.first-input-hour').val())
+        var hour = parseInt($('.first-input-hour').val());
         $('.second-sel-hour').empty();
         for(var i = hour + 1; i <= time.getHours() + 3; i++) {
             if ( i < 10 ) {
@@ -419,9 +567,16 @@ $('.second-input-secondChange').bind('focus', function() {
             $('.second-sel-hour').append(option);
         }
 
-        //固定分钟为00
-        $('.second-sel-min').append('<option value="00">00</option>');
+        //固定分钟为当前分钟
+        $('.second-sel-min').empty();
+        if ( (time.getMinutes() + 1) < 10 ) {
+            var option = '<option value="0' + (time.getMinutes() + 1) + '">0' + (time.getMinutes() + 1) + '</option>';
+        } else {
+            var option = '<option value="' + (time.getMinutes() + 1) + '">' + (time.getMinutes() + 1) + '</option>';
+        }
+         $('.second-sel-min').append(option);
     }
+    
 })
 
 

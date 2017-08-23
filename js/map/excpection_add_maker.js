@@ -61,9 +61,7 @@ function excpectionAdd(bool) {
         data: JSON.stringify(obj),
         dataType: "json",
         async: false,
-        xhrFields: {
-            withCredentials: true
-        },
+        contentType: "application/json; charset=utf-8",
         success: function(data) {
             if (data.state == 1) {
                 for (var i = 0; i < data.data.length; i++) {

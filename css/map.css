@@ -82,7 +82,9 @@ ul {
     text-align: center;
     cursor: pointer;
 }
-
+.search-line {
+    opacity: 1;
+}
 .search-line span {
     font-size: 9px;
     position: relative;

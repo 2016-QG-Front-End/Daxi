@@ -30,17 +30,17 @@ $(function() {
             /**
              * 在这里添加搜索时间后的函数调用
             */
-            var timeStart = $('.first-input-secondChange').val() + ':00'
-            var timeEnd = $('.second-input-secondChange').val() + ':00'
+            var start = $('.first-input-secondChange').val() + ':00'
+            var end = $('.second-input-secondChange').val() + ':00'
             
             clearInterval(intervalId);//清除定时器使其变成静态
             isCheck = 1;//转化为查看模式
             if($('.time-select-past-time').hasClass('on-check')) {//假如现在处于过去标签，则请求查看流量和使用率
-                showFlowChange(timeStart, timeEnd);
-                showUserAtio(timeStart, timeEnd);
+                showFlowChange(start, end);
+                showUserAtio(start, end);
             } else {//假如现在处于未来标签，即请求未来的数据，调用预测的函数
-                // estimationFlowChange(timeStart, timeEnd);
-                estimationUserAtio(timeStart, timeEnd);
+                // estimationFlowChange(start, end);
+                estimationUserAtio(start, end);
             }
 
 

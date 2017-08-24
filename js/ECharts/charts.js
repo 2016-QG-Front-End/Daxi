@@ -92,7 +92,7 @@ option = {
 	        },
 			barWidth: '30%',
 			color: ['#3b5c9a'],
-			data: ['100', '52', '520','101','100','102','99','98','97','100']
+			data: ['100', '52', '110','80','100','102','99','98','97','100']
 		},
 
 		{
@@ -108,7 +108,7 @@ option = {
 	                shadowOffsetY: 10					
 				}
 			},
-			data: ['100', '52', '520','101','100','102','99','98','97','100'],
+			data: ['100', '52', '110','80','100','102','99','98','97','100'],
 			color: ['#98ffff']
 		}
 	]
@@ -202,10 +202,11 @@ function showFlowChange(start,end) {
 		timeEnd: end,
 		barCount: 10
 	}
+    console.log(list.timeStart, list.timeEnd)
     
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.130:10000/show/flowchange",
+		url: "http://192.168.1.108:8080/show/flowchange",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(list),
 		dataType: "json",
@@ -248,7 +249,7 @@ function showFlowChange(start,end) {
  
 		},
 		// error: function(jqXHR, error, notmodified) {
-  //               alert("查看流量错误");
+  //               alert("请求失败");
   //           },
 	});
 	
@@ -269,7 +270,7 @@ function estimationFlowChange(start,end) {
     
 	$.ajax({
 		type: "POST",
-		url: "http:192.168.1.130:8080/estimation/flowchange",
+		url: "http:192.168.1.108:8080/estimation/flowchange",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -327,7 +328,7 @@ function showUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.140:8080/show/useratio",
+		url: "http://192.168.1.108:8080/show/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -391,7 +392,7 @@ function estimationUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.140:8080/estimation/useratio",
+		url: "http://192.168.1.108:8080/estimation/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -454,7 +455,7 @@ function printFlowCharts(data, start, end) {
 	//假如时间轴柱子不为空而且也不处于查看状态，则表示它处于动态请求但不是第一次请求，直接改变第一条柱子和最后一条柱子
 	} else if((timeline != '') && (!isCheck)) {
 		timeline.shift();
-		timeline.push(new Date(timeEnd).format());
+		timeline.push(new Date(end).format());
 		flow.shift();
 		flow.push(data[data.length - 1].taxiCount);
 	}

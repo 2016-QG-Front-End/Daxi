@@ -23,6 +23,7 @@ $(window).resize(function() {
 var leftChart = echarts.init($(".left-chart")[0]);
 
 option = {
+
 	tooltip: {
 		trigger: 'axis',
 		axisPointer: {
@@ -121,7 +122,7 @@ leftChart.setOption(option);
 var rightChart = echarts.init($(".right-chart")[0]);
 
 option = {
-	backgroundColor: '#3b5c9a',
+	backgroundColor: 'rgba(58, 91, 156, 1)',
 
 	tooltip: {
 		trigger: 'item',
@@ -631,20 +632,16 @@ function resizeCharts() {
  */
 function resizeContainer() {
 	if(judgePhone() || window.innerWidth < 900) {
-		$("#mainContainer").css({'width':'100%','margin':'0,auto'});
-		$(".left-chart").css({'width':'92%','margin':'0 auto'});
+
 		$("#float").removeClass().addClass('content-top');
 		$("#percent").removeClass().addClass('content-bottom');
+		$("#mainContainer").css({'width':'100%','margin-top':'0','height':'100%'});
+		$(".left-chart").css({'width':'91%','margin':'0 auto'});
 	} else {
-		$("#mainContainer").css({'width':'88%','margin':'40px auto'});
+		$("#mainContainer").css({'width':'88%','margin-top':'5.5%','height':'90%'});
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');
-	}
-	if(window.innerWidth < 1295) {
-		$("#mainContainer").css('top','0')
-	} else {
-		$("#mainContainer").css('top','-16%')
 	}
 }
 
@@ -660,4 +657,8 @@ function resizeAuto() {
 	$(".content-left").height($(".content-left").width()*0.5);
 	$(".content-right").height($(".content-right").width()*0.87)
 						.css("top", $('.content-right').height()*0.17);
+	if(judgePhone()) {
+		$(".content-top").height((window.innerHeight)*0.5);
+		$(".content-bottom").height((window.innerHeight)*0.5);
+	}
 }

@@ -15,16 +15,16 @@ var time = new Date(2017, 1, 3, 17, 50, 55);
 $(function() {
 
     //刚进入页面时进行一次请求
-    dynamic();
+    // dynamic();
     
     //获取当前经纬度
     getLocation();
 
    
     //设置刚进入页面的定时器，设定20秒请求一个流量图和利用率图
-    intervalId = setInterval(function() {
-        dynamic();
-    }, 20000);
+    // intervalId = setInterval(function() {
+    //     dynamic();
+    // }, 20000);
 
     $('.refresh').bind('click', function() {
         excpectionAdd(0);

@@ -45,7 +45,7 @@ $(function() {
             /**
              * 在这里添加搜索时间后的函数调用
             */
-            // var start = $('.first-input-secondChange').val() + ':00'
+            var start = $('.first-input-secondChange').val() + ':00'
             var end = $('.second-input-secondChange').val() + ':00'
             
             clearInterval(intervalId);//清除定时器使其变成静态

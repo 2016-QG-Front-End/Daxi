@@ -27,7 +27,7 @@
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
-
+        top: 2%;
         width: 80%;
     }
     .search-place > input {
@@ -112,7 +112,7 @@
     /*** 搜索框 ***/
     .search-place {
         left: 3%;
-
+        top: 5%;
         width: 436px;
     }
     .search-place > button {
@@ -193,7 +193,7 @@
     /*** 搜索框 ***/
     .search-place {
         left: 5%;
-
+        top: 5%;
         width: 304px;
     }
     .search-place > button {

@@ -658,7 +658,7 @@ function resizeAuto() {
 	$(".content-right").height($(".content-right").width()*0.87)
 						.css("top", $('.content-right').height()*0.17);
 	if(judgePhone()) {
-		$(".content-top").height((window.innerHeight)*0.5);
-		$(".content-bottom").height((window.innerHeight)*0.5);
+		$(".content-top").height((window.innerHeight)*0.6);
+		$(".content-bottom").height((window.innerHeight)*0.4);
 	}
 }

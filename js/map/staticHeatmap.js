@@ -9,10 +9,9 @@ function staticMap() {
         "timeStart": "2017-02-01 23:48:10",
         "timeEnd": "2017-02-01 23:58:20"
     }
-
     $.ajax({
         type: "POST",
-        url: "http://192.168.199.56:8080/show/statichot",
+        url: "http://192.168.1.103:8080/show/statichot",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: false,
@@ -23,6 +22,9 @@ function staticMap() {
                     points = data.data.map(function(bir) {
                         return bir;
                     });
+                    heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 10 });
+                    map.addOverlay(heatmapOverlay);
+                    heatmapOverlay.setDataSet({ data: points, max: 1 });
                     break;
                 case 500:
                     alert('服务器内部错误!');
@@ -71,29 +73,4 @@ function staticMap() {
             alert("发生错误：" + jqXHR.status);
         },
     });
-
-    heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 10 });
-    map.addOverlay(heatmapOverlay);
-    heatmapOverlay.setDataSet({ data: points, max: 1 });
-    setGradient();
-    function setGradient() {
-        var gradient = {
-            0: '#4a4afd',
-            0.25: '#51fdfd',
-            0.5: '#73ff73',
-            0.75: '#ffff5e',
-            1: '#ff5454'
-        };
-        var colors = document.querySelectorAll("input[type='color']");
-        colors = [].slice.call(colors, 1);
-        colors.forEach(function(ele) {
-            gradient[ele.getAttribute("data-key")] = ele.value;
-        });
-        heatmapOverlay.setOptions({ "gradient": gradient });
-    }
-            setTimeout(function() {
-            Canvas2dRenderer._clear();
-            // heatmapOverlay.setOptions({"opacity = "})
-        }, 4000)
-
 }

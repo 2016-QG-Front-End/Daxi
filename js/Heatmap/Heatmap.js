@@ -806,13 +806,13 @@ var BMapLib = window.BMapLib = BMapLib || {};
 
         var ne = this._map.pointToOverlayPixel(currentBounds.getNorthEast()),
             sw = this._map.pointToOverlayPixel(currentBounds.getSouthWest()),
-            topY = ne.y ,
-            leftX = sw.x ,
+            topY = ne.y,
+            leftX = sw.x,
             h = sw.y - ne.y,
             w = ne.x - sw.x;
 
-        this.conf.element.style.left = leftX +  'px';
-        this.conf.element.style.top = topY  + 'px';
+        this.conf.element.style.left = leftX + 'px';
+        this.conf.element.style.top = topY + 'px';
         this.conf.element.style.width = w + 'px';
         this.conf.element.style.height = h + 'px';
         //this.heatmap.store.get("heatmap").resize();
@@ -986,8 +986,8 @@ var BMapLib = window.BMapLib = BMapLib || {};
   /**
   * 移除热力图
   */
-      HeatmapOverlay.prototype.desMap = function() {
-            this.conf.visible = false;
+      HeatmapOverlay.prototype.disIT = function() {
+        this.Canvas2dRenderer._clear();
   }
     /**
      * 设置热力图展现的配置

@@ -138,7 +138,7 @@ function getDrivingLine(str1, str2) {
                 url: 'http://192.168.199.56:8080/estimation/drivetime',
                 data: JSON.stringify(plans),
                 dataType: "json",
-                async: false,
+                async: true,
                 contentType: "application/json",
                 // xhrFields: {
                 //     withCredentials: true

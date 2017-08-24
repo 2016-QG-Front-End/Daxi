@@ -70,7 +70,7 @@
     /*** 路线搜索 ***/
     .search-place-line {
         left: 5%;
-
+        top:2%;
         width: 75%;
         height: 116px;
     }
@@ -153,7 +153,7 @@
     /*** 路线搜索 ***/
     .search-place-line {
         left: 3%;
-
+        top:5%;
         width: 460px;
         height: 116px;
     }
@@ -246,7 +246,7 @@
     /*** 路线搜索 ***/
     .search-place-line {
         left: 5%;
-
+        top:5%;
         width: 374px;
         height: 116px;
     }

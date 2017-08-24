@@ -20,6 +20,7 @@ $(function() {
     //设置刚进入页面的定时器，设定20秒请求一个流量图和利用率图
     intervalId = setInterval(function() {
         dynamic();
+
     }, 20000);
 
     $('.refresh').bind('click', function() {

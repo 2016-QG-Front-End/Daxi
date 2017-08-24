@@ -24,23 +24,24 @@ $(function() {
             $('#timeStart').css('display', 'none');
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
-            var timeDay;
-            if (time.getDate() < 10) {
-                timeDay = '0' + time.getDate();
-            } else {
-                timeDay = time.getDate();
-            }
+            
+            // var timeDay;
+            // if (time.getDate() < 10) {
+            //     timeDay = '0' + time.getDate();
+            // } else {
+            //     timeDay = time.getDate();
+            // }
 
-            var timeHour;
-            if (time.getHours() < 10) {
-                timeHour = '0' + time.getHours();
-            } else {
-                timeHour = time.getHours();
-            }
-            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
-            if (timeReq > $('.second-input-secondChange').val()) {
-                excpectionAdd(1);
-            }
+            // var timeHour;
+            // if (time.getHours() < 10) {
+            //     timeHour = '0' + time.getHours();
+            // } else {
+            //     timeHour = time.getHours();
+            // }
+            // var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            // if (timeReq > $('.second-input-secondChange').val()) {
+            //     excpectionAdd(1);
+            // }
            
             /**
              * 在这里添加搜索时间后的函数调用
@@ -51,9 +52,11 @@ $(function() {
             clearInterval(intervalId);//清除定时器使其变成静态
             isCheck = 1;//转化为查看模式
             if($('.time-select-past-time').hasClass('on-check')) {//假如现在处于过去标签，则请求查看流量和使用率
+                staticMap(start, end);
                 showFlowChange(start, end);
                 showUserAtio(start, end);
             } else {//假如现在处于未来标签，即请求未来的数据，调用预测的函数
+                predictMap(start, end);
                 estimationFlowChange(start, end);
                 estimationUserAtio(start, end);
             }

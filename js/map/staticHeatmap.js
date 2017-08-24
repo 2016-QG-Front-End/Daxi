@@ -1,4 +1,3 @@
-staticMap();
 function staticMap() {
     var points;
     var reqData = {

@@ -1,9 +1,28 @@
 var time = new Date(2017, 1, 3, 17, 50, 55); 
 
-excpectionAdd(0);
+
 $(function() {
     $('.unusual').bind('click', function() {
         if($('.unusual').attr('stat') == "off") {
+            var timeDay;
+            if (time.getDate() < 10) {
+                timeDay = '0' + time.getDate();
+            } else {
+                timeDay = time.getDate();
+            }
+
+            var timeHour;
+            if (time.getHours() < 10) {
+                timeHour = '0' + time.getHours();
+            } else {
+                timeHour = time.getHours();
+            }
+            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            if (timeReq <= $('.second-input-secondChange').val()) {
+                alert('未来和当前时间无法获取异常');
+                return ;
+            }
+            excpectionAdd(1);
             $('.unusual').attr('stat','on');
             $('.unusual span').text('关闭异常');
             console.log("open ");
@@ -24,6 +43,10 @@ $(function() {
  * @return {[none}      [none]
  */
 function excpectionAdd(bool) {
+    var bs = map.getBounds(); //获取可视区域
+    var bssw = bs.getSouthWest(); //可视区域左下角
+    var bsne = bs.getNorthEast(); //可视区域右上角
+
     deleteMaker();
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
@@ -44,77 +67,77 @@ function excpectionAdd(bool) {
     map.clearOverlays();
     if (bool == 0) {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':00',
             timeEnd: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':15'
         }
     } else if (bool == 2) {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart: $('#picktime').val() + ':00',
             timeEnd: $('#picktime').val() + ':15'
         }
     } else {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart:  $('.first-input-secondChange').val() + ":00",
             timeEnd:  $('.second-input-secondChange').val() + ":00"
         }
     }
     
-<<<<<<< HEAD
-    // $.ajax({
-    //     type: "post",
-    //     url: 'http://192.168.199.33:10000/estimation/trafficexception',
-    //     data: JSON.stringify(obj),
-    //     dataType: "json",
-    //     contentType: "application/json; charset=utf-8",
-    //     async: true,
-    //     xhrFields: {
-    //         withCredentials: true
-    //     },
-    //     success: function(data) {
-    //         if (data.state == 1) {
-    //             for (var i = 0; i < data.data.length; i++) {
-    //                 addMarkerWarm(data.data[i]);
-    //             };
-    //             hideMaker();    //隐藏标记点
-    //         } else if (data.state == 2) {
-    //             alert('时间为空');
-    //         } else if (data.state == 3) {
-    //             alert('起始时间大于终止时间');
-    //         } else if (data.state == 4) {
-    //             alert('请求时间段超出范围');
-    //         } else if (data.state == 5) {
-    //             alert('请求时间段超出范围');
-    //         } else if (data.state == 6) {
-    //             alert('请求时间点太过超前');
-    //         } else if (data.state == 7) {
-    //             alert('区域范围为空');
-    //         } else if (data.state == 7) {
-    //             alert('请求坐标点为空');
-    //         } else if (data.state == 10) {
-    //             alert('路径的途径点为空');
-    //         } else if (data.state == 11) {
-    //             alert('跨天请求');
-    //         } else if (data.state == 12) {
-    //             alert('请求参数为空');
-    //         } else if (data.state == 13) {
-    //             alert('无法预测');
-    //         } else {
-    //             alert('请求出现错误');
-    //         }
-    //     },
-    // });
+
+    $.ajax({
+        type: "post",
+        url: 'http://192.168.199.33:10000/estimation/trafficexception',
+        data: JSON.stringify(obj),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data) {
+            if (data.state == 1) {
+                for (var i = 0; i < data.data.length; i++) {
+                    addMarkerWarm(data.data[i]);
+                };
+                hideMaker();    //隐藏标记点
+            } else if (data.state == 2) {
+                alert('时间为空');
+            } else if (data.state == 3) {
+                alert('起始时间大于终止时间');
+            } else if (data.state == 4) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 5) {
+                alert('请求时间段超出范围');
+            } else if (data.state == 6) {
+                alert('请求时间点太过超前');
+            } else if (data.state == 7) {
+                alert('区域范围为空');
+            } else if (data.state == 7) {
+                alert('请求坐标点为空');
+            } else if (data.state == 10) {
+                alert('路径的途径点为空');
+            } else if (data.state == 11) {
+                alert('跨天请求');
+            } else if (data.state == 12) {
+                alert('请求参数为空');
+            } else if (data.state == 13) {
+                alert('无法预测');
+            } else {
+                alert('请求出现错误');
+            }
+        },
+    });
 }
 // var obj = {
 //     x: 113.262232,

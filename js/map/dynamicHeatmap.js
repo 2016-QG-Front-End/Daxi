@@ -1,4 +1,11 @@
 dynamicMap();
+// var dynmcID;
+// function clearDynamicMap(){
+//     clearInterval(dynmcID);
+//     map.removeOverlay(heatmapOverlay);
+// }
+heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 12 });
+map.addOverlay(heatmapOverlay);
 
 function dynamicMap() {
     var points;
@@ -20,8 +27,6 @@ function dynamicMap() {
                     points = data.data.map(function(bir) {
                         return bir;
                     });
-                    heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 12 });
-                    map.addOverlay(heatmapOverlay);
                     heatmapOverlay.setDataSet({ data: points, max: 1 });
                     break;
                 case 500:
@@ -72,7 +77,7 @@ function dynamicMap() {
         },
     });
 
-    var dynmcID = setInterval(function() {
+        dynmcID = setInterval(function() {
         var reqData = {
             timeStart: timeStart,
             timeEnd: timeEnd
@@ -150,5 +155,5 @@ function dynamicMap() {
         timeStart = timeEnd;
         timeEnd = new Date(new Date(timeEnd).getTime() + 20000).Format('yyyy-MM-dd hh:mm:ss');
     }, 5000)
+    
 }
-excpectionAdd(0);

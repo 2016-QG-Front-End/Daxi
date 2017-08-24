@@ -92,18 +92,18 @@ $(function() {
 //     // var bssw = bs.getSouthWest(); //可视区域左下角
 //     // var bsne = bs.getNorthEast(); //可视区域右上角
 //     // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
-    // setExtent();
+    setExtent();
 
-    // /**
-    //  * [setExtent 设置边界，防止用户移动到区域外]
-    //  */
-    // function setExtent() {
-    //     var b = new BMap.Bounds(new BMap.Point(112.62357, 22.490739), new BMap.Point(114.069097, 23.978401));
-    //     try {
-    //         BMapLib.AreaRestriction.setBounds(map, b);
-    //     } catch (e) {
-    //         alert(e);
-    //     }
-    // }
+    /**
+     * [setExtent 设置边界，防止用户移动到区域外]
+     */
+    function setExtent() {
+        var b = new BMap.Bounds(new BMap.Point(112.62357, 22.490739), new BMap.Point(114.069097, 23.978401));
+        try {
+            BMapLib.AreaRestriction.setBounds(map, b);
+        } catch (e) {
+            alert(e);
+        }
+    }
 
 })

@@ -1,4 +1,5 @@
 resizeSwitch();
+checkScroll();
 
 window.onmousewheel=function(){return false}
 $('#switch').bind('click', function() {
@@ -11,15 +12,7 @@ $('#switch').bind('click', function() {
 	}
 })
 $(window).scroll(function() {
-	var viewH = $(window).height();
-	var contentH = $(document).height();
-	var scrollTop = $(window).scrollTop();
-	if(scrollTop/(contentH - viewH) == 1) {
-		$('#switch').removeClass('check-more').addClass('check-back');
-	}
-	if(scrollTop == 0) {
-		$('#switch').removeClass('check-back').addClass('check-more');
-	}
+	checkScroll();
 })
 
 $(window).resize(function() {
@@ -29,11 +22,21 @@ $(window).resize(function() {
 function resizeSwitch() {
 	if(judgePhone() || window.innerWidth < 900){
 		$('#switch').css({'width':'40px','height':'40px'})
-		// $('.check-more').css('bottom','10%');
 
 	} else {
 		$('#switch').css({'width':'60px','height':'60px'})
-		// $('.check-more').css('bottom','5%');
 
+	}
+}
+
+function checkScroll() {
+	var viewH = $(window).height();
+	var contentH = $(document).height();
+	var scrollTop = $(window).scrollTop();
+	if(scrollTop/(contentH - viewH) >= 0.9) {
+		$('#switch').removeClass('check-more').addClass('check-back');
+	}
+	if(scrollTop == 0) {
+		$('#switch').removeClass('check-back').addClass('check-more');
 	}
 }

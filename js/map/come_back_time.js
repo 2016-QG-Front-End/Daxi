@@ -8,15 +8,15 @@ var longitude = 113.40134324983;
 var latitude = 23.046584031449;
 var isCheck;
 var intervalId;
+var time = new Date(2017, 1, 3, 17, 50, 55); 
 $(function() {
     isCheck = 0;
-    var time = new Date(2017, 1, 3, 17, 50, 55); 
     //设置时间为2017年2月3日17:50:55
     //查询时间的时间驱动
     
 
     //刚进入页面时进行一次请求
-    dynamic();
+    // dynamic();
     
     //获取当前经纬度
     getLocation();

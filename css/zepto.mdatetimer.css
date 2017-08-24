@@ -127,3 +127,6 @@
 	border-top: 1px solid #4eccc4;
 	clear: both;
 }
+#mdatetimer {
+    z-index: 199;
+}

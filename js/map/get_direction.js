@@ -88,16 +88,35 @@ $(function() {
  */
 function getDrivingLine(str1, str2) {
     // var timeStart = document.getElementById('timeStart').getElementsByTagName('select');
-    var plans = {   //申明一个用于传递的变量
-        road: [],
-        time: $('.first-input-secondChange').val() + ":00"
-    };
+    
     
     var options = { //设置搜索用的参数
-
+        
         //搜索成功后的回调函数
         onSearchComplete: function(results) {
 
+            var plans = {   //申明一个用于传递的变量
+                road: [],
+                time: $('.first-input-secondChange').val() + ":00"
+            };
+            var timeDay;
+            if (time.getDate() < 10) {
+                timeDay = '0' + time.getDate();
+            } else {
+                timeDay = time.getDate();
+            }
+
+            var timeHour;
+            if (time.getHours() < 10) {
+                timeHour = '0' + time.getHours();
+            } else {
+                timeHour = time.getHours();
+            }
+            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            if (timeReq < $('.second-input-secondChange').val()) {
+                alert('只能预测未来');
+                return ;
+            }
             //判断是否为成功
             if (driving.getStatus() == BMAP_STATUS_SUCCESS) {   
                 //用于获取路线
@@ -173,6 +192,10 @@ function getDrivingLine(str1, str2) {
                         alert('请求参数为空');
                     } else if (data.state == 13) {
                         alert('无法预测');
+                    } else if (data.state == 14) {
+                        alert('请求时间点非法');
+                    } else if (data.state == 15) {
+                        alert('时间格式有误');
                     } else {
                         alert('请求出现错误,请刷新页面');
                     }

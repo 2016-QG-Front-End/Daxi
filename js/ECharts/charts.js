@@ -23,6 +23,7 @@ $(window).resize(function() {
 var leftChart = echarts.init($(".left-chart")[0]);
 
 option = {
+
 	tooltip: {
 		trigger: 'axis',
 		axisPointer: {
@@ -121,7 +122,7 @@ leftChart.setOption(option);
 var rightChart = echarts.init($(".right-chart")[0]);
 
 option = {
-	backgroundColor: '#3b5c9a',
+	backgroundColor: 'rgba(58, 91, 156, 1)',
 
 	tooltip: {
 		trigger: 'item',
@@ -204,7 +205,7 @@ function showFlowChange(start,end) {
     
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.132:10000/show/flowchange",
+		url: "http://192.168.1.130:10000/show/flowchange",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(list),
 		dataType: "json",
@@ -246,9 +247,9 @@ function showFlowChange(start,end) {
             }
  
 		},
-		error: function(jqXHR, error, notmodified) {
-                alert("请求出现错误");
-            },
+		// error: function(jqXHR, error, notmodified) {
+  //               alert("查看流量错误");
+  //           },
 	});
 	
 }
@@ -268,7 +269,7 @@ function estimationFlowChange(start,end) {
     
 	$.ajax({
 		type: "POST",
-		url: "http::8080/estimation/flowchange",
+		url: "http:192.168.1.130:8080/estimation/flowchange",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -305,7 +306,7 @@ function estimationFlowChange(start,end) {
             } else if (date.state == 15) {
             	alert('时间格式有误')
             } else {
-            	alert('请求出现错误')
+            	alert('预测流量错误')
             }
 		}
 	});
@@ -326,7 +327,7 @@ function showUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.199.56:8080/show/useratio",
+		url: "http://192.168.1.140:8080/show/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -367,11 +368,9 @@ function showUserAtio(start,end) {
             	alert('请求出现错误')
             }
 		},
-		error: function(jqXHR, error, notmodified) {
-                alert("发生错误：" + jqXHR.status);
-                alert(error);
-                alert(notmodified);
-            },
+		// error: function(jqXHR, error, notmodified) {
+  //               alert("查看车辆利用率失败");
+  //           },
 
 
 	});
@@ -392,7 +391,7 @@ function estimationUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://ip:80/estimation/useratio",
+		url: "http://192.168.1.140:8080/estimation/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -430,8 +429,11 @@ function estimationUserAtio(start,end) {
             	alert('时间格式有误')
             } else {
             	alert('请求出现错误')
-            }
-		}
+            } 
+		},
+		// error: function(req) {
+		// 	alert("预测车辆利用率失败")
+		// }
 	});
 }
 
@@ -630,20 +632,16 @@ function resizeCharts() {
  */
 function resizeContainer() {
 	if(judgePhone() || window.innerWidth < 900) {
-		$("#mainContainer").css({'width':'100%','margin':'0,auto'});
-		$(".left-chart").css({'width':'92%','margin':'0 auto'});
+
 		$("#float").removeClass().addClass('content-top');
 		$("#percent").removeClass().addClass('content-bottom');
+		$("#mainContainer").css({'width':'100%','margin-top':'0','height':'100%'});
+		$(".left-chart").css({'width':'91%','margin':'0 auto'});
 	} else {
-		$("#mainContainer").css({'width':'88%','margin':'40px auto'});
+		$("#mainContainer").css({'width':'88%','margin-top':'5.5%','height':'90%'});
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');
-	}
-	if(window.innerWidth < 1295) {
-		$("#mainContainer").css('top','0')
-	} else {
-		$("#mainContainer").css('top','-16%')
 	}
 }
 
@@ -659,33 +657,8 @@ function resizeAuto() {
 	$(".content-left").height($(".content-left").width()*0.5);
 	$(".content-right").height($(".content-right").width()*0.87)
 						.css("top", $('.content-right').height()*0.17);
-}
-
-
-function judgePhone() {
-    var browser = {
-        versions: function() {
-            var u = navigator.userAgent,
-                app = navigator.appVersion;
-            return { //移动终端浏览器版本信息
-                trident: u.indexOf('Trident') > -1, //IE内核
-                presto: u.indexOf('Presto') > -1, //opera内核
-                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-                iPad: u.indexOf('iPad') > -1, //是否iPad
-                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
-            };
-        }(),
-        language: (navigator.browserLanguage || navigator.language).toLowerCase()
-    }
-
-    if (browser.versions.mobile || browser.versions.ios || browser.versions.android || browser.versions.iPhone) {
-        return true;
-    } else {
-        return false;
-    }
+	if(judgePhone()) {
+		$(".content-top").height((window.innerHeight)*0.6);
+		$(".content-bottom").height((window.innerHeight)*0.4);
+	}
 }

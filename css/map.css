@@ -1,3 +1,6 @@
+::-webkit-scrollbar {display:none}
+
+
 ul {
     list-style-type: none;
 
@@ -13,7 +16,7 @@ ul {
 /*** 搜索框 ***/
 .search-place {
     position: absolute;
-    top: 5%;
+
 
     border-radius: 6px;
     height: 40px;
@@ -76,7 +79,9 @@ ul {
     text-align: center;
     cursor: pointer;
 }
-
+.search-line :hover {
+    opacity: 1;
+}
 .search-line span {
     font-size: 9px;
     position: relative;
@@ -104,7 +109,6 @@ ul {
     display: none;
 
     position: absolute;
-    top: 5%;
 
     border-radius: 6px;
 
@@ -126,7 +130,7 @@ ul {
 }
 .search-line-img {
     position: absolute;
-    top: -3px;
+
     right: -55px;
 
     border-radius: 6px;
@@ -732,7 +736,6 @@ select::-ms-expand {
 }
 
 .tool li {
-<<<<<<< HEAD
     width: 50px;
     height: 50px;
     margin: 5px auto;
@@ -789,6 +792,77 @@ select::-ms-expand {
 
 /*** end 工具 ***/
 
+/*** 查看下一页 ***/
+.check-more {
+    display: inline-block;
+    position: absolute;
+    bottom: 5%;
+    right:30px;
+
+    border-radius: 50%;
+    width: 60px;
+    height:60px;
+
+    background-color: #ffffff;
+    background-image: url(../images/check_more.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: rotate(0deg);
+    transition: transform 1s;
+    -webkit-animation: twinkling 2.5s infinite;
+    animation-play-state: running;
+
+    cursor: pointer;
+    z-index: 3;
+
+}
+
+@-webkit-keyframes twinkling{   
+    0%{
+        transform: rotateY(0deg);              
+    }
+    100%{
+        transform: rotateY(360deg);              
+    }
+}
+
+.check-more:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transform: rotateY(0deg);
+    animation-play-state: paused;
+}
+
+@media screen and (max-width: 992px){
+    .check-more {
+        bottom: 15%;
+    }
+}
+
+.check-back {
+    display: inline-block;
+    position: absolute;
+    bottom: -12%;
+    right:30px;
+
+    border-radius: 50%;
+    width: 60px;
+    height:60px;
+
+    background-color: #ffffff;
+    background-image: url(../images/check_more.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: rotate(180deg);
+    transition: transform 2s;
+
+    cursor: pointer;
+    z-index: 3;
+}
+/*** end 查看下一页 ***/
 
 /** end map的制作 **/
 

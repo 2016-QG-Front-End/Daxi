@@ -27,6 +27,20 @@ function excpectionAdd(bool) {
     deleteMaker();
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
+    var timeDay;
+    if (time.getDate() < 10) {
+        timeDay = '0' + time.getDate();
+    } else {
+        timeDay = time.getDate();
+    }
+
+    var timeHour;
+    if (time.getHours() < 10) {
+        timeHour = '0' + time.getHours();
+    } else {
+        timeHour = time.getHours();
+    }
+
     map.clearOverlays();
     if (bool == 0) {
         var obj = {
@@ -34,8 +48,8 @@ function excpectionAdd(bool) {
             minY: 22.490739,
             maxX: 114.069097,
             maxY: 23.978401,
-            timeStart: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':00',
-            timeEnd: time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':15'
+            timeStart: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':00',
+            timeEnd: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':15'
         }
     } else if (bool == 2) {
         var obj = {
@@ -57,6 +71,7 @@ function excpectionAdd(bool) {
         }
     }
     
+<<<<<<< HEAD
     // $.ajax({
     //     type: "post",
     //     url: 'http://192.168.199.33:10000/estimation/trafficexception',
@@ -98,7 +113,6 @@ function excpectionAdd(bool) {
     //         } else {
     //             alert('请求出现错误');
     //         }
- 
     //     },
     // });
 }
@@ -146,10 +160,11 @@ function addClickHandler(headTit, content, marker) {
  * 
  */
 function openInfo(headTit, content, e) {
+    var titl = "异常：" + headTit;
     var opts = {
         width: 250, // 信息窗口宽度
         height: 80, // 信息窗口高度
-        title: headTit, // 信息窗口标题
+        title: titl, // 信息窗口标题
         // enableMessage:true//设置允许信息窗发送短息
     };
     var p = e.target;
@@ -159,7 +174,8 @@ function openInfo(headTit, content, e) {
     // var bsne = bs.getNorthEast(); //可视区域右上角
     // // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
     // var point = new BMap.Point(bsne.lng - 0.0002, bssw.lat + 0.0002);
-    var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
+    var addContent = '原因：' + content;
+    var infoWindow = new BMap.InfoWindow(addContent, opts); // 创建信息窗口对象 
     map.openInfoWindow(infoWindow, point); //开启信息窗口
 }
 

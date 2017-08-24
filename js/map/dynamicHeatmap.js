@@ -33,4 +33,5 @@
                         setTimeout(function() {
                             heatmapOverlay.hide();
                         }, 4500); i++;
+                        excpectionAdd(0);
                     }, 5000)

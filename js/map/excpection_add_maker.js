@@ -164,10 +164,11 @@ function addClickHandler(headTit, content, marker) {
  * 
  */
 function openInfo(headTit, content, e) {
+    var titl = "异常：" + headTit;
     var opts = {
         width: 250, // 信息窗口宽度
         height: 80, // 信息窗口高度
-        title: headTit, // 信息窗口标题
+        title: titl, // 信息窗口标题
         // enableMessage:true//设置允许信息窗发送短息
     };
     var p = e.target;
@@ -177,7 +178,8 @@ function openInfo(headTit, content, e) {
     // var bsne = bs.getNorthEast(); //可视区域右上角
     // // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
     // var point = new BMap.Point(bsne.lng - 0.0002, bssw.lat + 0.0002);
-    var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
+    var addContent = '原因：' + content;
+    var infoWindow = new BMap.InfoWindow(addContent, opts); // 创建信息窗口对象 
     map.openInfoWindow(infoWindow, point); //开启信息窗口
 }
 

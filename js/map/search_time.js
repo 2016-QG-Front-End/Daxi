@@ -662,12 +662,16 @@ $(function() {
     $('.phone-search-time').bind('click', function() {
         // $('.phone-web').hide(1000);
         $('#picktime').trigger('click');
-        document.getElementById('picktime').focus();
+        // document.getElementById('picktime').focus();
         $('.mt_poppanel').css('display', 'block');
 
     });
 })
-
+document.getElementById('phoneSearchTime').onclick = function () {
+    // $('#picktime').trigger('click');
+        document.getElementById('picktime').focus();
+        // $('.mt_poppanel').css('display', 'block');
+}
 /**
  * [注意这个另外一个js库，在这个库中使用的话需要使用$$否则会出错]
  * [这个库与jq库有90%是相似的，对于这两个库的区别可以查看下http://blog.csdn.net/kongjiea/article/details/42522305]
@@ -682,6 +686,6 @@ $$('#picktime').mdatetimer({
 });
 //因为只有一个时间框，所以只能获取到开始时间
 //下方是回调函数的函数申明
-function smallSizeScreen() {
-    excpectionAdd(2);
-}
+// function smallSizeScreen() {
+//     excpectionAdd(2);
+// }

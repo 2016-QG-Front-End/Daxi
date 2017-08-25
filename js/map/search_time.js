@@ -24,37 +24,40 @@ $(function() {
             $('#timeStart').css('display', 'none');
             $('#timeEnd').css('display', 'none');
             $('.warning').css('display','none');
-            var timeDay;
-            if (time.getDate() < 10) {
-                timeDay = '0' + time.getDate();
-            } else {
-                timeDay = time.getDate();
-            }
+            
+            // var timeDay;
+            // if (time.getDate() < 10) {
+            //     timeDay = '0' + time.getDate();
+            // } else {
+            //     timeDay = time.getDate();
+            // }
 
-            var timeHour;
-            if (time.getHours() < 10) {
-                timeHour = '0' + time.getHours();
-            } else {
-                timeHour = time.getHours();
-            }
-            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
-            if (timeReq > $('.second-input-secondChange').val()) {
-                excpectionAdd(1);
-            }
+            // var timeHour;
+            // if (time.getHours() < 10) {
+            //     timeHour = '0' + time.getHours();
+            // } else {
+            //     timeHour = time.getHours();
+            // }
+            // var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            // if (timeReq > $('.second-input-secondChange').val()) {
+            //     excpectionAdd(1);
+            // }
            
             /**
              * 在这里添加搜索时间后的函数调用
             */
-            // var start = $('.first-input-secondChange').val() + ':00'
+            var start = $('.first-input-secondChange').val() + ':00'
             var end = $('.second-input-secondChange').val() + ':00'
             
             clearInterval(intervalId);//清除定时器使其变成静态
             isCheck = 1;//转化为查看模式
             if($('.time-select-past-time').hasClass('on-check')) {//假如现在处于过去标签，则请求查看流量和使用率
+                staticMap(start, end);
                 showFlowChange(start, end);
                 showUserAtio(start, end);
             } else {//假如现在处于未来标签，即请求未来的数据，调用预测的函数
-                // estimationFlowChange(start, end);
+                predictMap(start, end);
+                estimationFlowChange(start, end);
                 estimationUserAtio(start, end);
             }
 
@@ -163,7 +166,6 @@ $(function() {
             $('.time-select-second-change-img').trigger('click');
         }   
     });
-    
     //点击开始输入框时出现的选择时间，和选择提示
 $('.first-input-secondChange').bind('focus', function() {
     $('#timeStart').css('display', 'block');
@@ -193,6 +195,7 @@ $('.first-input-secondChange').bind('focus', function() {
             $('.first-input-day').append(option);
         }
         $('.first-input-day').bind('focus', function() {
+
             if($('.time-select-past-time').hasClass('on-check')) {
                 $('.first-input-hour').empty();
                 for(var i = 0; i < 24; i++) {//重置小时选项
@@ -219,6 +222,7 @@ $('.first-input-secondChange').bind('focus', function() {
 
         //向小时添加选项
         $('.first-input-hour').empty();
+
         for(var i = 0; i < 24; i++) {
             if(i < 10) {
                 var option = '<option value"0' + i + '">0' + i + '</option>';
@@ -306,6 +310,10 @@ $('.first-input-secondChange').bind('focus', function() {
         })
         //现在是预测未来的模式
     } else {
+        now = time;
+        $('.first-input-hour').unbind('focus')
+        $('.first-input-min').unbind('focus')
+
        $('.warning-text').html('请从当前时间后的三个小时<br>内进行选择');
        $('.warning').css('display','block');
 
@@ -323,7 +331,7 @@ $('.first-input-secondChange').bind('focus', function() {
         //向小时添加选项
         //只能选择大于等于当前时间，小于等于当前时间+2个小时的小时数
         $('.first-input-hour').empty()
-        for (var i = time.getHours(); i < time.getHours() + 3; i++) {
+        for (var i = time.getHours(); i < time.getHours() + 2; i++) {
             //判断是否需要添加一个0
             if ( i < 10 ) {
                 var option = '<option value="0' + i + '">0' + i + '</option>';
@@ -336,9 +344,9 @@ $('.first-input-secondChange').bind('focus', function() {
         //固定分钟
         $('.first-input-min').empty();
         if ( (time.getMinutes() + 1) < 10 ) {
-            var option = '<option value="0' + (time.getMinutes() + 1) + '">0' + (time.getMinutes() + 1) + '</option>';
+            var option = '<option value="0' + (time.getMinutes() + 2) + '">0' + (time.getMinutes() + 2) + '</option>';
         } else {
-            var option = '<option value="' + (time.getMinutes() + 1) + '">' + (time.getMinutes() + 1) + '</option>';
+            var option = '<option value="' + (time.getMinutes() + 2) + '">' + (time.getMinutes() + 2) + '</option>';
         }
          $('.first-input-min').append(option);
 
@@ -542,6 +550,9 @@ $('.second-input-secondChange').bind('focus', function() {
 
     //现在是未来的状态，把提示换掉
     } else {
+        $('.second-sel-hour').unbind('focus')
+        $('.second-sel-min').unbind('focus')
+
        $('.warning-text').html('请从当前时间后的三个小时<br>内进行选择');
        $('.warning').css('display','block');
 
@@ -558,7 +569,7 @@ $('.second-input-secondChange').bind('focus', function() {
         //只能选择比开始时间大一个小时，小于等于当前时间+3个小时的小时数
         var hour = parseInt($('.first-input-hour').val());
         $('.second-sel-hour').empty();
-        for(var i = hour + 1; i <= time.getHours() + 3; i++) {
+        for(var i = hour + 1; i < time.getHours() + 3; i++) {
             if ( i < 10 ) {
                 var option = '<option value="0' + i + '">0' + i + '</option>';
             } else {
@@ -570,9 +581,9 @@ $('.second-input-secondChange').bind('focus', function() {
         //固定分钟为当前分钟
         $('.second-sel-min').empty();
         if ( (time.getMinutes() + 1) < 10 ) {
-            var option = '<option value="0' + (time.getMinutes() + 1) + '">0' + (time.getMinutes() + 1) + '</option>';
+            var option = '<option value="0' + parseInt($('.first-input-min').val()) + '">0' + parseInt($('.first-input-min').val()) + '</option>';
         } else {
-            var option = '<option value="' + (time.getMinutes() + 1) + '">' + (time.getMinutes() + 1) + '</option>';
+            var option = '<option value="' + parseInt($('.first-input-min').val()) + '">' + parseInt($('.first-input-min').val()) + '</option>';
         }
          $('.second-sel-min').append(option);
     }

@@ -23,6 +23,7 @@ $(window).resize(function() {
 var leftChart = echarts.init($(".left-chart")[0]);
 
 option = {
+
 	tooltip: {
 		trigger: 'axis',
 		axisPointer: {
@@ -91,7 +92,7 @@ option = {
 	        },
 			barWidth: '30%',
 			color: ['#3b5c9a'],
-			data: ['100', '52', '520','101','100','102','99','98','97','100']
+			data: ['100', '52', '110','80','100','102','99','98','97','100']
 		},
 
 		{
@@ -107,7 +108,7 @@ option = {
 	                shadowOffsetY: 10					
 				}
 			},
-			data: ['100', '52', '520','101','100','102','99','98','97','100'],
+			data: ['100', '52', '110','80','100','102','99','98','97','100'],
 			color: ['#98ffff']
 		}
 	]
@@ -121,7 +122,7 @@ leftChart.setOption(option);
 var rightChart = echarts.init($(".right-chart")[0]);
 
 option = {
-	backgroundColor: '#3b5c9a',
+	backgroundColor: 'rgba(58, 91, 156, 1)',
 
 	tooltip: {
 		trigger: 'item',
@@ -201,6 +202,7 @@ function showFlowChange(start,end) {
 		timeEnd: end,
 		barCount: 10
 	}
+    console.log(list.timeStart, list.timeEnd)
     
 	$.ajax({
 		type: "POST",
@@ -247,7 +249,7 @@ function showFlowChange(start,end) {
  
 		},
 		// error: function(jqXHR, error, notmodified) {
-  //               alert("查看流量错误");
+  //               alert("请求失败");
   //           },
 	});
 	
@@ -453,7 +455,7 @@ function printFlowCharts(data, start, end) {
 	//假如时间轴柱子不为空而且也不处于查看状态，则表示它处于动态请求但不是第一次请求，直接改变第一条柱子和最后一条柱子
 	} else if((timeline != '') && (!isCheck)) {
 		timeline.shift();
-		timeline.push(new Date(timeEnd).format());
+		timeline.push(new Date(end).format());
 		flow.shift();
 		flow.push(data[data.length - 1].taxiCount);
 	}
@@ -631,20 +633,16 @@ function resizeCharts() {
  */
 function resizeContainer() {
 	if(judgePhone() || window.innerWidth < 900) {
-		$("#mainContainer").css({'width':'100%','margin':'0,auto'});
-		$(".left-chart").css({'width':'92%','margin':'0 auto'});
+
 		$("#float").removeClass().addClass('content-top');
 		$("#percent").removeClass().addClass('content-bottom');
+		$("#mainContainer").css({'width':'100%','margin-top':'0','height':'100%'});
+		$(".left-chart").css({'width':'91%','margin':'0 auto'});
 	} else {
-		$("#mainContainer").css({'width':'88%','margin':'40px auto'});
+		$("#mainContainer").css({'width':'88%','margin-top':'5.5%','height':'90%'});
 		$(".left-chart").css({'width':'82%','margin':'0 10% 5% 8%'});
 		$("#float").removeClass().addClass('content-left');
 		$("#percent").removeClass().addClass('content-right');
-	}
-	if(window.innerWidth < 1295) {
-		$("#mainContainer").css('top','0')
-	} else {
-		$("#mainContainer").css('top','-16%')
 	}
 }
 
@@ -660,4 +658,8 @@ function resizeAuto() {
 	$(".content-left").height($(".content-left").width()*0.5);
 	$(".content-right").height($(".content-right").width()*0.87)
 						.css("top", $('.content-right').height()*0.17);
+	if(judgePhone()) {
+		$(".content-top").height((window.innerHeight)*0.6);
+		$(".content-bottom").height((window.innerHeight)*0.4);
+	}
 }

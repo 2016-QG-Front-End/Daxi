@@ -1,3 +1,4 @@
+
 $(function() {
     $('.search-images').bind('click', function() {
 
@@ -112,7 +113,12 @@ $(function() {
             var marker2 = new BMap.Marker(pp,{icon:myIcon});  // 创建标注
             map.addOverlay(marker2); // 将标注添加到地图中
             map.panTo(pp); //移到当前位置
-
+            /*
+            可加函数
+             */
+            clearInterval(dynmcID);
+            map.removeOverlay(heatmapOverlay);
+            
             clearInterval(intervalId);
             isCheck = 1;
             longitude = pp.lng;

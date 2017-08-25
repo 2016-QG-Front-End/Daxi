@@ -108,7 +108,6 @@ function getLocation() {
     geolocation.getCurrentPosition(function(r) {    //获取当前位置成功的回调函数
         if (this.getStatus() == BMAP_STATUS_SUCCESS) {  //判断是否成功
             var pt = new BMap.Point(r.point.lng, r.point.lat);
-            console.log(pt);
             latitude = pt.lat;
             longitude = pt.lng;
         } else {

@@ -1,9 +1,28 @@
 var time = new Date(2017, 1, 3, 17, 50, 55); 
 
-excpectionAdd(0);
+
 $(function() {
     $('.unusual').bind('click', function() {
         if($('.unusual').attr('stat') == "off") {
+            var timeDay;
+            if (time.getDate() < 10) {
+                timeDay = '0' + time.getDate();
+            } else {
+                timeDay = time.getDate();
+            }
+
+            var timeHour;
+            if (time.getHours() < 10) {
+                timeHour = '0' + time.getHours();
+            } else {
+                timeHour = time.getHours();
+            }
+            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            if (timeReq <= $('.second-input-secondChange').val()) {
+                alert('未来和当前时间无法获取异常');
+                return ;
+            }
+            excpectionAdd(1);
             $('.unusual').attr('stat','on');
             $('.unusual span').text('关闭异常');
             console.log("open ");
@@ -24,6 +43,10 @@ $(function() {
  * @return {[none}      [none]
  */
 function excpectionAdd(bool) {
+    var bs = map.getBounds(); //获取可视区域
+    var bssw = bs.getSouthWest(); //可视区域左下角
+    var bsne = bs.getNorthEast(); //可视区域右上角
+
     deleteMaker();
     // var timeSel = document.getElementById('timeSel').getElementsByTagName('select');
     // 形成异常形成数据
@@ -44,43 +67,45 @@ function excpectionAdd(bool) {
     map.clearOverlays();
     if (bool == 0) {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':00',
             timeEnd: time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes() + ':15'
         }
     } else if (bool == 2) {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart: $('#picktime').val() + ':00',
             timeEnd: $('#picktime').val() + ':15'
         }
     } else {
         var obj = {
-            minX: 112.62357,
-            minY: 22.490739,
-            maxX: 114.069097,
-            maxY: 23.978401,
+            minX: bssw.lng,
+            minY: bssw.lat,
+            maxX: bsne.lng,
+            maxY: bsne.lat,
             timeStart:  $('.first-input-secondChange').val() + ":00",
             timeEnd:  $('.second-input-secondChange').val() + ":00"
         }
     }
     
+
     $.ajax({
         type: "post",
+
         url: 'http://127.0.0.1:80/estimation/trafficexception',
         data: JSON.stringify(obj),
         dataType: "json",
-        contentType: "application/json",
-        async: false,
-        // xhrFields: {
-        //     withCredentials: true
-        // },
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        xhrFields: {
+            withCredentials: true
+        },
         success: function(data) {
             if (data.state == 1) {
                 for (var i = 0; i < data.data.length; i++) {
@@ -109,14 +134,9 @@ function excpectionAdd(bool) {
                 alert('请求参数为空');
             } else if (data.state == 13) {
                 alert('无法预测');
-            } else if (data.state == 14) {
-                alert('请求时间点非法');
-            } else if (data.state == 15) {
-                alert('时间格式有误');
             } else {
-                alert('请求出现错误,请刷新页面');
+                alert('请求出现错误');
             }
- 
         },
     });
 }

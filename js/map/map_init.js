@@ -88,7 +88,7 @@ $(function() {
             // map.setViewport(pointArray);    //调整视野            
         });
     }
-//     // var bs = map.getBounds(); //获取可视区域
+    // var bs = map.getBounds(); //获取可视区域
 //     // var bssw = bs.getSouthWest(); //可视区域左下角
 //     // var bsne = bs.getNorthEast(); //可视区域右上角
 //     // console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);

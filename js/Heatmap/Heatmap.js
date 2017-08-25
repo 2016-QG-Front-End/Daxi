@@ -777,7 +777,7 @@ var BMapLib = window.BMapLib = BMapLib || {};
             return el;
         }
         map.getPanes().mapPane.appendChild(el);
-        this.conf.valueField = this.conf.valueField || "count";
+        this.conf.valueField = this.conf.valueField || "c";
         this.heatmap = h337.create(this.conf);
 
         var that  = this;
@@ -841,7 +841,7 @@ var BMapLib = window.BMapLib = BMapLib || {};
                 d.data.push({
                     x: roundedPoint.x,
                     y: roundedPoint.y,
-                    count: this.latlngs[len].c
+                    c: this.latlngs[len].c
                 });
             }
 
@@ -913,7 +913,7 @@ var BMapLib = window.BMapLib = BMapLib || {};
             var latlng = new BMap.Point(d[dlen].x, d[dlen].y);
             this.latlngs.push({
                 latlng: latlng,
-                c: d[dlen].count
+                c: d[dlen].c
             });
 
             if (!currentBounds.containsPoint(latlng)) {
@@ -929,7 +929,7 @@ var BMapLib = window.BMapLib = BMapLib || {};
             mapdata.data.push({
                 x: point.x,
                 y: point.y,
-                count: d[dlen].c
+                c: d[dlen].c
             });
         }
         this.heatmap.setData(mapdata);
@@ -983,6 +983,12 @@ var BMapLib = window.BMapLib = BMapLib || {};
             this.conf.element.style.display = "none";
         }
     }
+  /**
+  * 移除热力图
+  */
+      HeatmapOverlay.prototype.disIT = function() {
+        this.Canvas2dRenderer._clear();
+  }
     /**
      * 设置热力图展现的配置
      * @param {Json Object} options 可选的输入参数，非必填项。可输入选项包括：<br />

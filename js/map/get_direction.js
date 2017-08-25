@@ -155,7 +155,7 @@ function getDrivingLine(str1, str2) {
             // 请求路线
             $.ajax({
                 type: "post",
-                url: 'http://192.168.1.108:8080/estimation/drivetime',
+                url: 'http://127.0.0.1:80/estimation/drivetime',
                 data: JSON.stringify(plans),
                 dataType: "json",
                 async: true,

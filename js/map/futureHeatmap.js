@@ -35,7 +35,7 @@ function predictMap(n, s, e) {
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.1.108:8080/show/prediction",
+            url: "http://127.0.0.1:80/show/prediction",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: false,

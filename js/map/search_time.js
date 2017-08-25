@@ -697,10 +697,11 @@ $$('#picktime').mdatetimer({
     format: 2, //时间格式化方式 
     years: [2017], //年份数组 
     nowbtn: false, //是否显示现在按钮 
-    onOk: null //点击确定之后函数的回调
+    onOk: smallSizeScreen //点击确定之后函数的回调
 });
+//获取时间的方式：$$('#picktime').val()
 //因为只有一个时间框，所以只能获取到开始时间
 //下方是回调函数的函数申明
-// function smallSizeScreen() {
-//     excpectionAdd(2);
-// }
+function smallSizeScreen() {
+    // excpectionAdd(2);
+}

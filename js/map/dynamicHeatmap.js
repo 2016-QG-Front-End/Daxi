@@ -1,5 +1,6 @@
 dynamicMap();
 var dynmcID;
+
 function clearDynamicMap(){
     map.clearOverlays(); //清除图层覆盖物
     clearInterval(dynmcID);
@@ -12,7 +13,7 @@ function dynamicMap() {
 
     $.ajax({
         type: "POST",
-        url: "http://192.168.1.108:8080/show/dynamichot",
+        url: "http://127.0.0.1:80/show/dynamichot",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify({
@@ -155,5 +156,4 @@ function dynamicMap() {
         timeStart = timeEnd;
         timeEnd = new Date(new Date(timeEnd).getTime() + 10000).Format('yyyy-MM-dd hh:mm:ss');
     }, 5000)
-    
 }

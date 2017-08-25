@@ -4,7 +4,7 @@
 var points;
 $.ajax({
     type: "POST",
-    url: "http://localhost/JSON/xy.json",
+    url: "http://127.0.0.1:80/JSON/xy.json",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     async: false,

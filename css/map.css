@@ -135,7 +135,7 @@ ul {
 }
 .search-line-img {
     position: absolute;
-
+    top:0;
     right: -55px;
 
     border-radius: 6px;

@@ -2,7 +2,7 @@
             var i = 1;
             setInterval(function() {
                     var points;
-                    var url = 'http://localhost/JSON/' + i + '.json';
+                    var url = 'http://127.0.0.1:80/JSON/' + i + '.json';
 
                     $.get(url, function(data) {
                             points = data.option.map(function(bir) {

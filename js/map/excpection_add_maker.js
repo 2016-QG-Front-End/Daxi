@@ -73,7 +73,7 @@ function excpectionAdd(bool) {
     
     $.ajax({
         type: "post",
-        url: 'http://192.168.1.130:10000/estimation/trafficexception',
+        url: 'http://127.0.0.1:80/estimation/trafficexception',
         data: JSON.stringify(obj),
         dataType: "json",
         contentType: "application/json",

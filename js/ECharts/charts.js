@@ -204,7 +204,7 @@ function showFlowChange(start,end) {
     
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.130:10000/show/flowchange",
+		url: "http://127.0.0.1:80/show/flowchange",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(list),
 		dataType: "json",
@@ -268,7 +268,7 @@ function estimationFlowChange(start,end) {
     
 	$.ajax({
 		type: "POST",
-		url: "http:192.168.1.130:8080/estimation/flowchange",
+		url: "http:127.0.0.1:80/estimation/flowchange",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -326,7 +326,7 @@ function showUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.140:8080/show/useratio",
+		url: "http://127.0.0.1:80/show/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true
@@ -390,7 +390,7 @@ function estimationUserAtio(start,end) {
 
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.1.140:8080/estimation/useratio",
+		url: "http://127.0.0.1:80/estimation/useratio",
 		contentType: "application/json; charset=utf-8",
 		xhrFields: {
 			withCredentials: true

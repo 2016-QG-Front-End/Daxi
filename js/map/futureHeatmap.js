@@ -20,22 +20,22 @@ function predictMap(n, s, e) {
         eTime = e;
 
         var reqData = {
-            // "minX": viewLB.lng,
-            // "minY": viewLB.lat,
-            // "maxX": viewRT.lng,
-            // "maxY": viewRT.lat,
-            "minX": 113.333511,
-            "minY": 23.002264,
-            "maxX": 113.338829,
-            "maxY": 23.008451,
-            "timeNow": "2017-02-03 00:00:00",
+            "minX": viewLB.lng,
+            "minY": viewLB.lat,
+            "maxX": viewRT.lng,
+            "maxY": viewRT.lat,
+            // "minX": 113.333511,
+            // "minY": 23.002264,
+            // "maxX": 113.338829,
+            // "maxY": 23.008451,
+            "timeNow": "2017-02-03 17:50:00",
             "timeStart": sTime,
             "timeEnd": eTime
         }
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.1.103:8080/show/prediction",
+            url: "http://192.168.1.108:8080/show/prediction",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: false,

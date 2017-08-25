@@ -27,7 +27,7 @@ setTimeout(function(){
     }
     $.ajax({
         type: "POST",
-        url: "http://192.168.1.103:8080/show/statichot",
+        url: "http://192.168.1.108:8080/show/statichot",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: false,

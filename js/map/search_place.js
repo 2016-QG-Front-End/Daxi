@@ -108,16 +108,18 @@ $(function() {
             if (!local.getResults()) {//判断是否有搜索结果
                 return ;
             }
+
             var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
             var myIcon = new BMap.Icon("../images/icon/start.ico", new BMap.Size(48,100));
             var marker2 = new BMap.Marker(pp,{icon:myIcon});  // 创建标注
-            map.addOverlay(marker2); // 将标注添加到地图中
+           
             map.panTo(pp); //移到当前位置
             /*
             可加函数
              */
-            // clearDynamicMap(); 
+            clearDynamicMap();
             clearInterval(intervalId);
+            map.addOverlay(marker2); // 将标注添加到地图中
             staticMap($('.first-input-secondChange').val() + ':00', $('.second-input-secondChange').val() + ':00');
 
             isCheck = 1;

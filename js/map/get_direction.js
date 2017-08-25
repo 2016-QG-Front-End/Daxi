@@ -114,7 +114,7 @@ function getDrivingLine(str1, str2) {
                 timeHour = time.getHours();
             }
             var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
-            if (timeReq < $('.second-input-secondChange').val()) {
+            if (timeReq > $('.first-input-secondChange').val()) {
                 alert('只能预测未来');
                 return ;
             }
@@ -155,7 +155,7 @@ function getDrivingLine(str1, str2) {
             // 请求路线
             $.ajax({
                 type: "post",
-                url: 'http://192.168.1.103:8080/estimation/drivetime',
+                url: 'http://192.168.1.108:8080/estimation/drivetime',
                 data: JSON.stringify(plans),
                 dataType: "json",
                 async: true,
@@ -165,7 +165,7 @@ function getDrivingLine(str1, str2) {
                 // },
                 success: function(data) {
                     if (data.state == 1) { //判断是否成功
-
+                        clearDynamicMap();
                         //画出路线
                         addRoute(plans.road[data.data.index]);  
 
@@ -225,6 +225,8 @@ function getDrivingLine(str1, str2) {
     if (timeReq < $('.first-input-secondChange').val()) {
         driving.search(str1, str2);
 
+    } else {
+        alert('没有时间');
     }
     /**
      * [addRoute 将路线添加到地图中]

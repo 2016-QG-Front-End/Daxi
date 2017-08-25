@@ -33,17 +33,17 @@ $(function() {
     })
 
     // 时间驱动 从设置路线变为搜索框
-    $('.start-place').bind('blur', function() { //为startPlace的输入框添加失去焦点驱动
-        if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
-            map.clearOverlays(); //清除图层覆盖物
-            getDrivingLine($('.start-place').val(), $('.end-place').val());
+    // $('.start-place').bind('blur', function() { //为startPlace的输入框添加失去焦点驱动
+    //     if (($('.start-place').val().length != 0) && ($('.end-place').val().length != 0)) { //判断是否能进行检索
+    //         map.clearOverlays(); //清除图层覆盖物
+    //         getDrivingLine($('.start-place').val(), $('.end-place').val());
             
-        }
-        var jud = judgePhone();
-        if(jud) {
-            $('.tool').css('display', 'block');
-        }
-    })
+    //     }
+    //     var jud = judgePhone();
+    //     if(jud) {
+    //         $('.tool').css('display', 'block');
+    //     }
+    // })
 
     $('.start-place').bind('keyup', function(e) {   //为startPlace的输入框添加回车驱动
         var ev = window.event || e;
@@ -98,6 +98,7 @@ function getDrivingLine(str1, str2) {
             var plans = {   //申明一个用于传递的变量
                 road: [],
                 time: $('.first-input-secondChange').val() + ":00"
+                // time: '2017-02-03 18:55:00'
             };
             var timeDay;
             if (time.getDate() < 10) {
@@ -154,7 +155,7 @@ function getDrivingLine(str1, str2) {
             // 请求路线
             $.ajax({
                 type: "post",
-                url: 'http://192.168.199.56:8080/estimation/drivetime',
+                url: 'http://192.168.1.103:8080/estimation/drivetime',
                 data: JSON.stringify(plans),
                 dataType: "json",
                 async: true,
@@ -206,8 +207,25 @@ function getDrivingLine(str1, str2) {
         }
     };
     var driving = new BMap.DrivingRoute('广州市番禺区', options);
-    driving.search(str1, str2);
+    // driving.search(str1, str2);
+    var timeDay;
+    if (time.getDate() < 10) {
+        timeDay = '0' + time.getDate();
+    } else {
+        timeDay = time.getDate();
+    }
 
+    var timeHour;
+    if (time.getHours() < 10) {
+        timeHour = '0' + time.getHours();
+    } else {
+        timeHour = time.getHours();
+    }
+    var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+    if (timeReq < $('.first-input-secondChange').val()) {
+        driving.search(str1, str2);
+
+    }
     /**
      * [addRoute 将路线添加到地图中]
      * @param {[Array]} path [从起始到结束的各点的位置]
@@ -263,7 +281,7 @@ function getDrivingLine(str1, str2) {
         };
         var points = new BMap.Point(point.x, point.y);
         var content =   '<div style="margin:0;line-height:20px;padding:2px;">' +
-                        '到达时间：' + str1 + '<br/>耗时：' + str2 + '<br/>' +
+                        '到达时间：' + str1 + '<br/>耗时：' + str2 + '分钟<br/>' +
                         '</div>';
         var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象 
         map.openInfoWindow(infoWindow, points); //开启信息窗口

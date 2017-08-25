@@ -1,12 +1,29 @@
-function staticMap() {
+function staticMap(s,e) {
     var points;
+        // "minX": 113.301015625,
+        // "minY": 23.1427001953125,
+        // "maxX": 113.401801953125,
+        // "maxY": 23.16720703125,
+setTimeout(function(){
+        var view = map.getBounds(); //获取可视区域
+        var viewLB = view.getSouthWest(); //可视区域左下角
+        var viewRT = view.getNorthEast(); //可视区域右上角
+
+        if(s ==':00' || e ==':00'){
+            sTime = "2017-02-01 23:48:10";
+            eTime = "2017-02-01 23:48:20";
+        } else {
+            sTime = s;
+            eTime = e;
+        }
+       
     var reqData = {
-        "minX": 113.301015625,
-        "minY": 23.1427001953125,
-        "maxX": 113.401801953125,
-        "maxY": 23.16720703125,
-        "timeStart": "2017-02-01 23:48:10",
-        "timeEnd": "2017-02-01 23:58:20"
+        "minX": viewLB.lng,
+        "minY": viewLB.lat,
+        "maxX": viewRT.lng,
+        "maxY": viewRT.lat,
+        "timeStart": sTime,
+        "timeEnd": eTime
     }
     $.ajax({
         type: "POST",
@@ -72,4 +89,5 @@ function staticMap() {
             alert("发生错误：" + jqXHR.status);
         },
     });
+},1000)
 }

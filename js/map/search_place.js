@@ -116,10 +116,10 @@ $(function() {
             /*
             可加函数
              */
-            clearInterval(dynmcID);
-            map.removeOverlay(heatmapOverlay);
-            
+            // clearDynamicMap(); 
             clearInterval(intervalId);
+            staticMap($('.first-input-secondChange').val() + ':00', $('.second-input-secondChange').val() + ':00');
+
             isCheck = 1;
             longitude = pp.lng;
             latitude = pp.lat;

@@ -1,20 +1,18 @@
 dynamicMap();
-// var dynmcID;
-// function clearDynamicMap(){
-//     clearInterval(dynmcID);
-//     map.removeOverlay(heatmapOverlay);
-// }
-heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 12 });
-map.addOverlay(heatmapOverlay);
+var dynmcID;
+function clearDynamicMap(){
+    map.clearOverlays(); //清除图层覆盖物
+    clearInterval(dynmcID);
+}
 
 function dynamicMap() {
     var points;
     var timeStart = time.Format('yyyy-MM-dd hh:mm:ss');
-    var timeEnd = new Date(time.getTime() + 20000).Format('yyyy-MM-dd hh:mm:ss');
+    var timeEnd = new Date(time.getTime() + 10000).Format('yyyy-MM-dd hh:mm:ss');
 
     $.ajax({
         type: "POST",
-        url: "http://192.168.1.103:8080/show/dynamichot",
+        url: "http://192.168.1.108:8080/show/dynamichot",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify({
@@ -27,6 +25,8 @@ function dynamicMap() {
                     points = data.data.map(function(bir) {
                         return bir;
                     });
+                    heatmapOverlay = new BMapLib.HeatmapOverlay({ "radius": 12 });
+                    map.addOverlay(heatmapOverlay);
                     heatmapOverlay.setDataSet({ data: points, max: 1 });
                     break;
                 case 500:
@@ -85,7 +85,7 @@ function dynamicMap() {
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.1.103:8080/show/dynamichot",
+            url: "http://192.168.1.108:8080/show/dynamichot",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: false,
@@ -153,7 +153,7 @@ function dynamicMap() {
         heatmapOverlay.setDataSet({ data: points, max: 1 });
 
         timeStart = timeEnd;
-        timeEnd = new Date(new Date(timeEnd).getTime() + 20000).Format('yyyy-MM-dd hh:mm:ss');
+        timeEnd = new Date(new Date(timeEnd).getTime() + 10000).Format('yyyy-MM-dd hh:mm:ss');
     }, 5000)
     
 }

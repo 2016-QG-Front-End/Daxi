@@ -22,7 +22,9 @@ $(function() {
                 alert('未来和当前时间无法获取异常');
                 return ;
             }
-            excpectionAdd(1);
+            if (excpectionAdd(1) == 0) {
+                return;
+            };
             $('.unusual').attr('stat','on');
             $('.unusual span').text('关闭异常');
             console.log("open ");
@@ -64,7 +66,7 @@ function excpectionAdd(bool) {
         timeHour = time.getHours();
     }
 
-    map.clearOverlays();
+    
     if (bool == 0) {
         var obj = {
             minX: bssw.lng,
@@ -101,7 +103,7 @@ function excpectionAdd(bool) {
         data: JSON.stringify(obj),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        async: true,
+        async: false,
         xhrFields: {
             withCredentials: true
         },
@@ -110,7 +112,13 @@ function excpectionAdd(bool) {
                 for (var i = 0; i < data.data.length; i++) {
                     addMarkerWarm(data.data[i]);
                 };
+                if (data.data.length == 0) {
+                    alert('异常点数量为0');
+                    return 0;
+                }
+                
                 hideMaker();    //隐藏标记点
+                return 1;
             } else if (data.state == 2) {
                 alert('时间为空');
             } else if (data.state == 3) {

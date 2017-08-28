@@ -700,4 +700,21 @@ $$('#picktime').mdatetimer({
 //下方是回调函数的函数申明
 function smallSizeScreen() {
     // excpectionAdd(2);
+            var timeDay;
+            if (time.getDate() < 10) {
+                timeDay = '0' + time.getDate();
+            } else {
+                timeDay = time.getDate();
+            }
+
+            var timeHour;
+            if (time.getHours() < 10) {
+                timeHour = '0' + time.getHours();
+            } else {
+                timeHour = time.getHours();
+            }
+            var timeReq = time.getFullYear() + '-' + '0' + (time.getMonth() + 1) + '-' + timeDay + ' ' + timeHour + ':' + time.getMinutes();
+            if (timeReq < $('#picktime').val()) {//选择时间为过去
+
+            }            
 }
